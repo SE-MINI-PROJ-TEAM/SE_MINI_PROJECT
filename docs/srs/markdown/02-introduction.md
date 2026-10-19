@@ -1,12 +1,12 @@
 # Introduction
 
 ## Purpose
-This document specifies the Software Requirements Specification (SRS) for the Academic Management & Record System. It details the functional requirements, non-functional constraints, security objectives, and system models necessary for university-level deployment. This document serves as the primary technical reference for software developers, system evaluators, and academic instructors during project implementation and acceptance testing.
+This document specifies the Software Requirements Specification (SRS) for the Student Record System. It details the functional requirements, non-functional constraints, security objectives, and system models necessary for university-level deployment. This document serves as the primary technical reference for software developers, system evaluators, and academic instructors during project implementation and acceptance testing.
 
 ## Scope
-The system provides digitized academic management capabilities covering administrative account provisioning, course section registration with weighted evaluation rubrics, student self-enrollment, automated schedule generation, digitized roll-call attendance marking with a strict 48-hour freeze constraint, and a multi-stage grade evaluation workflow (`Draft` $\rightarrow$ `Submitted` $\rightarrow$ `Under Review` $\rightarrow$ `Published`).
+The system provides digitized academic management capabilities covering administrative account provisioning, course section registration with weighted evaluation rubrics, student self-enrollment, digitized roll-call attendance marking with a strict 48-hour freeze constraint, and a multi-stage grade evaluation workflow (`Draft` $\rightarrow$ `Submitted` $\rightarrow$ `Under Review` $\rightarrow$ `Published`).
 
-The scope explicitly excludes automated mail distribution (credentials are displayed on-screen during administrative account creation), physical hardware card integration, biometric devices, and external payment gateway processing.
+The scope explicitly excludes automated mail distribution (credentials are displayed on-screen during administrative account creation), physical hardware card integration, and external payment gateway processing.
 
 ## Audience
 This document is targeted toward:

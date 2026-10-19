@@ -1,7 +1,7 @@
 # Introduction
 
 ## Purpose
-This document provides a comprehensive Software Architecture and Design (SAD) specification for the Academic Management & Record System. It details the high-level system decomposition, architectural styles, constituent components, data persistence strategies, sequence models, API interfaces, security threat models (STRIDE), and error handling mechanisms.
+This document provides a comprehensive Software Architecture and Design (SAD) specification for the Student Record System. It details the high-level system decomposition, architectural styles, constituent components, data persistence strategies, sequence models, API interfaces, security threat models (STRIDE), and error handling mechanisms.
 
 ## Scope
 This specification covers the system's software architecture for:
@@ -12,7 +12,7 @@ This specification covers the system's software architecture for:
 * **Weighted Rubric Grading Workflow:** Rubric-based evaluation, grade state transitions (`Draft` $\rightarrow$ `Submitted` $\rightarrow$ `Under Review` $\rightarrow$ `Published`), and regrade dispute workflows.
 * **Analytics & Summary Reporting:** Student GPA calculation, class grade distributions, and institution-level summary metrics.
 
-Out of scope: Mail automation/SMTP delivery services, physical biometric hardware, hardware card readers, and payment gateway infrastructure.
+Out of scope: Mail automation/SMTP delivery services, hardware infrastructure and maintainance, and payment gateway infrastructure.
 
 ## Audience
 This document is intended for software developers, system architects, QA engineers, security auditors, and course evaluators responsible for implementing, testing, and assessing the system.

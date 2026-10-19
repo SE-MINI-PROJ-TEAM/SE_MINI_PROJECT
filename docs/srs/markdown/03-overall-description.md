@@ -19,7 +19,7 @@ The Academic Management & Record System is an independent, responsive web servic
 | **Administrator** | Provisions user accounts; creates courses and schedule sessions; sets evaluation rubrics; publishes finalized grades; executes administrative attendance overrides; manages account operational states. |
 
 ## Operating Environment
-* **Server Environment:** Linux container execution environment (Docker) running Node.js / Python application services and PostgreSQL / MySQL relational database.
+* **Server Environment:** Linux container execution environment (Docker) running Python application services and MySQL relational database.
 * **Client Environment:** Responsive web browser (Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge) operating on devices with screen widths from 375px to 1920px.
 * **Network Infrastructure:** Standard institutional WAN/LAN with mandatory HTTPS (TLS 1.3) traffic routing.
 

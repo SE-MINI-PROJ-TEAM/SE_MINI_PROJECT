@@ -46,9 +46,9 @@ The system adopts a **Classic 3-Tier Layered Architecture** (Presentation, Appli
 
 ## Technology Stack & Data Stores
 
-* **Frontend:** HTML5, CSS3 (Flexbox/Grid), Modern JavaScript (React/Vue/Vanilla ES6).
-* **Backend Application Server:** Node.js (Express) or Python (FastAPI/Flask).
-* **Database Management System:** PostgreSQL or MySQL relational database using ORM (Prisma/SQLAlchemy).
+* **Frontend:** HTML5, CSS3 (Flexbox/Grid), Modern JavaScript (React).
+* **Backend Application Server:** Python (Flask).
+* **Database Management System:** MySQL relational database using ORM (Prisma/SQLAlchemy).
 * **Security & Auth:** TLS 1.3, bcrypt password hashing (factor 12), HTTP-only JWT bearer tokens.
 
 ## Risks & Mitigations

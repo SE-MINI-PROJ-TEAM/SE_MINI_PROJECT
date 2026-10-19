@@ -31,8 +31,8 @@ The sequence below illustrates grade progression from `Draft` through `Submitted
   {
     "session_id": "SESS-2026-101",
     "attendance_list": [
-      { "student_id": "PES1UG22CS001", "is_present": true },
-      { "student_id": "PES1UG22CS002", "is_present": false }
+      { "student_id": "PES1UG24CS001", "is_present": true },
+      { "student_id": "PES1UG24CS002", "is_present": false }
     ]
   }
   ```
@@ -79,7 +79,7 @@ The sequence below illustrates grade progression from `Draft` through `Submitted
 ## Error Handling, Logging & Monitoring
 
 * **Error Handling:** Standardized REST error envelopes containing HTTP status code, machine-readable error codes, and human-readable messages.
-* **Logging Standards:** Structured JSON logging (Winston/Pino or Python `logging`). Sensitive data (passwords, JWT tokens, personal contact details) are strictly sanitized and excluded from log streams.
+* **Logging Standards:** Structured JSON logging (Python `logging`). Sensitive data (passwords, JWT tokens, personal contact details) are strictly sanitized and excluded from log streams.
 * **Monitoring Metrics:** API latency metrics (tracking $< 800\text{ ms}$ threshold), error rates (5xx responses), and concurrent transaction counts.
 
 ## UX Design

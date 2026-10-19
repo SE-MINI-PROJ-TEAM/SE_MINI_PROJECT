@@ -1,10 +1,10 @@
 ---
 title: "Software Test Plan (STP)"
-subtitle: "Academic Management & Record System"
+subtitle: "Student Record System"
 author:
-  - "Tanmay T A (PES1UG22CS001)"
-  - "Uttam B S (PES1UG22CS002)"
-  - "Vibha Vasisht (PES1UG22CS003)"
+  - "Tanmay T A (PES1UG24CS492)"
+  - "Uttam B S (PES1UG24CS508)"
+  - "Vibha Vasisht (PES1UG24CS526)"
 version: "1.0"
 status: "Approved"
 date: "12-10-2026"
@@ -26,7 +26,7 @@ header-includes:
   - \renewcommand{\arraystretch}{1.4}
   - \pagestyle{fancy}
   - \fancyhf{}
-  - \fancyhead[L]{\small Academic Management System STP}
+  - \fancyhead[L]{\small Student Record System STP}
   - \fancyhead[R]{\small Page \thepage}
   - \fancyfoot{}
 ---
