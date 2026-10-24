@@ -270,3 +270,34 @@ body {
   padding: 3rem;
   color: var(--text-muted);
 }
+
+/* Select Input & Dropdown Option Dark Mode Overrides */
+select.input-control {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--input-bg) !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2394a3b8' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* Explicit option list item styling for native OS browser popups */
+select.input-control option {
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  padding: 0.6rem;
+  font-size: 0.95rem;
+}
+
+select.input-control option:checked,
+select.input-control option:hover {
+  background-color: var(--accent-primary) !important;
+  color: #ffffff !important;
+}

@@ -89,14 +89,16 @@ export function ProfilePage({ institutionalId = "STU001" }) {
         }
     };
 
-    const handleEdit = () => {
+    const handleEdit = (e) => {
+        if (e) e.preventDefault();
         setFormData(profile);
         setEditing(true);
         setMessage("");
         setError("");
     };
 
-    const handleCancel = () => {
+    const handleCancel = (e) => {
+        if (e) e.preventDefault();
         setFormData(profile);
         setEditing(false);
         setMessage("");

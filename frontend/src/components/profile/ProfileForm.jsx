@@ -1,4 +1,5 @@
 import { InputField } from "../common/InputField";
+import { Button } from "../common/Button";
 
 export function ProfileForm({ formData, profile, editing, onChange, onSave, onEdit, onCancel }) {
     return (
@@ -56,11 +57,17 @@ export function ProfileForm({ formData, profile, editing, onChange, onSave, onEd
             <div className="button-group">
                 {editing ? (
                     <>
-                        <button type="submit" className="btn btn-primary">Save Changes</button>
-                        <button type="button" onClick={onCancel} className="btn btn-secondary">Cancel</button>
+                        <Button type="submit" variant="primary">
+                            Save Changes
+                        </Button>
+                        <Button type="button" variant="secondary" onClick={onCancel}>
+                            Cancel
+                        </Button>
                     </>
                 ) : (
-                    <button type="button" onClick={onEdit} className="btn btn-primary">Edit Contact Details</button>
+                    <Button type="button" variant="primary" onClick={onEdit}>
+                        Edit Contact Details
+                    </Button>
                 )}
             </div>
         </form>
