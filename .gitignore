@@ -29,3 +29,6 @@ htmlcov/
 # Ignore Python wheel files and vendored packages
 *.whl
 wheels/
+
+# VS Code files
+.vscode/
