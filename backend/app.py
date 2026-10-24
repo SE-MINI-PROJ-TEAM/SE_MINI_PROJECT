@@ -15,8 +15,8 @@ load_dotenv(dotenv_path=BASE_DIR / ".env")
 app = Flask(__name__)
 CORS(app)
 
-# Configure MySQL through an environment variable.
-database_url = os.environ.get("DATABASE_URL")
+# Configure database URL with a default fallback if .env is missing
+database_url = os.environ.get("DATABASE_URL", "sqlite:///dev.db")
 
 if not database_url:
     raise RuntimeError(
