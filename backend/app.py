@@ -1,13 +1,16 @@
-
 import os
 import re
+from pathlib import Path
 from dotenv import load_dotenv
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from models import db, Profile
-load_dotenv()
+from modules.auth.models import db, Profile
+
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(dotenv_path=BASE_DIR / ".env")
+
 app = Flask(__name__)
 CORS(app)
 
@@ -16,11 +19,15 @@ database_url = os.environ.get("DATABASE_URL")
 
 if not database_url:
     raise RuntimeError(
-        "DATABASE_URL is missing. Configure it in src/profile/backend/.env"
+        "DATABASE_URL is missing. Configure it in backend/.env"
     )
 
+# Convert relative SQLite URLs into absolute paths targeting the backend directory
+if database_url.startswith("sqlite:///") and not database_url.startswith("sqlite:////"):
+    db_filename = database_url.replace("sqlite:///", "")
+    database_url = f"sqlite:///{BASE_DIR / db_filename}"
+
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
@@ -103,4 +110,19 @@ def update_profile(institutional_id):
 
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+        # Seed default demo user if missing
+        if not db.session.get(Profile, "STU001"):
+            db.session.add(
+                Profile(
+                    institutional_id="STU001",
+                    role="Student",
+                    name="Demo Student",
+                    phone="9876543210",
+                    emergency_contact="9876501234",
+                    personal_email="student@example.com",
+                )
+            )
+            db.session.commit()
     app.run(debug=True, port=5000)
