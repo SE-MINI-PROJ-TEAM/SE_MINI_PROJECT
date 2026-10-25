@@ -19,8 +19,9 @@ import unittest
 from flask import Flask
 from sqlalchemy.engine import make_url
 
-from enrollment_service import EnrollmentError, enroll_student
-from models import Course, Enrollment, Profile, db
+from modules.auth.models import Profile, db
+from modules.courses.enrollment_service import EnrollmentError, enroll_student
+from modules.courses.models import Course, Enrollment
 
 MYSQL_URL = os.environ.get("TEST_MYSQL_URL")
 
@@ -50,7 +51,7 @@ class MySQLConcurrencyTests(unittest.TestCase):
                 Profile(institutional_id=f"S{i:03d}", role="Student",
                         name="s", phone="9876543210",
                         emergency_contact="9876501234",
-                        personal_email="s@example.com")
+                        personal_email=f"s{i:03d}@example.com")
                 for i in range(1, 31)
             )
             db.session.commit()

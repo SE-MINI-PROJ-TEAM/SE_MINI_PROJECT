@@ -11,11 +11,13 @@ import unittest
 from unittest import mock
 
 # Must happen before `app` is imported (app.py builds its engine on import).
-# conftest.py does this for pytest; this line protects plain `unittest` runs.
+# tests/backend/__init__.py already forces this for every test run; repeating
+# it here keeps this module safe if it is ever imported on its own.
 os.environ["DATABASE_URL"] = "sqlite://"
 
 from app import app, db  # noqa: E402
-from models import Course, Enrollment, Profile  # noqa: E402
+from modules.auth.models import Profile  # noqa: E402
+from modules.courses.models import Course, Enrollment  # noqa: E402
 
 T1 = "2026-ODD"
 T2 = "2026-EVEN"

@@ -2,20 +2,20 @@
 ## Student Record System: Course Self-Enrollment & 6-Course Cap
 
 **Requirement:** SYS-F-006 (AC-SYS-F-006) | **Test case reference:** TC-CRS-02 | **GitHub issue:** US-06
-**Test framework:** Python `unittest` classes, run with `pytest` (STP tool) or `python -m unittest`
-**Files:** `test_enrollment.py` (business rules, SQLite), `test_enrollment_mysql.py` (concurrency, real MySQL)
+**Test framework:** Python `unittest` (the CI pipeline runs `python -m unittest discover`; pytest also works)
+**Files:** `tests/backend/courses/test_enrollment.py` (business rules, SQLite), `tests/backend/courses/test_enrollment_mysql.py` (concurrency, real MySQL)
 
 ### 1. Assumptions (the SRS/SAD do not specify these)
 
 | # | Question | Assumption used | Where enforced |
 |---|---|---|---|
 | A1 | Does the limit count courses, sections or records? | Each Active enrollment record = one course section. Limit = 6 **per academic term** (SRS 03 §Constraints: "6 courses per academic term"). | `MAX_COURSES_PER_TERM`, `_term_count()` |
-| A2 | Do dropped/cancelled enrollments count? | No. Only `status = 'Active'` counts. (Drop/cancel is not implemented yet.) | `enrollment_service.py` |
+| A2 | Do dropped/cancelled enrollments count? | No. Only `status = 'Active'` counts. (Drop/cancel is not implemented yet.) | `backend/modules/courses/enrollment_service.py` |
 | A3 | Duplicate enrollment in the same section? | Prohibited (409 `ALREADY_ENROLLED`), also by DB unique key `(student_id, course_id)`. | service + `uq_enrollment_student_course` |
 | A4 | Two different sections of the same course code? | Allowed (each section is a separate record). | none needed |
 | A5 | "Open enrollment window set by the Administrator" (SRS) | **Not implemented.** No admin/window model exists. `courses.status = 'Open'/'Closed'` is the only gate. | `SECTION_CLOSED` |
 | A6 | Seat availability | Derived: `capacity_limit - Active enrollments`. No stored counter. | `Course.to_dict`, `list_catalog` |
-| A7 | Course/section tables | Did not exist. Added `courses` (matches SRS ER entity COURSE) and `enrollments`. SYS-F-005 (admin course setup) will need to reuse `courses`. | `schema.sql`, `models.py` |
+| A7 | Course/section tables | Did not exist. Added `courses` (matches SRS ER entity COURSE) and `enrollments`. SYS-F-005 (admin course setup) will need to reuse `courses`. | `scripts/schema.sql`, `backend/modules/courses/models.py` |
 
 ### 2. Preconditions common to all cases
 Test DB created fresh per test. Students `STU001-STU003` (role Student) and `FAC001` (role Faculty) exist. Term `2026-ODD`: sections id 1-8 (capacity 30, Open), id 9 (Closed), id 10 (capacity 1, Open). Term `2026-EVEN`: section id 11. Dev identity is enabled (`X-Student-Id` header) because real authentication does not exist yet.
@@ -53,7 +53,7 @@ Test DB created fresh per test. Students `STU001-STU003` (role Student) and `FAC
 
 ### 4. Manual UI test cases (NOT YET VERIFIED)
 
-The React screen was built and passes `npm run build` and `npm run lint` (0 errors). It was **not** opened in a browser or covered by automated UI tests (the repo has no frontend test framework). Execute these yourself before submission.
+The React screen was built and passes `npm run build` and `npm run lint` (0 errors). It was **not** opened in a real browser. Its logic was checked with a throwaway jsdom component test (7 tests, mocked backend, not committed; section 5). Execute these yourself before submission.
 
 | ID | AC | Steps | Expected | Actual | Status |
 |---|---|---|---|---|---|
@@ -66,21 +66,24 @@ The React screen was built and passes `npm run build` and `npm run lint` (0 erro
 
 ### 5. Execution summary (actual results)
 
-Run on 22 Oct 2026, Python 3.12.3, Flask 3.1.3, Flask-SQLAlchemy 3.1.1, SQLAlchemy 2.1.6, MySQL 8.0.46 (default isolation REPEATABLE-READ), in a Linux sandbox (not your Windows machine).
+Integrated repository (backend/, frontend/, tests/), run in a Linux sandbox (not a Windows machine): Python 3.12.3, Flask 3.1.3, Flask-SQLAlchemy 3.1.1, SQLAlchemy 2.1.6, MySQL 8.0.46 (REPEATABLE-READ), Node/Vite from `frontend/package.json`.
 
-| Command | Result |
+| Command (from repo root, `PYTHONPATH=backend`) | Result |
 |---|---|
-| `python -m pytest -q` (no MySQL) | **30 passed, 5 skipped**, 15 subtests passed (9 existing profile tests + 21 enrollment tests; the 5 MySQL tests skipped) |
-| `TEST_MYSQL_URL=... python -m pytest -q` | **35 passed**, 0 failed, 15 subtests passed |
-| MySQL concurrency file repeated 6 times | 6/6 runs passed (no flakiness observed) |
-| `npm run build` / `npm run lint` | Build OK; lint 0 errors, 1 warning (setState in effect, same pattern as existing profile page) |
-| `schema.sql` + `seed_demo_courses.sql` on MySQL 8.0, run twice | Applied cleanly; idempotent; `capacity_limit >= 0` CHECK enforced |
-| Live Flask + MySQL, via curl | 401 without identity; 6 enrollments 201; 7th 409 `ENROLLMENT_LIMIT_REACHED`; closed section 409; seat counts dropped correctly |
-
-**Test sensitivity check.** Rules were deliberately broken to confirm tests detect it: limit 6->7 (5 tests fail), capacity check removed (4 fail), closed check removed (3 fail), term scoping removed (1 fails), and **row locks removed (4 of 5 MySQL concurrency tests fail with real over-enrollment)**. Two mutations did not fail tests because a second safeguard covers them: removing the duplicate check is still caught by the DB unique key (same 409), and removing the explicit rollback is still covered by Flask discarding the session at request end.
+| `python -m unittest discover -s tests/backend -t . -p "test_*.py"` (the CI command; no MySQL) | **40 tests: 35 passed, 0 failed, 5 skipped** (the 5 skipped are the MySQL tests) |
+| Per suite | auth `test_profile` 9 OK; auth `test_user_provisioning` 5 OK; courses `test_enrollment` 21 OK; courses `test_enrollment_mysql` 5 skipped without `TEST_MYSQL_URL` |
+| Same CI command with `TEST_MYSQL_URL` pointing to dedicated DB `us06_test` | **40 tests, all passed, 0 skipped** |
+| `test_enrollment_mysql` run alone, 3 repeats | 3/3 runs: 5 passed |
+| MySQL tests with `TEST_MYSQL_URL` set to a database not ending in `_test` | Refused with `RuntimeError` before connecting |
+| Locks removed from `enrollment_service.py` (sensitivity check) | 4 of 5 MySQL tests fail; restored code: 5 pass |
+| `npm run build` | OK |
+| `npm run lint` | 0 errors, 1 warning (setState inside an effect) |
+| Throwaway jsdom component test (7 tests, temp copy, not committed) | 7 passed: catalog fields/status, successful enroll, double-click sends 1 request, 6/6 hides Enroll buttons, stale-seat rejection re-syncs, term filter, load error |
+| Live Flask + clean MySQL (tables from `db.create_all()`, `scripts/seed_demo_courses.sql`) | `/api/profile/STU001` 200; enrollment without identity 401; enrollments 1-6 returned 201; 7th returned 409 `ENROLLMENT_LIMIT_REACHED`; `/api/admin/users` route still responds |
+| Vite dev proxy to Flask | `/api/v1/courses` and `/api/v1/enrollments/me` reachable through the proxy |
 
 ### 6. Limitations
 - SQLite tests prove business rules only; locking is proven only by the MySQL tests, run against MySQL 8.0 in a sandbox, not against your team's server.
 - Authentication does not exist in the repository. Identity uses an insecure, off-by-default dev header (`identity.py`). Endpoints are NOT secure until JWT validation replaces it (SYS-F-001/002, PRJ-SR-003/004).
 - The admin-controlled enrollment window (A5), dropping a course, and admin course setup (SYS-F-005) are not implemented.
-- No UI automation; manual UI cases in section 4 are unexecuted.
+- No browser-driven UI test; manual UI cases in section 4 are unexecuted. `scripts/schema.sql` creates `profiles` without the password columns the ORM model now has (pre-existing); for a fresh database let `python app.py` run `db.create_all()`.
