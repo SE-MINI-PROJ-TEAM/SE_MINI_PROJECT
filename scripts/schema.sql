@@ -1,4 +1,3 @@
-
 CREATE DATABASE IF NOT EXISTS student_records;
 
 USE student_records;
@@ -7,37 +6,22 @@ CREATE TABLE IF NOT EXISTS profiles (
     institutional_id VARCHAR(50) PRIMARY KEY,
     role VARCHAR(20) NOT NULL,
     name VARCHAR(100) NOT NULL DEFAULT '',
-    phone VARCHAR(20) NOT NULL,
-    emergency_contact VARCHAR(20) NOT NULL,
-    personal_email VARCHAR(255) NOT NULL
-);
+    phone VARCHAR(20) NOT NULL DEFAULT '',
+    emergency_contact VARCHAR(20) NOT NULL DEFAULT '',
+    personal_email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NULL,
+    is_temporary_password TINYINT(1) NOT NULL DEFAULT 1,
+    is_active TINYINT(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB;
 
-INSERT INTO profiles (
-    institutional_id,
-    role,
-    name,
-    phone,
-    emergency_contact,
-    personal_email
-)
-VALUES (
-    'STU001',
-    'Student',
-    'Demo Student',
-    '9876543210',
-    '9876501234',
-    'student@example.com'
-)
-ON DUPLICATE KEY UPDATE
-    institutional_id = institutional_id;
-
-
--- ---------------------------------------------------------------------------
--- US-06 / SYS-F-006: course sections and student self-enrollment.
--- Additive only: existing tables and rows are not touched.
--- Available seats are derived (capacity_limit - Active enrollments); there is
--- deliberately no "seats_left" column that could drift out of sync.
--- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    admin_id VARCHAR(50) NOT NULL,
+    target_user_id VARCHAR(50) NOT NULL,
+    action VARCHAR(100) NOT NULL,
+    details VARCHAR(255) NULL,
+    timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS courses (
     id INT AUTO_INCREMENT PRIMARY KEY,

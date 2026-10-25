@@ -342,33 +342,3 @@ select.input-control option:hover {
   background-color: var(--accent-primary) !important;
   color: #ffffff !important;
 }
-/* View switcher (Account Settings / Course Catalog) */
-.app-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.app-tab {
-  padding: 0.45rem 1.1rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--text-muted);
-  font: inherit;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.app-tab[aria-current="page"] {
-  background: var(--accent-light);
-  color: var(--accent-primary);
-  border-color: var(--accent-primary);
-}
-
-.main-content-wide {
-  max-width: 1040px;
-}
