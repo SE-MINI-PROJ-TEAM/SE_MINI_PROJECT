@@ -8,6 +8,14 @@ from flask_cors import CORS
 
 import secrets
 from modules.auth.models import db, Profile
+from modules.courses import models as course_models  # noqa: F401  (registers tables)
+from modules.courses.enrollment_service import (
+    EnrollmentError,
+    enroll_student,
+    get_student_enrollments,
+    list_catalog,
+)
+from modules.courses.identity import get_authenticated_student_id
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(dotenv_path=BASE_DIR / ".env")
@@ -30,6 +38,14 @@ if database_url.startswith("sqlite:///") and not database_url.startswith("sqlite
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# DEV ONLY: lets the X-Student-Id header identify the caller for the
+# enrollment API until real login/token validation exists. Off by default.
+# See backend/modules/courses/identity.py.
+app.config["ALLOW_INSECURE_DEV_IDENTITY"] = (
+    os.environ.get("ALLOW_INSECURE_DEV_IDENTITY", "false").strip().lower()
+    == "true"
+)
 
 db.init_app(app)
 
@@ -166,6 +182,78 @@ def provision_user():
         "user": new_user.to_dict(),
         "temporaryPassword": temp_password,
     }), 201
+
+
+# ---------------------------------------------------------------------------
+# US-06 / SYS-F-006: course catalog and student self-enrollment
+# ---------------------------------------------------------------------------
+
+def api_error(code, message, status):
+    return jsonify({"error": message, "code": code}), status
+
+
+@app.route("/api/v1/courses", methods=["GET"])
+def get_course_catalog():
+    """Course sections with live seat availability (optional ?term=)."""
+    term = request.args.get("term", "").strip() or None
+    return jsonify({"courses": list_catalog(term)}), 200
+
+
+@app.route("/api/v1/enrollments/me", methods=["GET"])
+def get_my_enrollments():
+    student_id = get_authenticated_student_id()
+    if student_id is None:
+        return api_error("UNAUTHENTICATED", "Authentication required.", 401)
+
+    try:
+        return jsonify(get_student_enrollments(student_id)), 200
+    except EnrollmentError as err:
+        return api_error(err.code, err.message, err.status)
+
+
+@app.route("/api/v1/enrollments", methods=["POST"])
+def create_enrollment():
+    # Identity comes from the authenticated caller, never from the body.
+    # No database access may happen before enroll_student() (see its docs).
+    student_id = get_authenticated_student_id()
+    if student_id is None:
+        return api_error("UNAUTHENTICATED", "Authentication required.", 401)
+
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return api_error(
+            "INVALID_REQUEST", "A valid JSON object is required.", 400
+        )
+
+    if set(data.keys()) != {"courseId"}:
+        return api_error(
+            "INVALID_REQUEST",
+            "Request must contain only 'courseId'.",
+            400,
+        )
+
+    course_id = data["courseId"]
+    if (
+        isinstance(course_id, bool)
+        or not isinstance(course_id, int)
+        or course_id <= 0
+    ):
+        return api_error(
+            "INVALID_REQUEST", "'courseId' must be a positive integer.", 400
+        )
+
+    try:
+        result = enroll_student(student_id, course_id)
+    except EnrollmentError as err:
+        return api_error(err.code, err.message, err.status)
+    except Exception:
+        app.logger.exception("Enrollment failed")
+        return api_error(
+            "INTERNAL_ERROR", "Could not complete the enrollment.", 500
+        )
+
+    result["message"] = "Enrollment confirmed."
+    return jsonify(result), 201
 
 
 if __name__ == "__main__":

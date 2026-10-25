@@ -3,9 +3,11 @@
 IMPORTANT - READ THIS BEFORE USING IN PRODUCTION
 ------------------------------------------------
 The SAD specifies JWT bearer authentication (PRJ-SR-003) and RBAC middleware
-(PRJ-SR-004), but NO authentication exists in this repository yet (SYS-F-001/
-SYS-F-002 are not implemented). The student ID must never be taken from the
-request body or URL, because the client could put anyone's ID there.
+(PRJ-SR-004). The repository can now provision users with password hashes
+(US-01), but it still has NO login endpoint and NO token/session validation,
+so there is nothing trustworthy to read an identity from. The student ID must
+never be taken from the request body or URL, because the client could put
+anyone's ID there.
 
 This module is the ONE place that decides "who is calling". Until the real
 JWT middleware exists:

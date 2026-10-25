@@ -1,6 +1,6 @@
 """Business logic for student self-enrollment (SYS-F-006, US-06).
 
-Layering: app.py (HTTP) -> this module (rules + transaction) -> models.py (ORM).
+Layering: app.py (HTTP) -> this module (rules + transaction) -> models (ORM).
 
 Rules enforced here, on the server, regardless of what the UI does:
   * the student and the section must exist, and the caller must be a Student
@@ -28,19 +28,18 @@ database reads before calling `enroll_student`.
 
 SQLite (used by the unit tests) ignores FOR UPDATE, so the tests there verify
 the business rules, not the locking. The locking is verified by
-test_enrollment_mysql.py against a real MySQL server.
+tests/backend/courses/test_enrollment_mysql.py against a real MySQL server.
 """
 
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 
-from models import (
+from modules.auth.models import Profile, db
+from modules.courses.models import (
     COURSE_STATUS_OPEN,
     ENROLLMENT_STATUS_ACTIVE,
     Course,
     Enrollment,
-    Profile,
-    db,
 )
 
 # Assumption A1 (see TEST_cases_enrollment.md): the limit counts Active
