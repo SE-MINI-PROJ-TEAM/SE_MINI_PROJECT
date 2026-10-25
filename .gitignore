@@ -16,10 +16,15 @@ venv/
 node_modules/
 dist/
 
-# SQLite & Flask Instance Folder
-instance/
+# SQLite Databases
 *.db
+*.sqlite
 *.sqlite3
+instance/
+
+# Logs
+*.log
+backend/logs/
 
 # Test and coverage files
 .pytest_cache/

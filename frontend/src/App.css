@@ -48,27 +48,33 @@ body {
   background-color: var(--bg-primary);
 }
 
+/* Main Content Canvas - Expanded Widescreen Viewport */
 .main-content {
   flex: 1;
-  max-width: 760px;
+  max-width: 1280px;
   width: 100%;
-  margin: 2.5rem auto;
-  padding: 0 1.5rem;
+  margin: 2rem auto;
+  padding: 0 2rem;
   box-sizing: border-box;
 }
 
-/* Header */
+/* Centered Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .page-header h1 {
-  font-size: 1.85rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--text-main);
-  margin: 0 0 0.35rem 0;
+  margin: 0 0 0.4rem 0;
   letter-spacing: -0.025em;
 }
 
 .page-header p {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -76,11 +82,11 @@ body {
 .navbar {
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
 }
 
 .navbar-container {
-  max-width: 1000px;
+  max-width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -106,14 +112,19 @@ body {
   border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
-/* Card Container */
+/* Card Container - Removed vertical side borders */
 .card {
+  width: 100%;
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-left: none;
+  border-right: none;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   padding: 2.25rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+  box-sizing: border-box;
 }
 
 /* Profile Banner */
@@ -281,7 +292,7 @@ select.input-control {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1.25rem;
-  padding-right: 2.5rem;
+  padding-right: 2.25rem;
   color: var(--text-main);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
