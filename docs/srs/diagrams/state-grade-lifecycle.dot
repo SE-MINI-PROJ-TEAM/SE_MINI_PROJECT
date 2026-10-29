@@ -14,6 +14,8 @@ digraph GradeLifecycle {
     Draft -> Draft [label=" Save updates "];
     Draft -> Submitted [label=" Faculty submits grade "];
     Submitted -> Published [label=" Admin approves & publishes "];
-    Published -> UnderReview [label=" Student requests review "];
-    UnderReview -> Published [label=" Faculty/Admin resolves & republishes "];
+    Published -> UnderReview [label=" Student requests review
+[only if the grade has never been disputed] "];
+    UnderReview -> Published [label=" Faculty/Admin resolves & republishes
+(grade is now final: one dispute per grade) "];
 }

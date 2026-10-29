@@ -15,7 +15,7 @@ The entity-relationship model defines user accounts, course offerings, class sch
 \clearpage
 
 ## Grade Lifecycle State Machine
-Grades progress through a controlled state machine ensuring visibility restrictions and dispute tracking.
+Grades progress through a controlled state machine ensuring visibility restrictions and dispute tracking. A grade can be disputed at most once: after a dispute is resolved and the grade is re-published, it cannot return to `Under Review`.
 
 ![Grade Lifecycle State Machine](images/state-grade-lifecycle.png){width=100%}
 
