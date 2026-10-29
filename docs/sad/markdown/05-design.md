@@ -13,7 +13,7 @@ The sequence below illustrates a Faculty member executing roll-call and the back
 \clearpage
 
 ### Sequence Diagram 2: Weighted Rubric Grade Lifecycle
-The sequence below illustrates grade progression from `Draft` through `Submitted` and `Published`, including Student regrade disputes (`Under Review`).
+The sequence below illustrates grade progression from `Draft` through `Submitted` and `Published`, including Student regrade disputes (`Under Review`). Each grade can be disputed only once; a re-published grade is final.
 
 ![Weighted Rubric Grade Lifecycle Sequence Diagram](images/sequence-grade-lifecycle.png){width=90%}
 

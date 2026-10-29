@@ -46,6 +46,6 @@ digraph GradeLifecycleSequence {
     G5 -> E5 [label=" 5. Validate Role -> Auto-Normalize Rubric Weights ", color="#388E3C", fontcolor="#388E3C"];
     E6 -> D6 [label=" 6. Transition state -> 'Submitted' ", color="#F57C00", fontcolor="#F57C00"];
 
-    C7 -> G7 [label=" 7. POST /grades/publish (Admin Action) / dispute (Student) ", color="#0288D1", fontcolor="#0288D1"];
+    C7 -> G7 [label=" 7. POST /grades/publish (Admin Action) / dispute (Student, once per grade) ", color="#0288D1", fontcolor="#0288D1"];
     G8 -> E8 [label=" 8. Update State -> 'Published' or 'Under Review' ", color="#D32F2F", fontcolor="#D32F2F"];
 }
