@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="16" failures="0" errors="0" time="0.020821005">
+    <testsuite name="src/core/utils/format.test.js" timestamp="2026-10-28T17:30:24.558Z" hostname="858b72ad8d5b" tests="3" failures="0" errors="0" skipped="0" time="0.004447963">
+        <testcase classname="src/core/utils/format.test.js" name="format helpers &gt; initials" time="0.001650517">
+        </testcase>
+        <testcase classname="src/core/utils/format.test.js" name="format helpers &gt; timeUntil renders a countdown and empties once past" time="0.000555349">
+        </testcase>
+        <testcase classname="src/core/utils/format.test.js" name="format helpers &gt; startOfWeek returns Monday 00:00" time="0.000689453">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/features/course_setup/normalize.test.js" timestamp="2026-10-28T17:30:24.563Z" hostname="858b72ad8d5b" tests="4" failures="0" errors="0" skipped="0" time="0.007245879">
+        <testcase classname="src/features/course_setup/normalize.test.js" name="previewNormalized (mirrors backend rubric normalisation) &gt; always totals exactly 100" time="0.003040035">
+        </testcase>
+        <testcase classname="src/features/course_setup/normalize.test.js" name="previewNormalized (mirrors backend rubric normalisation) &gt; keeps proportions" time="0.001025535">
+        </testcase>
+        <testcase classname="src/features/course_setup/normalize.test.js" name="previewNormalized (mirrors backend rubric normalisation) &gt; gives the extra cent to the largest remainder like the server" time="0.000407454">
+        </testcase>
+        <testcase classname="src/features/course_setup/normalize.test.js" name="previewNormalized (mirrors backend rubric normalisation) &gt; returns null for empty or non-positive weights" time="0.000746386">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/features/password_reset/passwordPolicy.test.js" timestamp="2026-10-28T17:30:24.569Z" hostname="858b72ad8d5b" tests="7" failures="0" errors="0" skipped="0" time="0.005334153">
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; accepts a password meeting every rule" time="0.001517862">
+        </testcase>
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; rejects short" time="0.000317811">
+        </testcase>
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; rejects alllowercase1!" time="0.000166685">
+        </testcase>
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; rejects ALLUPPERCASE1!" time="0.000541818">
+        </testcase>
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; rejects NoDigits!!!!" time="0.000173376">
+        </testcase>
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; rejects NoSpecial1234" time="0.000193107">
+        </testcase>
+        <testcase classname="src/features/password_reset/passwordPolicy.test.js" name="password policy &gt; reports each rule individually" time="0.000755706">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/features/profile/validation.test.js" timestamp="2026-10-28T17:30:24.579Z" hostname="858b72ad8d5b" tests="2" failures="0" errors="0" skipped="0" time="0.00379301">
+        <testcase classname="src/features/profile/validation.test.js" name="validateContact &gt; passes valid or empty values" time="0.001954777">
+        </testcase>
+        <testcase classname="src/features/profile/validation.test.js" name="validateContact &gt; flags bad phone numbers and emails" time="0.000443735">
+        </testcase>
+    </testsuite>
+</testsuites>
