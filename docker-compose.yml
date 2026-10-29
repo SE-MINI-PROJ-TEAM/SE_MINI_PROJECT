@@ -1,0 +1,61 @@
+# The application, fully containerised:   docker compose up -d --build    ->  http://localhost:8080
+#
+#   first run / reset the demo data:      docker compose run --rm api python manage.py seed --reset
+#   stop (keep data) / stop and wipe:     docker compose down   /   docker compose down -v
+#
+# Optional overrides go in a `.env` file next to this one (see .env.example). The defaults below are for local use only.
+name: srs
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-srs-dev-password}
+      MYSQL_DATABASE: student_record_system
+    # Four API worker processes each keep a connection pool, so allow more than MySQL's default of 151.
+    command: ["--max-connections=600", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: srs-api:latest
+    restart: unless-stopped
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-srs-dev-password}
+      DB_NAME: student_record_system
+      SECRET_KEY: ${SECRET_KEY:-local-dev-only-secret-key-change-me-0123456789}
+      FLASK_ENV: production
+      TRUST_PROXY: "true"      # nginx (web) sets X-Forwarded-For / -Proto
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-4}   # light settings for a laptop; the image default (12 x 2) is sized for load
+      GUNICORN_THREADS: ${GUNICORN_THREADS:-4}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: srs-web:latest
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8080}:80"        # plain HTTP for local use
+      - "${WEB_TLS_PORT:-8443}:443"   # HTTPS, TLS 1.3 only (self-signed certificate)
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  db-data:
