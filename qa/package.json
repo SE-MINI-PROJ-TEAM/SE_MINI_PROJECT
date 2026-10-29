@@ -1,0 +1,16 @@
+{
+  "name": "srs-qa",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Integration (Newman), E2E / accessibility (Playwright + axe) tooling for the Student Record System",
+  "scripts": {
+    "newman": "newman run newman/collection.json -e newman/environment.json",
+    "e2e": "playwright test --config e2e/playwright.config.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.1",
+    "@playwright/test": "1.49.1",
+    "newman": "6.2.1"
+  }
+}

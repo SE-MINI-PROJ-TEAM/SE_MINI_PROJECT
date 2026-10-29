@@ -1,0 +1,124 @@
+# QA environment: an isolated copy of the application stack plus the test tooling. Driven by qa.sh / qa.ps1.
+#
+#   ./qa.sh unit | static | integration | e2e | perf | zap | all     (Windows: .\qa.ps1 ...)
+#
+# Nothing here touches the development stack or your local MySQL: it has its own project name, a throw-away database
+# held in memory, and the API runs with the login throttle off so load tests can sign in freely.
+name: srs-qa
+
+x-db-env: &db-env
+  DB_HOST: db
+  DB_PORT: "3306"
+  DB_USER: root
+  DB_PASSWORD: qa-root-password
+  SECRET_KEY: qa-only-secret-key-that-is-long-enough-0123456789
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: qa-root-password
+    command: ["--max-connections=600", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--skip-log-bin"]
+    tmpfs:
+      - /var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -pqa-root-password --silent"]
+      interval: 3s
+      timeout: 5s
+      retries: 40
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: srs-qa-api:latest
+    environment:
+      <<: *db-env
+      DB_NAME: student_record_system_qa
+      FLASK_ENV: production
+      TRUST_PROXY: "true"
+      LOGIN_RATE_LIMIT_PER_MIN: "0"
+      WEB_CONCURRENCY: "12"       # production sizing: capacity scales with worker processes (see backend/Dockerfile)
+      GUNICORN_THREADS: "2"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: srs-qa-web:latest
+    depends_on:
+      api:
+        condition: service_healthy
+
+  # Re-creates the schema and loads the demo dataset. A dependency of the perf and zap tools.
+  seed:
+    image: srs-qa-api:latest
+    command: ["python", "manage.py", "seed", "--reset"]
+    environment:
+      <<: *db-env
+      DB_NAME: student_record_system_qa
+    depends_on:
+      db:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+    profiles: ["perf", "zap"]
+
+  # PyTest, Vitest, Newman, Playwright, Bandit, pip-audit: `python qa/run.py <stage>` inside this container.
+  qa:
+    build:
+      context: .
+      dockerfile: qa/Dockerfile
+    image: srs-qa-runner:latest
+    environment:
+      <<: *db-env
+      DB_NAME: student_record_system_qa
+      QA_IN_DOCKER: "1"
+      UAT_COMMIT: ${UAT_COMMIT:-}
+      QA_API_URL: http://api:5000
+      QA_UI_URL: http://web
+    volumes:
+      - ./qa/reports:/repo/qa/reports
+      - ./demo/videos:/repo/demo/videos
+      - ./docs/uat:/repo/docs/uat        # generated acceptance matrix / UAT script (stage: docs)
+      - ./qa/openapi:/repo/qa/openapi    # generated openapi.json (stage: docs)
+    depends_on:
+      db:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+    profiles: ["qa"]
+
+  k6:
+    image: grafana/k6:latest
+    command: ["run", "-e", "BASE_URL=http://api:5000", "--summary-export=/out/summary.json", "/scripts/load.js"]
+    volumes:
+      - ./qa/k6:/scripts:ro
+      - ./qa/reports/k6:/out
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+    profiles: ["perf"]
+
+  zap:
+    image: ghcr.io/zaproxy/zaproxy:stable
+    user: "0:0"
+    entrypoint: ["python3", "/zap/scripts/scan.py"]
+    environment:
+      API_URL: http://api:5000
+      WEB_URL: http://web
+    volumes:
+      - ./qa/zap:/zap/scripts:ro
+      - ./qa/openapi:/zap/openapi:ro
+      - ./qa/reports/zap:/zap/wrk
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+      web:
+        condition: service_healthy
+    profiles: ["zap"]
