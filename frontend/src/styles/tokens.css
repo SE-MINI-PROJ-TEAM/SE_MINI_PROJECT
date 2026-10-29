@@ -1,0 +1,78 @@
+:root {
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --bg: #f5f6fb;
+  --surface: #ffffff;
+  --surface-2: #f0f2f9;
+  --surface-hover: #f7f8fd;
+  --border: #e3e6f0;
+  --border-strong: #cdd2e3;
+  --text: #151a2e;
+  --text-muted: #5a6280;
+  --text-faint: #646c8a;
+
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-soft: #eceeff;
+  --primary-text: #3730a3;
+  --on-primary: #ffffff;
+
+  --success: #126a33;
+  --success-soft: #e3f6ea;
+  --warning: #955005;
+  --warning-soft: #fdf1dc;
+  --danger: #c62828;
+  --danger-soft: #fde8e8;
+  --info: #0369a1;
+  --info-soft: #e0f1fb;
+  --violet: #6d28d9;
+  --violet-soft: #efe7fd;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px rgba(21, 26, 46, 0.06);
+  --shadow: 0 4px 16px rgba(21, 26, 46, 0.07), 0 1px 3px rgba(21, 26, 46, 0.05);
+  --shadow-lg: 0 24px 60px rgba(21, 26, 46, 0.22);
+  --ring: 0 0 0 3px rgba(79, 70, 229, 0.35);
+
+  --sidebar-w: 256px;
+  --topbar-h: 60px;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0c0f1d;
+  --surface: #151a30;
+  --surface-2: #1c2240;
+  --surface-hover: #1a2039;
+  --border: #272e4f;
+  --border-strong: #38416a;
+  --text: #e8ebf8;
+  --text-muted: #a2aacb;
+  --text-faint: #8d95b9;
+
+  --primary: #818cf8;
+  --primary-hover: #a5b0fb;
+  --primary-soft: #232a57;
+  --primary-text: #c7ceff;
+  --on-primary: #0c0f1d;
+
+  --success: #4ade80;
+  --success-soft: #12301f;
+  --warning: #fbbf24;
+  --warning-soft: #36280d;
+  --danger: #f87171;
+  --danger-soft: #3b1618;
+  --info: #38bdf8;
+  --info-soft: #0f2c3d;
+  --violet: #c4a1ff;
+  --violet-soft: #2c1f4d;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --ring: 0 0 0 3px rgba(129, 140, 248, 0.45);
+  color-scheme: dark;
+}
