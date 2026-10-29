@@ -19,7 +19,7 @@ Requirements Traceability Matrix (RTM) maps SRS requirement IDs to corresponding
 | **SYS-F-013** | Rubric score entry in `Draft` state | `TC-GRD-01` | `TS-GRD` |
 | **SYS-F-014** | Submit draft grades with rubric weight | `TC-GRD-02` | `TS-GRD` |
 | **SYS-F-015** | Admin grade publication | `TC-GRD-03` | `TS-GRD` |
-| **SYS-F-016** | Student regrade request (`Under Review`)| `TC-GRD-04` | `TS-GRD` |
+| **SYS-F-016** | Student regrade request (`Under Review`, once per grade)| `TC-GRD-04` | `TS-GRD` |
 | **SYS-F-017** | Resolve regrade dispute and re-publish | `TC-GRD-05` | `TS-GRD` |
 | **SYS-F-018** | Student consolidated GPA dashboard | `TC-REP-01` | `TS-PERF` |
 | **SYS-F-019** | Faculty class summary analytics | `TC-REP-02` | `TS-PERF` |

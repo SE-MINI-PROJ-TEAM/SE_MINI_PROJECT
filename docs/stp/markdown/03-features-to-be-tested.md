@@ -17,8 +17,8 @@ Features mapped directly to SRS requirement IDs:
 * **`SYS-F-013`:** Faculty rubric-based mark entry in `Draft` state.
 * **`SYS-F-014`:** Faculty grade submission applying weighted rubric normalization.
 * **`SYS-F-015`:** Administrative publication of final student course grades.
-* **`SYS-F-016`:** Student regrade dispute filing transitioning grade state to `Under Review`.
-* **`SYS-F-017`:** Faculty dispute resolution and grade re-publication.
+* **`SYS-F-016`:** Student regrade dispute filing transitioning grade state to `Under Review` (permitted only once per grade; a repeat request is rejected).
+* **`SYS-F-017`:** Faculty dispute resolution and grade re-publication (the re-published grade is final).
 * **`SYS-F-018`:** Consolidated student GPA calculation and dashboard rendering.
 * **`SYS-F-019`:** Faculty class grade distribution analytics summary.
 * **`SYS-F-020`:** Administrative export of institution-level performance metrics to CSV.
