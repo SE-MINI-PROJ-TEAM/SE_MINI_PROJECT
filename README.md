@@ -9,7 +9,7 @@ A role-based web application for academic record management: account provisionin
 | Backend | Python · Flask · SQLAlchemy ORM · PyJWT · bcrypt |
 | Database | MySQL 8 |
 
-Specification documents live in [docs/](docs) (SRS, SAD, STP). The 15 user stories are in [stories.md](stories.md).
+Specification documents live in [docs/](docs) (SRS, SAD, STP). The 15 user stories live on the project sprint board; their acceptance criteria are also kept in [qa/traceability/stories.md](qa/traceability/stories.md), which the QA tooling reads to trace every criterion to an automated check.
 
 ---
 

@@ -69,14 +69,14 @@ A build is green only if all of these hold (they are computed by `qa/report.py` 
 * backend line coverage ≥ 70 % (SYS-NF-005, TC-QUAL-01);
 * k6: p95 < 800 ms with 500 sessions and < 1 % failed requests; the 200-request burst has zero failures (the thresholds also require a minimum request count, so an empty run cannot pass vacuously);
 * ZAP reports no High/Critical alert (STP exit criterion); Bandit has no medium+ finding; no known-vulnerable production dependency;
-* every acceptance criterion in `stories.md` is mapped to at least one automated check and every reference still exists.
+* every acceptance criterion in `qa/traceability/stories.md` is mapped to at least one automated check and every reference still exists.
 
 ## 4. Acceptance testing
 
 Customer acceptance is manual by nature, so the aim is to make it fast, complete and traceable:
 
 1. `docs/uat/UAT-PLAN.md`: who, when, entry/exit criteria, severity scale.
-2. `docs/uat/UAT-SCRIPT.md`: generated per story from `stories.md` and the smoke-test steps (click-by-click, with the expected result).
+2. `docs/uat/UAT-SCRIPT.md`: generated per story from `qa/traceability/stories.md` and the smoke-test steps (click-by-click, with the expected result).
 3. `docs/uat/UAT-RESULTS.md`: the single sheet the customer fills in (PASS / FAIL / BLOCKED per criterion, defect numbers, exploratory-session findings, sign-off table).
 4. `docs/uat/ACCEPTANCE-MATRIX.md`: for each of the 51 criteria, the automated tests that already prove it, so the customer's manual run confirms rather than discovers.
 5. The sprint demo videos in `demo/videos/` act as pre-UAT evidence of the working product.

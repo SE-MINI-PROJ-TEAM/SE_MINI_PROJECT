@@ -4,7 +4,7 @@
 Confirm with the customer that the Student Record System delivers what the 15 user stories promise, in the environment they will actually use, before sign-off. UAT is the only level in the STP executed by the customer rather than the development team; everything else is automated (see `docs/qa/TEST-STRATEGY.md`).
 
 ## 2. Scope
-* In scope: all 15 user stories (51 acceptance criteria in `stories.md`), all three roles, the responsive layout and keyboard operation.
+* In scope: all 15 user stories (51 acceptance criteria in `qa/traceability/stories.md`), all three roles, the responsive layout and keyboard operation.
 * Out of scope: infrastructure/hosting, e-mail delivery, SSO (see STP section 4), long-term availability (TC-OPS-01).
 
 ## 3. Participants

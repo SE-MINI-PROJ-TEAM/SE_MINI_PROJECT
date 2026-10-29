@@ -437,7 +437,7 @@ As a Student or Faculty Member, I want to view term GPA summaries and class grad
 
 * **Story Points:** 2
 
-* **Assignee:** Tanmay T A
+* **Assignee:** Uttam B S
 
 ```markdown
 ### User Story

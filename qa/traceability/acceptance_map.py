@@ -1,6 +1,6 @@
-"""Which automated checks prove each acceptance criterion in stories.md.
+"""Which automated checks prove each acceptance criterion in qa/traceability/stories.md.
 
-The list for a story is ordered exactly like the checkboxes under "### Acceptance Criteria" in stories.md.
+The list for a story is ordered exactly like the checkboxes under "### Acceptance Criteria" in qa/traceability/stories.md.
 `qa/traceability/acceptance.py` verifies that (a) every criterion has at least one reference and (b) every reference
 still exists, so the matrix cannot silently rot when tests are renamed or criteria change.
 
