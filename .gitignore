@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Secrets / local config
+.env
+*.pem
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Demo recorder scratch output (final MP4s in demo/videos are kept)
+demo/videos/*-raw.webm
+demo/videos/*.json
+demo/videos/*.png
+
+# QA tooling: generated results and the generated Newman collection
+qa/reports/
+qa/newman/collection.json
+qa/newman/environment.json
+
+# Per-person commit bundles built for submission
+zips/

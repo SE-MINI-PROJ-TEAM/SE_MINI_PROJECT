@@ -1,0 +1,16 @@
+# Keep secrets, local environments and generated output out of every image build context.
+.git
+.github
+.venv
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+.env
+**/.env
+backend/certs
+frontend/dist
+qa/reports
+demo/videos
+demo/node_modules
+**/*.pdf
