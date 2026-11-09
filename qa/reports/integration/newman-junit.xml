@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Student Record System - integration suite" tests="147" time="8.905">
+  <testsuite name="00 Public endpoints / Health lists all 16 feature packages" id="f6471f8f-6e4a-4a10-825b-bc1fc11ea613" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.028">
+    <testcase name="HTTP 200" time="0.028" classname="00PublicEndpointsHealthListsAll16FeaturePackages"/>
+    <testcase name="16 packages loaded" time="0.028" classname="00PublicEndpointsHealthListsAll16FeaturePackages"/>
+  </testsuite>
+  <testsuite name="00 Public endpoints / Password policy is published" id="8f7a4cf2-074a-4bc8-b74d-3d4aa5c09293" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 200" time="0.004" classname="00PublicEndpointsPasswordPolicyIsPublished"/>
+    <testcase name="5 rules" time="0.004" classname="00PublicEndpointsPasswordPolicyIsPublished"/>
+  </testsuite>
+  <testsuite name="00 Public endpoints / No session -> 401" id="0afa1344-3a6d-4972-afd9-7de7f8ee0a05" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.003">
+    <testcase name="HTTP 401" time="0.003" classname="00PublicEndpointsNoSession401"/>
+  </testsuite>
+  <testsuite name="00 Public endpoints / Unknown route uses the error envelope" id="1dadc640-b743-424b-84fe-920043b0ecc6" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.003">
+    <testcase name="HTTP 404" time="0.003" classname="00PublicEndpointsUnknownRouteUsesTheErrorEnvelope"/>
+    <testcase name="envelope" time="0.003" classname="00PublicEndpointsUnknownRouteUsesTheErrorEnvelope"/>
+  </testsuite>
+  <testsuite name="01 Authentication &amp; session cookie (TC-SEC-02, TC-SEC-03) / Login as unknown user" id="fa8eb108-7ea1-4471-a1ab-77f037a2bf44" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.473">
+    <testcase name="HTTP 401" time="0.473" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsUnknownUser"/>
+    <testcase name="error code INVALID_CREDENTIALS" time="0.473" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsUnknownUser"/>
+  </testsuite>
+  <testsuite name="01 Authentication &amp; session cookie (TC-SEC-02, TC-SEC-03) / Login as admin with a wrong password" id="58d8b147-e33a-4cb2-9ddc-569451e96bb7" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.223">
+    <testcase name="HTTP 401" time="0.223" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsAdminWithAWrongPassword"/>
+    <testcase name="error code INVALID_CREDENTIALS" time="0.223" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsAdminWithAWrongPassword"/>
+  </testsuite>
+  <testsuite name="01 Authentication &amp; session cookie (TC-SEC-02, TC-SEC-03) / Login as Admin" id="f8f68d52-512a-41c6-b12d-19c5e049d1d8" timestamp="2026-10-28T16:09:01.592Z" tests="4" failures="0" errors="0" time="0.234">
+    <testcase name="HTTP 200" time="0.234" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsAdmin"/>
+    <testcase name="cookie is HttpOnly + SameSite" time="0.234" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsAdmin"/>
+    <testcase name="48 hour lifetime" time="0.234" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsAdmin"/>
+    <testcase name="JWT is never in the body" time="0.234" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="01 Authentication &amp; session cookie (TC-SEC-02, TC-SEC-03) / Session identifies the admin" id="343bff6f-7769-4094-8227-bd0b7bcd9f52" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 200" time="0.008" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03SessionIdentifiesTheAdmin"/>
+    <testcase name="role" time="0.008" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03SessionIdentifiesTheAdmin"/>
+    <testcase name="no hash leaked" time="0.008" classname="01AuthenticationAmpSessionCookieTcSec02TcSec03SessionIdentifiesTheAdmin"/>
+  </testsuite>
+  <testsuite name="02 Admin provisioning (US-01, TC-ACC-01) / Create a student account" id="92401ce1-8fdc-4fbd-9013-eb8967120d23" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.242">
+    <testcase name="HTTP 201" time="0.242" classname="02AdminProvisioningUs01TcAcc01CreateAStudentAccount"/>
+    <testcase name="temporary password returned once" time="0.242" classname="02AdminProvisioningUs01TcAcc01CreateAStudentAccount"/>
+    <testcase name="flag set" time="0.242" classname="02AdminProvisioningUs01TcAcc01CreateAStudentAccount"/>
+  </testsuite>
+  <testsuite name="02 Admin provisioning (US-01, TC-ACC-01) / Duplicate email -> 409" id="ecec830b-423e-4b14-8fcc-fe90613c7695" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 409" time="0.007" classname="02AdminProvisioningUs01TcAcc01DuplicateEmail409"/>
+    <testcase name="error code DUPLICATE_EMAIL" time="0.007" classname="02AdminProvisioningUs01TcAcc01DuplicateEmail409"/>
+  </testsuite>
+  <testsuite name="02 Admin provisioning (US-01, TC-ACC-01) / Duplicate institutional ID -> 409" id="2712a39e-f762-46d1-b7b2-71001eefc1e6" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.010">
+    <testcase name="HTTP 409" time="0.010" classname="02AdminProvisioningUs01TcAcc01DuplicateInstitutionalId409"/>
+    <testcase name="error code DUPLICATE_INSTITUTIONAL_ID" time="0.010" classname="02AdminProvisioningUs01TcAcc01DuplicateInstitutionalId409"/>
+  </testsuite>
+  <testsuite name="02 Admin provisioning (US-01, TC-ACC-01) / Invalid role -> 400" id="e472d1c3-7e5f-4299-b1b6-0e404f566372" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 400" time="0.005" classname="02AdminProvisioningUs01TcAcc01InvalidRole400"/>
+    <testcase name="error code INVALID_ROLE" time="0.005" classname="02AdminProvisioningUs01TcAcc01InvalidRole400"/>
+  </testsuite>
+  <testsuite name="02 Admin provisioning (US-01, TC-ACC-01) / User is searchable" id="90247e6e-8fdf-4071-baad-a65bbc4e0723" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.011">
+    <testcase name="HTTP 200" time="0.011" classname="02AdminProvisioningUs01TcAcc01UserIsSearchable"/>
+    <testcase name="found" time="0.011" classname="02AdminProvisioningUs01TcAcc01UserIsSearchable"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / Logout" id="1edcf179-d877-48ba-8cd2-f4e135f87edc" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.003">
+    <testcase name="HTTP 200" time="0.003" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002Logout"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / New user signs in with the temporary password" id="b8e2487a-218e-43da-959e-944aee0634ef" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002NewUserSignsInWithTheTemporaryPassword"/>
+    <testcase name="must change password" time="0.227" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002NewUserSignsInWithTheTemporaryPassword"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / Application API is blocked until the reset" id="f8c43e5c-ff2f-4237-a814-638d278fc179" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002ApplicationApiIsBlockedUntilTheReset"/>
+    <testcase name="error code PASSWORD_RESET_REQUIRED" time="0.004" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002ApplicationApiIsBlockedUntilTheReset"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / Weak password rejected with reasons" id="6108087f-c605-437b-a4b1-ef3cc580af25" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.222">
+    <testcase name="HTTP 400" time="0.222" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002WeakPasswordRejectedWithReasons"/>
+    <testcase name="error code WEAK_PASSWORD" time="0.222" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002WeakPasswordRejectedWithReasons"/>
+    <testcase name="reasons listed" time="0.222" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002WeakPasswordRejectedWithReasons"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / Wrong current password rejected" id="33bd9cc4-0110-42a0-8143-128c0d4825c9" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.223">
+    <testcase name="HTTP 401" time="0.223" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002WrongCurrentPasswordRejected"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / Strong password accepted" id="6b583ac0-3bf2-4055-9fc7-65aca27e7102" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.448">
+    <testcase name="HTTP 200" time="0.448" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002StrongPasswordAccepted"/>
+    <testcase name="flag cleared" time="0.448" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002StrongPasswordAccepted"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / Reusing the new password is refused" id="6c992355-f2b1-4993-9c8b-1ea119429706" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.223">
+    <testcase name="HTTP 400" time="0.223" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002ReusingTheNewPasswordIsRefused"/>
+    <testcase name="error code PASSWORD_REUSED" time="0.223" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002ReusingTheNewPasswordIsRefused"/>
+  </testsuite>
+  <testsuite name="03 Forced password reset (US-02, TC-ACC-02, PRJ-SR-002) / API unlocked after the reset" id="623df5de-25ba-4fcf-8d1f-72ad13f62d63" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.024">
+    <testcase name="HTTP 200" time="0.024" classname="03ForcedPasswordResetUs02TcAcc02PrjSr002ApiUnlockedAfterTheReset"/>
+  </testsuite>
+  <testsuite name="04 Profile (US-03, TC-ACC-03) / Update contact details" id="0b05c2b6-bda1-4f78-891f-a4cd1eb56266" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.010">
+    <testcase name="HTTP 200" time="0.010" classname="04ProfileUs03TcAcc03UpdateContactDetails"/>
+    <testcase name="saved" time="0.010" classname="04ProfileUs03TcAcc03UpdateContactDetails"/>
+  </testsuite>
+  <testsuite name="04 Profile (US-03, TC-ACC-03) / Invalid phone -> 400 with field detail" id="24c2008b-7a1a-47aa-aca1-9513f42b965a" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 400" time="0.007" classname="04ProfileUs03TcAcc03InvalidPhone400WithFieldDetail"/>
+    <testcase name="field error" time="0.007" classname="04ProfileUs03TcAcc03InvalidPhone400WithFieldDetail"/>
+  </testsuite>
+  <testsuite name="04 Profile (US-03, TC-ACC-03) / Institutional fields are read-only" id="7356c3da-5ab2-4039-a0da-e66cbd8b1499" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="04ProfileUs03TcAcc03InstitutionalFieldsAreReadOnly"/>
+    <testcase name="error code READ_ONLY_FIELD" time="0.004" classname="04ProfileUs03TcAcc03InstitutionalFieldsAreReadOnly"/>
+  </testsuite>
+  <testsuite name="04 Profile (US-03, TC-ACC-03) / Markup is stripped (XSS)" id="06b22201-ad4f-409f-99d9-1763a6420b7f" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 200" time="0.008" classname="04ProfileUs03TcAcc03MarkupIsStrippedXss"/>
+    <testcase name="sanitised" time="0.008" classname="04ProfileUs03TcAcc03MarkupIsStrippedXss"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Logout" id="e5955109-7a8e-49b3-a8c8-541baa732d85" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.002">
+    <testcase name="HTTP 200" time="0.002" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03Logout"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Login as Admin" id="bd02becd-8e79-4f98-813e-96ccccc0d59d" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Pick an unassigned faculty member" id="24ef3637-19d6-4add-a052-bf38542b0c41" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 200" time="0.007" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03PickAnUnassignedFacultyMember"/>
+    <testcase name="FAC050 exists" time="0.007" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03PickAnUnassignedFacultyMember"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Create a course; rubric 1:1:1 is normalised to exactly 100%" id="4d3f1ea4-e1d4-42f9-8e1c-6299c692fde9" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.015">
+    <testcase name="HTTP 201" time="0.015" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03CreateACourseRubric111IsNormalisedToExactly100"/>
+    <testcase name="weights sum to 100.00" time="0.015" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03CreateACourseRubric111IsNormalisedToExactly100"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Same section again -> 409" id="facf4cdd-9207-47c3-a93b-9e5e76b4a86e" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 409" time="0.008" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03SameSectionAgain409"/>
+    <testcase name="error code DUPLICATE_COURSE" time="0.008" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03SameSectionAgain409"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Invalid capacity -> 400" id="bc85144a-13ad-41df-94ac-607e08ff90fe" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 400" time="0.005" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03InvalidCapacity400"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Publish a session" id="f883c33c-46fd-40b8-9cb5-07ef15e0c6d4" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.015">
+    <testcase name="HTTP 201" time="0.015" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03PublishASession"/>
+  </testsuite>
+  <testsuite name="05 Course setup &amp; schedule (US-05, US-07, TC-CRS-01, TC-CRS-03) / Same room and time -> 409" id="86f06bb0-adc6-4d6c-ab1a-f2e64d8a3e76" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 409" time="0.009" classname="05CourseSetupAmpScheduleUs05Us07TcCrs01TcCrs03SameRoomAndTime409"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Logout" id="660d6610-b803-4f14-a744-ff531e22f9f5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.003">
+    <testcase name="HTTP 200" time="0.003" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02Logout"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Login as student001" id="b9b6abaa-b3d1-4f8e-a2ee-7018bb9d2996" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.230">
+    <testcase name="HTTP 200" time="0.230" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02LoginAsStudent001"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Catalog shows live capacity" id="71b2537b-4087-47fb-a239-1bdbfa7a0214" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.011">
+    <testcase name="HTTP 200" time="0.011" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02CatalogShowsLiveCapacity"/>
+    <testcase name="2 seats free" time="0.011" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02CatalogShowsLiveCapacity"/>
+    <testcase name="4 of 6 used" time="0.011" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02CatalogShowsLiveCapacity"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Enroll" id="0f0b584c-d9a3-46d6-a6ab-72f69740b9ec" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.017">
+    <testcase name="HTTP 201" time="0.017" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02Enroll"/>
+    <testcase name="seat consumed" time="0.017" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02Enroll"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Enrolling twice -> 409" id="912a1053-0013-4a67-8aa1-645d04a088ec" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.010">
+    <testcase name="HTTP 409" time="0.010" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02EnrollingTwice409"/>
+    <testcase name="error code ALREADY_ENROLLED" time="0.010" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02EnrollingTwice409"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Login as student002 (already at the 6-course cap)" id="2817bee1-a211-4b3c-9fce-7b1d4b7d7a79" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.226">
+    <testcase name="HTTP 200" time="0.226" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02LoginAsStudent002AlreadyAtThe6CourseCap"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / 7th course blocked" id="8ddfd805-52c0-4a8c-ac5a-880be8d3b02a" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 409" time="0.009" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs027thCourseBlocked"/>
+    <testcase name="error code ENROLLMENT_LIMIT_REACHED" time="0.009" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs027thCourseBlocked"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Login as student003" id="7ccfe491-956a-4276-ac92-7d32d7f92b88" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.234">
+    <testcase name="HTTP 200" time="0.234" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02LoginAsStudent003"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Last seat taken" id="c5b0a158-30b6-4de0-86a1-fcbfae76f738" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.012">
+    <testcase name="HTTP 201" time="0.012" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02LastSeatTaken"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Login as student004" id="cf759a3a-9eb8-4d07-85e9-4a2958ab93fb" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02LoginAsStudent004"/>
+  </testsuite>
+  <testsuite name="06 Enrollment, capacity and the 6-course cap (US-06, TC-CRS-02) / Full section -> 409" id="710167df-b14b-4451-8669-dced85b43f8a" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.010">
+    <testcase name="HTTP 409" time="0.010" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02FullSection409"/>
+    <testcase name="error code SECTION_FULL" time="0.010" classname="06EnrollmentCapacityAndThe6CourseCapUs06TcCrs02FullSection409"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Login as faculty001" id="4f7a1ae8-8741-4018-8689-6a8645d11ee6" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02LoginAsFaculty001"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Own sections only" id="9b5a30be-78ae-4160-8ab7-9ab112223334" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 200" time="0.007" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02OwnSectionsOnly"/>
+    <testcase name="3 sections" time="0.007" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02OwnSectionsOnly"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Another faculty member's roster -> 403" id="fd0fae49-aef2-4ff8-bbfe-d85593d5d123" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.006">
+    <testcase name="HTTP 403" time="0.006" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02AnotherFacultyMembersRoster403"/>
+    <testcase name="error code NOT_ASSIGNED" time="0.006" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02AnotherFacultyMembersRoster403"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Sessions with status" id="6fc66f63-c0e9-4d3a-937b-faa5f7d277f4" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.012">
+    <testcase name="HTTP 200" time="0.012" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02SessionsWithStatus"/>
+    <testcase name="an open and a frozen session exist" time="0.012" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02SessionsWithStatus"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Roster of the open session" id="dcaff000-4910-4bbc-b629-965a064885c3" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.011">
+    <testcase name="HTTP 200" time="0.011" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02RosterOfTheOpenSession"/>
+    <testcase name="editable" time="0.011" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02RosterOfTheOpenSession"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Save roll-call" id="a2c07729-04e9-42d9-90f5-02951b64e5e0" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.028">
+    <testcase name="HTTP 200" time="0.028" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02SaveRollCall"/>
+    <testcase name="confirmation + freeze time" time="0.028" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02SaveRollCall"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Re-edit inside the window is allowed" id="5e50a29b-d794-43f5-81b7-7fe12fabbd9b" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.012">
+    <testcase name="HTTP 200" time="0.012" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02ReEditInsideTheWindowIsAllowed"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Edit after 48 hours -> 403 ATTENDANCE_FROZEN" id="d458ba01-a7f4-437a-82f1-9fd62cd8a851" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 403" time="0.007" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02EditAfter48Hours403AttendanceFrozen"/>
+    <testcase name="error code ATTENDANCE_FROZEN" time="0.007" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02EditAfter48Hours403AttendanceFrozen"/>
+  </testsuite>
+  <testsuite name="07 Roster isolation, roll-call and the 48-hour freeze (US-07, US-08, TC-CRS-04, TC-ATT-01, TC-ATT-02) / Student not in the section -> 404" id="09949c27-3df1-4183-9f3d-85785ea39146" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 404" time="0.009" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02StudentNotInTheSection404"/>
+    <testcase name="error code STUDENT_NOT_ENROLLED" time="0.009" classname="07RosterIsolationRollCallAndThe48HourFreezeUs07Us08TcCrs04TcAtt01TcAtt02StudentNotInTheSection404"/>
+  </testsuite>
+  <testsuite name="08 Admin override &amp; immutable audit (US-09, TC-ATT-03) / Login as Admin" id="e80bd5de-b5e5-41eb-8609-c270b27f465e" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.226">
+    <testcase name="HTTP 200" time="0.226" classname="08AdminOverrideAmpImmutableAuditUs09TcAtt03LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="08 Admin override &amp; immutable audit (US-09, TC-ATT-03) / Override without a reason -> 400" id="010c714d-830b-415e-beb7-a847783dcfa8" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 400" time="0.004" classname="08AdminOverrideAmpImmutableAuditUs09TcAtt03OverrideWithoutAReason400"/>
+  </testsuite>
+  <testsuite name="08 Admin override &amp; immutable audit (US-09, TC-ATT-03) / Override a frozen record with a reason" id="83da08f7-580c-46ef-b2b0-195c17b3c9e1" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.012">
+    <testcase name="HTTP 200" time="0.012" classname="08AdminOverrideAmpImmutableAuditUs09TcAtt03OverrideAFrozenRecordWithAReason"/>
+    <testcase name="one record changed" time="0.012" classname="08AdminOverrideAmpImmutableAuditUs09TcAtt03OverrideAFrozenRecordWithAReason"/>
+  </testsuite>
+  <testsuite name="08 Admin override &amp; immutable audit (US-09, TC-ATT-03) / Audit entry captures old/new value, reason and actor" id="17ba082f-c364-442e-9882-8e2ed0b51aa5" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="08AdminOverrideAmpImmutableAuditUs09TcAtt03AuditEntryCapturesOldNewValueReasonAndActor"/>
+    <testcase name="details" time="0.009" classname="08AdminOverrideAmpImmutableAuditUs09TcAtt03AuditEntryCapturesOldNewValueReasonAndActor"/>
+  </testsuite>
+  <testsuite name="09 Student attendance view (US-10, TC-ATT-04) / Login as student001" id="85a29e28-aec5-46a0-af2a-01e374e33d10" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="09StudentAttendanceViewUs10TcAtt04LoginAsStudent001"/>
+  </testsuite>
+  <testsuite name="09 Student attendance view (US-10, TC-ATT-04) / Per-course percentages and the 75% alert" id="b47ab518-d3dd-4565-b87c-b52d2e15b5d6" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.010">
+    <testcase name="HTTP 200" time="0.010" classname="09StudentAttendanceViewUs10TcAtt04PerCoursePercentagesAndThe75Alert"/>
+    <testcase name="percentages are numbers 0-100" time="0.010" classname="09StudentAttendanceViewUs10TcAtt04PerCoursePercentagesAndThe75Alert"/>
+    <testcase name="CS102 is flagged below 75%" time="0.010" classname="09StudentAttendanceViewUs10TcAtt04PerCoursePercentagesAndThe75Alert"/>
+  </testsuite>
+  <testsuite name="09 Student attendance view (US-10, TC-ATT-04) / Course breakdown" id="a3ce97a9-f51d-44f5-bd0a-1f728f979c35" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.010">
+    <testcase name="HTTP 200" time="0.010" classname="09StudentAttendanceViewUs10TcAtt04CourseBreakdown"/>
+    <testcase name="held = attended + missed" time="0.010" classname="09StudentAttendanceViewUs10TcAtt04CourseBreakdown"/>
+  </testsuite>
+  <testsuite name="09 Student attendance view (US-10, TC-ATT-04) / Course I am not in -> 403" id="f1621596-e13f-472a-b580-8e129161f737" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="HTTP 403" time="0.006" classname="09StudentAttendanceViewUs10TcAtt04CourseIAmNotIn403"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as faculty001" id="62033430-e5a9-4e35-a0d3-24691a0f18c5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.229">
+    <testcase name="HTTP 200" time="0.229" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsFaculty001"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Open the CS103 grade sheet" id="de734760-100d-4e9c-b6aa-93db1ec65786" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.013">
+    <testcase name="HTTP 200" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105OpenTheCs103GradeSheet"/>
+    <testcase name="student001 is mid-way (Draft)" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105OpenTheCs103GradeSheet"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Scores out of range -> 400" id="a4c090f0-2df3-4dc2-8d1b-6dfca2d1ff52" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 400" time="0.007" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105ScoresOutOfRange400"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Save the complete marks as Draft" id="d39bf53d-4f3b-4914-9fde-c4b8376a6976" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.013">
+    <testcase name="HTTP 200" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SaveTheCompleteMarksAsDraft"/>
+    <testcase name="still Draft" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SaveTheCompleteMarksAsDraft"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as student001" id="267c2a23-326b-4c78-bd69-5531bc685d69" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.226">
+    <testcase name="HTTP 200" time="0.226" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsStudent001"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Draft marks are hidden from the student" id="cdd056ac-cc9b-4e65-8c6a-3a0ec2de606b" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105DraftMarksAreHiddenFromTheStudent"/>
+    <testcase name="Pending, no marks" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105DraftMarksAreHiddenFromTheStudent"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as faculty001" id="ed0d96c6-3deb-4316-b9bf-462562b1ac6f" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.226">
+    <testcase name="HTTP 200" time="0.226" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsFaculty001"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Submit: weighted total is calculated server-side" id="06784067-f6a2-480d-a624-a60e7507aa5c" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.013">
+    <testcase name="HTTP 200" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SubmitWeightedTotalIsCalculatedServerSide"/>
+    <testcase name="Submitted" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SubmitWeightedTotalIsCalculatedServerSide"/>
+    <testcase name="total = sum(score x normalized weight)" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SubmitWeightedTotalIsCalculatedServerSide"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Submitted marks are locked" id="a2a314f7-51c8-4978-b6e4-08f0d6c75704" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 409" time="0.008" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SubmittedMarksAreLocked"/>
+    <testcase name="error code GRADE_LOCKED" time="0.008" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105SubmittedMarksAreLocked"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Faculty cannot publish" id="46b8d526-df1e-47b7-b177-f96337f46298" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105FacultyCannotPublish"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as Admin" id="28bece6d-8ed8-47af-ab2c-556741d4bd6b" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.225">
+    <testcase name="HTTP 200" time="0.225" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Publication queue lists the course" id="88fe5183-9209-4b94-b594-1096d2af9b4c" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.013">
+    <testcase name="HTTP 200" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublicationQueueListsTheCourse"/>
+    <testcase name="CS103 queued" time="0.013" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublicationQueueListsTheCourse"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Admin publishes" id="9b6acfc1-a609-41f4-9b3d-ea5346b9bbe8" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.011">
+    <testcase name="HTTP 200" time="0.011" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105AdminPublishes"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as student001" id="283ff44b-a1df-4493-9305-70dd425597e0" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.225">
+    <testcase name="HTTP 200" time="0.225" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsStudent001"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Published marks are now visible" id="deffa0ff-9617-462c-8ab5-b2ef22e122a2" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 200" time="0.008" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublishedMarksAreNowVisible"/>
+    <testcase name="Published with total + letter" time="0.008" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublishedMarksAreNowVisible"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Dispute needs a real explanation" id="f020db80-b56f-4e8b-ab60-7a60ae4cb4c8" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 400" time="0.005" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105DisputeNeedsARealExplanation"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / File the dispute -> Under Review" id="0374f153-addd-4d22-b58b-b21b8fc693ab" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.014">
+    <testcase name="HTTP 201" time="0.014" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105FileTheDisputeUnderReview"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / A second dispute while one is open -> 409" id="95084de3-fddc-4ea7-a4e2-0a45c1ea43f5" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 409" time="0.007" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105ASecondDisputeWhileOneIsOpen409"/>
+    <testcase name="error code ALREADY_DISPUTED" time="0.007" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105ASecondDisputeWhileOneIsOpen409"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as faculty001" id="4812800d-9e65-4993-8802-945bc064d278" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.226">
+    <testcase name="HTTP 200" time="0.226" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsFaculty001"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Faculty sees the notification count" id="73edb6ae-afdb-4dc6-8aa2-7ac12f0ec81c" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.006">
+    <testcase name="HTTP 200" time="0.006" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105FacultySeesTheNotificationCount"/>
+    <testcase name="at least 1" time="0.006" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105FacultySeesTheNotificationCount"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Find the open dispute" id="e91f29ff-2d9d-46a3-9ab6-e1a2657e1716" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.014">
+    <testcase name="HTTP 200" time="0.014" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105FindTheOpenDispute"/>
+    <testcase name="found" time="0.014" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105FindTheOpenDispute"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Re-evaluate and re-publish" id="c83efec7-ffac-448b-8e59-8ddeb5298549" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.017">
+    <testcase name="HTTP 200" time="0.017" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105ReEvaluateAndRePublish"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Login as student001" id="8fc2daa2-89a0-4cf4-84a7-20a174aaf0e5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105LoginAsStudent001"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / Published again, with the faculty note" id="770a1b29-6197-4ca8-9269-e592f26379b8" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublishedAgainWithTheFacultyNote"/>
+    <testcase name="Published" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublishedAgainWithTheFacultyNote"/>
+    <testcase name="note visible" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105PublishedAgainWithTheFacultyNote"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / A grade can be disputed only once -> 409 (final)" id="74ac8d6e-fadc-4922-b889-e70354eb656c" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 409" time="0.008" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105AGradeCanBeDisputedOnlyOnce409Final"/>
+    <testcase name="error code ALREADY_DISPUTED" time="0.008" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105AGradeCanBeDisputedOnlyOnce409Final"/>
+  </testsuite>
+  <testsuite name="10 Grade lifecycle: Draft -> Submitted -> Published -> Under Review -> Published (US-11..13, TC-GRD-01..05) / UI flag agrees: can_dispute is false" id="6ce0dfb1-b9d1-4659-a55b-f15bc9bff9ab" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105UiFlagAgreesCanDisputeIsFalse"/>
+    <testcase name="no more disputes" time="0.009" classname="10GradeLifecycleDraftSubmittedPublishedUnderReviewPublishedUs1113TcGrd0105UiFlagAgreesCanDisputeIsFalse"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / Student GPA on a 10-point scale, fast" id="e32e8e47-9be4-4c9a-b951-c0ba7ff16fa6" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103StudentGpaOnA10PointScaleFast"/>
+    <testcase name="GPA within 0-10" time="0.009" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103StudentGpaOnA10PointScaleFast"/>
+    <testcase name="query under 800 ms" time="0.009" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103StudentGpaOnA10PointScaleFast"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / Login as faculty001" id="f6efd768-c32c-4401-93da-999782d8308b" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103LoginAsFaculty001"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / Grade distribution A-F" id="ea8096f8-1194-4002-ad07-022f339c8590" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.012">
+    <testcase name="HTTP 200" time="0.012" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103GradeDistributionAF"/>
+    <testcase name="A-F buckets" time="0.012" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103GradeDistributionAF"/>
+    <testcase name="query under 800 ms" time="0.012" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103GradeDistributionAF"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / Login as Admin" id="edfc2f05-b7ab-4764-a122-82200f49b011" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.224">
+    <testcase name="HTTP 200" time="0.224" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / Institution metrics" id="852a89cc-13f9-4397-9356-e3005483fe57" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.025">
+    <testcase name="HTTP 200" time="0.025" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103InstitutionMetrics"/>
+    <testcase name="totals" time="0.025" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103InstitutionMetrics"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / CSV export" id="69001a04-b76a-44ea-a2f5-432f87051fa1" timestamp="2026-10-28T16:09:01.592Z" tests="3" failures="0" errors="0" time="0.073">
+    <testcase name="HTTP 200" time="0.073" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103CsvExport"/>
+    <testcase name="CSV attachment" time="0.073" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103CsvExport"/>
+    <testcase name="header + a TOTAL row" time="0.073" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103CsvExport"/>
+  </testsuite>
+  <testsuite name="11 Analytics, metrics and CSV export (US-14, US-15, TC-REP-01..03) / Audit trail recorded publication and dispute resolution" id="4ba5bdca-20f0-447a-a602-084957e82a91" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103AuditTrailRecordedPublicationAndDisputeResolution"/>
+    <testcase name="both audited" time="0.009" classname="11AnalyticsMetricsAndCsvExportUs14Us15TcRep0103AuditTrailRecordedPublicationAndDisputeResolution"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Logout" id="bbf16b06-675b-429b-aa34-9128c8943cf5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.003">
+    <testcase name="HTTP 200" time="0.003" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04Logout"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Login as victim student005" id="27983006-b124-4e5b-9a48-f7eeb576da6f" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.225">
+    <testcase name="HTTP 200" time="0.225" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04LoginAsVictimStudent005"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Victim's session works" id="4e27a7a6-f94e-4474-8cd1-c6857c030203" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 200" time="0.004" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04VictimsSessionWorks"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Logout" id="3d29adec-4e5e-4d9b-951e-a6c704052d61" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.002">
+    <testcase name="HTTP 200" time="0.002" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04Logout"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Login as Admin" id="f48b5550-f104-42d6-a966-355424a068e3" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.233">
+    <testcase name="HTTP 200" time="0.233" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Find the victim" id="24526835-4af7-469d-914b-506fd5c494e7" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.008">
+    <testcase name="HTTP 200" time="0.008" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04FindTheVictim"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Cannot deactivate yourself" id="07861876-d43f-4eda-9327-f11b140ff2a5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 200" time="0.004" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04CannotDeactivateYourself"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Self-deactivation refused" id="43091712-8656-4628-84fc-8f6f55e2d6a0" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 400" time="0.005" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04SelfDeactivationRefused"/>
+    <testcase name="error code SELF_DEACTIVATION" time="0.005" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04SelfDeactivationRefused"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Deactivate the victim" id="180849ce-c5c9-4135-b464-3b2fb123a000" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.009">
+    <testcase name="HTTP 200" time="0.009" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04DeactivateTheVictim"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Logout" id="726cc3f2-67ee-4409-bd60-59dba7c324da" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.002">
+    <testcase name="HTTP 200" time="0.002" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04Logout"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / The still-unexpired JWT is now rejected" id="4a5ab2a3-dd30-4c6c-913b-2f21aa78d5b5" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 401" time="0.005" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04TheStillUnexpiredJwtIsNowRejected"/>
+    <testcase name="error code ACCOUNT_INACTIVE" time="0.005" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04TheStillUnexpiredJwtIsNowRejected"/>
+  </testsuite>
+  <testsuite name="12 Deactivation revokes a live session immediately (US-04, TC-ACC-04) / Deactivated users cannot sign in" id="2b47ea7b-a350-4c9f-85d0-3c82a8dcd655" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.223">
+    <testcase name="HTTP 403" time="0.223" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04DeactivatedUsersCannotSignIn"/>
+    <testcase name="error code ACCOUNT_INACTIVE" time="0.223" classname="12DeactivationRevokesALiveSessionImmediatelyUs04TcAcc04DeactivatedUsersCannotSignIn"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / Login as student001" id="56579b2c-4195-4e7a-aa7c-c0dd7e2e7e78" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.231">
+    <testcase name="HTTP 200" time="0.231" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004LoginAsStudent001"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /users -> 403" id="3482cedc-1ab2-4f2a-ac3d-d5773ed8f105" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetUsers403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: POST /users -> 403" id="4bb992d1-0f8d-4e7b-a8cb-edf64cb2ae25" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001PostUsers403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /admin/metrics -> 403" id="7b703ea2-33d5-41fc-9759-081e44fddea7" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="HTTP 403" time="0.006" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetAdminMetrics403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /admin/metrics/export.csv -> 403" id="e0732492-cbbc-4ef2-b9e6-a9025836f8f9" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetAdminMetricsExportCsv403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: POST /courses -> 403" id="f6f7d447-75a3-4244-bcf0-9da5e1d1fee5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001PostCourses403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: POST /schedule/sessions -> 403" id="05fb8bce-78ae-4277-ae05-d38fc9158b50" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001PostScheduleSessions403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /attendance/sessions -> 403" id="90c68b72-b622-4e0f-a6a4-b7ff7a140d8b" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetAttendanceSessions403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: PUT /attendance/override/sessions/1 -> 403" id="78f0556d-b619-4091-b05d-179551ea5c2f" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001PutAttendanceOverrideSessions1403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /grades/courses -> 403" id="1c7525c6-302e-47a9-9f72-24f959fef980" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetGradesCourses403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: POST /grades/publication/publish -> 403" id="91280b30-23ed-445c-965a-d550264d8b41" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001PostGradesPublicationPublish403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /disputes -> 403" id="05f45c47-43d6-440c-b0ec-f88218452093" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetDisputes403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: GET /analytics/faculty/sections -> 403" id="03e8f35b-bde2-422f-9877-2857501454a1" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001GetAnalyticsFacultySections403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / student001: PUT /enrollments/window -> 403" id="256eac43-8433-4d42-bf29-e7798af04f47" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Student001PutEnrollmentsWindow403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / Login as faculty001" id="7eba8904-6285-4403-92cc-91b19c21136a" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.227">
+    <testcase name="HTTP 200" time="0.227" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004LoginAsFaculty001"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: GET /users -> 403" id="8995ddb1-a4b1-4a14-ab1b-83a97c4abf35" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001GetUsers403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: POST /users -> 403" id="971c6d33-8418-4a38-84f8-87b5bea26ca5" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001PostUsers403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: POST /courses -> 403" id="02449143-bff1-4c8e-819b-f9a1aa94f063" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001PostCourses403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: GET /admin/audit-logs -> 403" id="70cb7695-1a61-428d-8d50-528cb61a160f" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001GetAdminAuditLogs403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: PUT /attendance/override/sessions/1 -> 403" id="696da8d2-4d91-4c12-a70a-c5f1778963a4" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001PutAttendanceOverrideSessions1403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: POST /grades/publication/publish -> 403" id="a0c1f11b-6e06-4210-84cf-dd2ed46f04f4" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001PostGradesPublicationPublish403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: POST /enrollments -> 403" id="b8409c6a-5af9-4d9f-b4b6-3048a17ea6bb" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001PostEnrollments403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: GET /attendance/summary -> 403" id="c412d504-4216-49d8-998c-a20d336bc5ba" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001GetAttendanceSummary403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: GET /grades/mine -> 403" id="cdb065e6-ddbd-45a2-aec3-dbb14cfdeb31" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001GetGradesMine403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / faculty001: POST /disputes -> 403" id="5344833f-4a4c-4cc4-b25b-af00f7dca3ff" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Faculty001PostDisputes403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / Login as admin001" id="7144615f-c305-42a1-ba54-e7ab65ecc4c0" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.225">
+    <testcase name="HTTP 200" time="0.225" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004LoginAsAdmin001"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: POST /enrollments -> 403" id="7b9f7664-5488-4c13-b43c-25500fb5189f" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001PostEnrollments403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: GET /attendance/summary -> 403" id="35a0675b-3ede-485a-b04e-d3d63b223062" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001GetAttendanceSummary403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: POST /attendance/sessions/1 -> 403" id="7274d111-0bcd-4211-8904-2184b03fb977" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001PostAttendanceSessions1403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: PUT /grades/courses/1 -> 403" id="54f63279-f86e-4445-9bb6-58b3b71a2ae7" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001PutGradesCourses1403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: GET /grades/mine -> 403" id="afa6eae8-3a11-4099-a54b-c9f90526490a" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001GetGradesMine403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: POST /disputes -> 403" id="f5cd9438-d362-489a-95fd-9d9c55164195" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 403" time="0.004" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001PostDisputes403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / admin001: GET /profile -> 403" id="bd0120ac-49e5-4325-ac52-d0995299e33d" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 403" time="0.005" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Admin001GetProfile403"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / Logout" id="fe18d047-8937-42da-9668-fc999f9dd61e" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.003">
+    <testcase name="HTTP 200" time="0.003" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004Logout"/>
+  </testsuite>
+  <testsuite name="13 RBAC matrix: every role is refused what it must not do (TC-SEC-04, PRJ-SR-004) / Anonymous: protected endpoint -> 401" id="a0adfd7d-38f9-41d8-a46e-2ec1f918d479" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.002">
+    <testcase name="HTTP 401" time="0.002" classname="13RbacMatrixEveryRoleIsRefusedWhatItMustNotDoTcSec04PrjSr004AnonymousProtectedEndpoint401"/>
+  </testsuite>
+  <testsuite name="14 Injection inputs are inert (TC-SEC-05, PRJ-SR-005) / Login as Admin" id="8cc479df-f330-4073-8167-de258486d163" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.228">
+    <testcase name="HTTP 200" time="0.228" classname="14InjectionInputsAreInertTcSec05PrjSr005LoginAsAdmin"/>
+  </testsuite>
+  <testsuite name="14 Injection inputs are inert (TC-SEC-05, PRJ-SR-005) / SQLi in search" id="70b34d0e-12b5-455d-aaf2-bce49306af7b" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 200" time="0.007" classname="14InjectionInputsAreInertTcSec05PrjSr005SqLiInSearch"/>
+    <testcase name="no rows" time="0.007" classname="14InjectionInputsAreInertTcSec05PrjSr005SqLiInSearch"/>
+  </testsuite>
+  <testsuite name="14 Injection inputs are inert (TC-SEC-05, PRJ-SR-005) / Stacked-query payload in a filter" id="9fd04253-0b77-454c-81ff-4a9db5ae7bba" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.006">
+    <testcase name="HTTP 200" time="0.006" classname="14InjectionInputsAreInertTcSec05PrjSr005StackedQueryPayloadInAFilter"/>
+  </testsuite>
+  <testsuite name="14 Injection inputs are inert (TC-SEC-05, PRJ-SR-005) / The users table still exists" id="5193c974-57d9-48ff-8ad6-343d21aa5670" timestamp="2026-10-28T16:09:01.592Z" tests="2" failures="0" errors="0" time="0.007">
+    <testcase name="HTTP 200" time="0.007" classname="14InjectionInputsAreInertTcSec05PrjSr005TheUsersTableStillExists"/>
+    <testcase name="users intact" time="0.007" classname="14InjectionInputsAreInertTcSec05PrjSr005TheUsersTableStillExists"/>
+  </testsuite>
+  <testsuite name="14 Injection inputs are inert (TC-SEC-05, PRJ-SR-005) / Payload types are validated" id="3187f645-a050-4880-9ba6-a14e6e40901a" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.005">
+    <testcase name="HTTP 400" time="0.005" classname="14InjectionInputsAreInertTcSec05PrjSr005PayloadTypesAreValidated"/>
+  </testsuite>
+  <testsuite name="14 Injection inputs are inert (TC-SEC-05, PRJ-SR-005) / Non-JSON body rejected" id="369a477f-2b0d-481a-9e18-b7af4a4b1f49" timestamp="2026-10-28T16:09:01.592Z" tests="1" failures="0" errors="0" time="0.004">
+    <testcase name="HTTP 400" time="0.004" classname="14InjectionInputsAreInertTcSec05PrjSr005NonJsonBodyRejected"/>
+  </testsuite>
+</testsuites>
