@@ -1,0 +1,2475 @@
+{
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http"
+      },
+      "cookieAuth": {
+        "in": "cookie",
+        "name": "srs_token",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "description": "Generated from the Flask routes by qa/openapi/generate.py. Sessions use an HTTP-only JWT cookie (48 h); a Bearer token is also accepted for API clients. Errors use {status, code, message}.",
+    "title": "Student Record System API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/v1/admin/audit-logs": {
+      "get": {
+        "operationId": "account_management_audit_logs_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Audit logs",
+        "tags": [
+          "account_management"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/metrics": {
+      "get": {
+        "operationId": "admin_metrics_metrics_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Metrics",
+        "tags": [
+          "admin_metrics"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/metrics/export.csv": {
+      "get": {
+        "operationId": "admin_metrics_export_csv_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Export csv",
+        "tags": [
+          "admin_metrics"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/analytics/faculty/sections": {
+      "get": {
+        "operationId": "analytics_faculty_sections_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Faculty sections",
+        "tags": [
+          "analytics"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/analytics/student/summary": {
+      "get": {
+        "operationId": "analytics_student_summary_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Student summary",
+        "tags": [
+          "analytics"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/attendance/override/courses": {
+      "get": {
+        "operationId": "attendance_override_courses_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Courses",
+        "tags": [
+          "attendance_override"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/attendance/override/sessions": {
+      "get": {
+        "operationId": "attendance_override_sessions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Sessions",
+        "tags": [
+          "attendance_override"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/attendance/override/sessions/{session_id}": {
+      "get": {
+        "operationId": "attendance_override_session_detail_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Session detail",
+        "tags": [
+          "attendance_override"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      },
+      "put": {
+        "operationId": "attendance_override_override_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "changes": [
+                  {
+                    "is_present": true,
+                    "student_id": "PES1UG24CS001"
+                  }
+                ],
+                "reason": "Medical certificate verified"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Override",
+        "tags": [
+          "attendance_override"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/attendance/sessions": {
+      "get": {
+        "operationId": "attendance_marking_list_sessions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List sessions",
+        "tags": [
+          "attendance_marking"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/attendance/sessions/{session_id}": {
+      "get": {
+        "operationId": "attendance_marking_get_session_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get session",
+        "tags": [
+          "attendance_marking"
+        ],
+        "x-roles": [
+          "Faculty",
+          "Admin"
+        ]
+      },
+      "post": {
+        "operationId": "attendance_marking_save_attendance_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "attendance_list": [
+                  {
+                    "is_present": true,
+                    "student_id": "PES1UG24CS001"
+                  }
+                ]
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Save attendance",
+        "tags": [
+          "attendance_marking"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/attendance/summary": {
+      "get": {
+        "operationId": "attendance_dashboard_summary_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Summary",
+        "tags": [
+          "attendance_dashboard"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/attendance/summary/{course_id}": {
+      "get": {
+        "operationId": "attendance_dashboard_course_detail_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Course detail",
+        "tags": [
+          "attendance_dashboard"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/auth/change-password": {
+      "post": {
+        "operationId": "password_reset_change_password_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "current_password": "Password@123",
+                "new_password": "Brand#New9pass"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Change password",
+        "tags": [
+          "password_reset"
+        ],
+        "x-roles": [
+          "Student",
+          "Faculty",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "auth_session_login_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "identifier": "admin001@srs.edu",
+                "password": "Password@123"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Login",
+        "tags": [
+          "auth_session"
+        ]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "auth_session_logout_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Logout",
+        "tags": [
+          "auth_session"
+        ]
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "operationId": "auth_session_me_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Me",
+        "tags": [
+          "auth_session"
+        ],
+        "x-roles": [
+          "Student",
+          "Faculty",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/auth/password-policy": {
+      "get": {
+        "operationId": "password_reset_password_policy_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "summary": "Password policy",
+        "tags": [
+          "password_reset"
+        ]
+      }
+    },
+    "/api/v1/catalog": {
+      "get": {
+        "operationId": "course_enrollment_catalog_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Catalog",
+        "tags": [
+          "course_enrollment"
+        ],
+        "x-roles": [
+          "Student",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/courses": {
+      "get": {
+        "operationId": "course_setup_list_courses_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List courses",
+        "tags": [
+          "course_setup"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      },
+      "post": {
+        "operationId": "course_setup_create_course_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "assigned_faculty_id": 12,
+                "capacity": 40,
+                "code": "CS999",
+                "credits": 3,
+                "rubric": [
+                  {
+                    "category": "Assignments",
+                    "name": "Assignments",
+                    "weight": 1
+                  },
+                  {
+                    "category": "Exams",
+                    "name": "Exam",
+                    "weight": 2
+                  }
+                ],
+                "section": "A",
+                "title": "Example Course"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          },
+          "409": {
+            "description": "Conflict (duplicate / capacity / limit)"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create course",
+        "tags": [
+          "course_setup"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/courses/faculty-options": {
+      "get": {
+        "operationId": "course_setup_faculty_options_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Faculty options",
+        "tags": [
+          "course_setup"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/courses/{course_id}": {
+      "get": {
+        "operationId": "course_setup_get_course_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get course",
+        "tags": [
+          "course_setup"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      },
+      "put": {
+        "operationId": "course_setup_update_course_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update course",
+        "tags": [
+          "course_setup"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/disputes": {
+      "get": {
+        "operationId": "regrade_disputes_list_disputes_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List disputes",
+        "tags": [
+          "regrade_disputes"
+        ],
+        "x-roles": [
+          "Faculty",
+          "Admin"
+        ]
+      },
+      "post": {
+        "operationId": "regrade_disputes_file_dispute_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "enrollment_id": 1,
+                "reason": "Question 3 was marked incorrectly."
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "File dispute",
+        "tags": [
+          "regrade_disputes"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/disputes/mine": {
+      "get": {
+        "operationId": "regrade_disputes_my_disputes_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "My disputes",
+        "tags": [
+          "regrade_disputes"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/disputes/pending-count": {
+      "get": {
+        "operationId": "regrade_disputes_pending_count_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Pending count",
+        "tags": [
+          "regrade_disputes"
+        ],
+        "x-roles": [
+          "Faculty",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/disputes/{dispute_id}/resolve": {
+      "post": {
+        "operationId": "regrade_disputes_resolve_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dispute_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "resolution_note": "Re-marked",
+                "rubric_scores": [
+                  {
+                    "rubric_id": 1,
+                    "score": 90
+                  }
+                ]
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Resolve",
+        "tags": [
+          "regrade_disputes"
+        ],
+        "x-roles": [
+          "Faculty",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/enrollments": {
+      "post": {
+        "operationId": "course_enrollment_enroll_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "course_id": 1
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          },
+          "409": {
+            "description": "Conflict (duplicate / capacity / limit)"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Enroll",
+        "tags": [
+          "course_enrollment"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/enrollments/mine": {
+      "get": {
+        "operationId": "course_enrollment_my_enrollments_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "My enrollments",
+        "tags": [
+          "course_enrollment"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/enrollments/window": {
+      "get": {
+        "operationId": "course_enrollment_get_window_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get window",
+        "tags": [
+          "course_enrollment"
+        ],
+        "x-roles": [
+          "Student",
+          "Faculty",
+          "Admin"
+        ]
+      },
+      "put": {
+        "operationId": "course_enrollment_set_window_put",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "open": true
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Set window",
+        "tags": [
+          "course_enrollment"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/grades/courses": {
+      "get": {
+        "operationId": "grade_entry_my_courses_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "My courses",
+        "tags": [
+          "grade_entry"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/grades/courses/{course_id}": {
+      "get": {
+        "operationId": "grade_entry_course_grid_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Course grid",
+        "tags": [
+          "grade_entry"
+        ],
+        "x-roles": [
+          "Faculty",
+          "Admin"
+        ]
+      },
+      "put": {
+        "operationId": "grade_entry_save_drafts_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "students": [
+                  {
+                    "rubric_scores": [
+                      {
+                        "rubric_id": 1,
+                        "score": 80
+                      }
+                    ],
+                    "student_id": "PES1UG24CS001"
+                  }
+                ]
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Save drafts",
+        "tags": [
+          "grade_entry"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/grades/courses/{course_id}/students/{student_code}": {
+      "put": {
+        "operationId": "grade_entry_save_student_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "student_code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "rubric_scores": [
+                  {
+                    "rubric_id": 1,
+                    "score": 85.0
+                  }
+                ],
+                "target_state": "Draft"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Save student",
+        "tags": [
+          "grade_entry"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/grades/courses/{course_id}/submit": {
+      "post": {
+        "operationId": "grade_publication_submit_course_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Submit course",
+        "tags": [
+          "grade_publication"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/grades/mine": {
+      "get": {
+        "operationId": "grade_publication_my_grades_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "My grades",
+        "tags": [
+          "grade_publication"
+        ],
+        "x-roles": [
+          "Student"
+        ]
+      }
+    },
+    "/api/v1/grades/publication/publish": {
+      "post": {
+        "operationId": "grade_publication_publish_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "course_ids": [
+                  2
+                ]
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Publish",
+        "tags": [
+          "grade_publication"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/grades/publication/queue": {
+      "get": {
+        "operationId": "grade_publication_queue_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Queue",
+        "tags": [
+          "grade_publication"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "operationId": "health_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "summary": "Health",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/api/v1/profile": {
+      "get": {
+        "operationId": "profile_get_profile_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get profile",
+        "tags": [
+          "profile"
+        ],
+        "x-roles": [
+          "Student",
+          "Faculty"
+        ]
+      },
+      "put": {
+        "operationId": "profile_update_profile_put",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "emergency_contact": "Mum +91 99999 88888",
+                "home_address": "12 Main Rd",
+                "personal_email": "me@example.com",
+                "phone": "+91 98765 43210"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update profile",
+        "tags": [
+          "profile"
+        ],
+        "x-roles": [
+          "Student",
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/schedule/calendar": {
+      "get": {
+        "operationId": "schedule_calendar_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Calendar",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Student",
+          "Faculty",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/schedule/course-options": {
+      "get": {
+        "operationId": "schedule_course_options_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Course options",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/schedule/my-courses": {
+      "get": {
+        "operationId": "schedule_my_courses_get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "My courses",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Faculty"
+        ]
+      }
+    },
+    "/api/v1/schedule/roster/{course_id}": {
+      "get": {
+        "operationId": "schedule_roster_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Roster",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Faculty",
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/schedule/sessions": {
+      "get": {
+        "operationId": "schedule_list_sessions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List sessions",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      },
+      "post": {
+        "operationId": "schedule_create_sessions_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "course_id": 1,
+                "end_time": "2026-11-02T05:30:00Z",
+                "repeat_weeks": 1,
+                "room": "LH-9",
+                "start_time": "2026-11-02T04:30:00Z"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          },
+          "409": {
+            "description": "Conflict (duplicate / capacity / limit)"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create sessions",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/schedule/sessions/{session_id}": {
+      "delete": {
+        "operationId": "schedule_delete_session_delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "session_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Delete session",
+        "tags": [
+          "schedule"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "operationId": "account_management_list_users_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List users",
+        "tags": [
+          "account_management"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      },
+      "post": {
+        "operationId": "user_provisioning_create_user_post",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "asha.rao@srs.edu",
+                "full_name": "Asha Rao",
+                "institutional_id": "PES1UG26CS101",
+                "role": "Student"
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          },
+          "409": {
+            "description": "Conflict (duplicate / capacity / limit)"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create user",
+        "tags": [
+          "user_provisioning"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/users/{user_id}": {
+      "patch": {
+        "operationId": "account_management_update_user_patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "is_active": true
+              },
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Missing, expired or invalid session"
+          },
+          "403": {
+            "description": "Role not permitted / temporary password / not assigned to this resource"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update user",
+        "tags": [
+          "account_management"
+        ],
+        "x-roles": [
+          "Admin"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "tags": [
+    {
+      "description": "Login / logout / current session (shared foundation)",
+      "name": "auth_session"
+    },
+    {
+      "description": "US-01 Admin provisioning",
+      "name": "user_provisioning"
+    },
+    {
+      "description": "US-02 Mandatory password reset",
+      "name": "password_reset"
+    },
+    {
+      "description": "US-03 Profile contact details",
+      "name": "profile"
+    },
+    {
+      "description": "US-04 Account status, roles, audit log",
+      "name": "account_management"
+    },
+    {
+      "description": "US-05 Course offerings & rubric normalisation",
+      "name": "course_setup"
+    },
+    {
+      "description": "US-06 Self-enrollment & 6-course cap",
+      "name": "course_enrollment"
+    },
+    {
+      "description": "US-07 Timetable & faculty roster isolation",
+      "name": "schedule"
+    },
+    {
+      "description": "US-08 Roll-call & 48-hour lock",
+      "name": "attendance_marking"
+    },
+    {
+      "description": "US-09 Admin attendance override",
+      "name": "attendance_override"
+    },
+    {
+      "description": "US-10 Student attendance summary",
+      "name": "attendance_dashboard"
+    },
+    {
+      "description": "US-11 Draft rubric scores",
+      "name": "grade_entry"
+    },
+    {
+      "description": "US-12 Submission & publication",
+      "name": "grade_publication"
+    },
+    {
+      "description": "US-13 Regrade disputes",
+      "name": "regrade_disputes"
+    },
+    {
+      "description": "US-14 GPA & grade distributions",
+      "name": "analytics"
+    },
+    {
+      "description": "US-15 Metrics & CSV export",
+      "name": "admin_metrics"
+    }
+  ]
+}
