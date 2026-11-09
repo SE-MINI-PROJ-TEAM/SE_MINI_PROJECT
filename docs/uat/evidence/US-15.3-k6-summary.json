@@ -1,0 +1,19 @@
+{
+  "burst_checks": {
+    "passes": 200,
+    "fails": 0,
+    "thresholds": {
+      "rate==1": false
+    },
+    "value": 1
+  },
+  "burst_http_failed": {
+    "passes": 0,
+    "fails": 200,
+    "thresholds": {
+      "rate==0": false
+    },
+    "value": 0
+  },
+  "k6_run": "2026-10-28T17:13:41.217Z"
+}
