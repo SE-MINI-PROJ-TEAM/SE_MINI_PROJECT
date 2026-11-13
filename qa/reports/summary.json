@@ -1,0 +1,49 @@
+{
+  "verdict": "PASS",
+  "gates": [
+    {
+      "name": "All executed test cases pass",
+      "ok": true,
+      "detail": "29/29 executed TCs pass"
+    },
+    {
+      "name": "Backend coverage >= 70% (SYS-NF-005)",
+      "ok": true,
+      "detail": "98.7% lines / 93.3% branches"
+    },
+    {
+      "name": "p95 latency < 800 ms with 500 sessions (SYS-NF-001)",
+      "ok": true,
+      "detail": "p95 = 31.5 ms"
+    },
+    {
+      "name": "200 simultaneous submissions, 0 failures (SYS-NF-002)",
+      "ok": true,
+      "detail": "200 ok / 0 failed"
+    },
+    {
+      "name": "No High/Critical ZAP alerts (PRJ-SR-001..005)",
+      "ok": true,
+      "detail": "no alerts above Medium"
+    },
+    {
+      "name": "Static analysis & dependency audit clean",
+      "ok": true,
+      "detail": "Bandit / pip-audit / npm audit"
+    },
+    {
+      "name": "Every acceptance criterion has automated evidence",
+      "ok": true,
+      "detail": "Acceptance traceability OK: 51 criteria across 15 stories, every one covered by an automated check."
+    }
+  ],
+  "test_cases": {
+    "total": 30,
+    "executed": 29,
+    "passed": 29
+  },
+  "requirements": {
+    "total": 30,
+    "verified": 30
+  }
+}

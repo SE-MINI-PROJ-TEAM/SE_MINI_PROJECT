@@ -1,0 +1,2147 @@
+{
+  "config": {
+    "configFile": "/repo/qa/uat/playwright.config.js",
+    "rootDir": "/repo/qa/uat",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/repo/qa/reports/uat/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/repo/qa/reports/uat/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "/repo/qa/uat",
+        "testIgnore": [],
+        "testMatch": [
+          "uat.spec.js"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.49.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "uat.spec.js",
+      "file": "uat.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "US-01.1 admin creation form captures name, email, role and institutional ID",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Form shows Full name, Email, Institutional ID and a Role selector offering Student / Faculty / Admin."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 304,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:18.017Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-966e102c6dcc7b1f7139",
+          "file": "uat.spec.js",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "US-01.2 a secure temporary password is displayed on screen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Confirmation screen shows a 12-character password mixing upper/lower case, digits and symbols, with a warning that it is shown only once."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 441,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:19.220Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-1b4c53be6802751244ec",
+          "file": "uat.spec.js",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "US-01.3 the new record is saved with is_temporary_password = true",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "User list marks the account \"Temp password\"; a direct database query returns is_temporary_password = 1."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 302,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:19.667Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-a6c1a44f2f24c7742e84",
+          "file": "uat.spec.js",
+          "line": 95,
+          "column": 1
+        },
+        {
+          "title": "US-01.4 duplicate institutional ID or email is rejected with 409",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Duplicate email -> HTTP 409 DUPLICATE_EMAIL; duplicate ID -> HTTP 409 DUPLICATE_INSTITUTIONAL_ID; the form shows the error next to the field."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 388,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:19.974Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-ef6d90b6005d02bf908f",
+          "file": "uat.spec.js",
+          "line": 108,
+          "column": 1
+        },
+        {
+          "title": "US-02.1 temporary credentials redirect to the password reset view",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "After signing in with the temporary password the user lands on \"Set a new password\"; navigating to /catalog bounces back to it."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 841,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:20.367Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-66d17284df816a033230",
+          "file": "uat.spec.js",
+          "line": 124,
+          "column": 1
+        },
+        {
+          "title": "US-02.2 password complexity rules are enforced",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "\"abc\" meets 1 of 5 rules, so the button stays disabled; the server independently rejects it with 400 WEAK_PASSWORD and lists 4 unmet rules."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 344,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:21.214Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-6e91c75626fad892cf18",
+          "file": "uat.spec.js",
+          "line": 135,
+          "column": 1
+        },
+        {
+          "title": "US-02.3 the password is stored as a bcrypt hash with work factor 12",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Database value begins \"$2b$12$\" (bcrypt, cost 12) and is 60 characters; the plain password is not stored."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1066,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:21.563Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-3d06fa2c15f1b61ea821",
+          "file": "uat.spec.js",
+          "line": 148,
+          "column": 1
+        },
+        {
+          "title": "US-02.4 the temporary flag is cleared and the user reaches their dashboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "After the reset the student dashboard is shown; the database flag is 0 and the API reports must_change_password = false."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 168,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:22.634Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-9405aaa0255460583a6c",
+          "file": "uat.spec.js",
+          "line": 161,
+          "column": 1
+        },
+        {
+          "title": "US-03.1 profile shows contact information and the assigned institutional ID",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Profile lists institutional ID UAT0001, institutional email and the editable contact fields."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 271,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:22.808Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-66ba9df76a5ab5425bc8",
+          "file": "uat.spec.js",
+          "line": 174,
+          "column": 1
+        },
+        {
+          "title": "US-03.2 phone, emergency contact and personal email can be edited and saved",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Saved with a confirmation toast; after a full page reload all three values are still there."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 437,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:23.085Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-933dc4ffa124ba79c1b2",
+          "file": "uat.spec.js",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "US-03.3 phone and email formats are validated before saving",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Invalid phone and email show inline errors and nothing is saved; the server also answers 400 VALIDATION_FAILED."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 168,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:23.527Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-f696a3d5c10a99a9fcf5",
+          "file": "uat.spec.js",
+          "line": 199,
+          "column": 1
+        },
+        {
+          "title": "US-03.4 institutional ID and role cannot be modified by a non-admin",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "The UI shows these fields as locked text. A forged API request is refused with 403 READ_ONLY_FIELD and the role / ID are unchanged."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:23.700Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-42b79c15c621ff84dc54",
+          "file": "uat.spec.js",
+          "line": 213,
+          "column": 1
+        },
+        {
+          "title": "US-04.1 admin can search users and toggle Active / Inactive",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Searching by email narrows the list to one user whose Active switch is on."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 538,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:24.008Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-310206d0821cdba1d378",
+          "file": "uat.spec.js",
+          "line": 226,
+          "column": 1
+        },
+        {
+          "title": "US-04.2 deactivating an account revokes its live session immediately",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "A student signed in elsewhere was sent to the sign-in page with \"account deactivated\" on their very next request, and signing in again returns 403."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1794,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:24.551Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-5b7af47e0ff668f6005e",
+          "file": "uat.spec.js",
+          "line": 236,
+          "column": 1
+        },
+        {
+          "title": "US-04.3 the status change is written to the administrative audit log",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Audit log row: \"User status changed\" by ADM001 for PES1UG24CS009, old = Active, new = Inactive, with a timestamp."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 194,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:26.350Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-8e285aacdf7e950572af",
+          "file": "uat.spec.js",
+          "line": 254,
+          "column": 1
+        },
+        {
+          "title": "US-05.1 admin registers a course offering with a seat capacity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Course UAT101 created with capacity 3 and assigned faculty FAC050; the list shows 0 / 3 seats filled."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 948,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:26.550Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-175e2a2811a6b6df1501",
+          "file": "uat.spec.js",
+          "line": 267,
+          "column": 1
+        },
+        {
+          "title": "US-05.2 weighted components can be defined (Assignments, Exams, Projects)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Saved rubric has three components in the categories Assignments, Exams and Projects."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 94,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:27.503Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-a7471477ed23748f1fe7",
+          "file": "uat.spec.js",
+          "line": 292,
+          "column": 1
+        },
+        {
+          "title": "US-05.3 weights are normalised to exactly 100.0% on save",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Raw weights 1 : 1 : 1 were saved as 33.34 + 33.33 + 33.33 = 100.00 exactly (the extra cent goes to the largest remainder)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 111,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:27.602Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-04f8130939bbaf8a307e",
+          "file": "uat.spec.js",
+          "line": 302,
+          "column": 1
+        },
+        {
+          "title": "US-06.1 the catalog shows open sections with real-time seat capacity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "UAT101 card shows \"3 of 3 seats open\"; the header shows this student is enrolled in 4 of 6 courses."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 880,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:27.718Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-3279abd27f598343c997",
+          "file": "uat.spec.js",
+          "line": 314,
+          "column": 1
+        },
+        {
+          "title": "US-06.2 a student can enroll in an available section",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Enrollment succeeded with a confirmation toast and the card now shows an \"Enrolled\" badge."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 268,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:28.603Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-e42df8aa362108cc68e1",
+          "file": "uat.spec.js",
+          "line": 326,
+          "column": 1
+        },
+        {
+          "title": "US-06.3 enrolling beyond 6 courses is blocked with an error",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "A student already on 6 courses sees the error \"You can enroll in at most 6 courses per term\"; a direct API call returns 409 ENROLLMENT_LIMIT_REACHED."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1219,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:28.876Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-2f5ebab5aa6e4c8d9313",
+          "file": "uat.spec.js",
+          "line": 336,
+          "column": 1
+        },
+        {
+          "title": "US-06.4 a confirmed enrollment decrements the available seats immediately",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "After the enrollment the section shows \"2 of 3 seats open\" and the student counter moved from 4 / 6 to 5 / 6."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 215,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:30.100Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-ed885350b67aa9d4ceab",
+          "file": "uat.spec.js",
+          "line": 350,
+          "column": 1
+        },
+        {
+          "title": "US-07.1 admin assigns date, time slot and room to a course offering",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Published UAT101 for 2026-10-29 10:00-11:00 in room UAT-R1; it appears in the scheduled-sessions table."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 626,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:30.321Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-0e2e7729d21badf7d9b6",
+          "file": "uat.spec.js",
+          "line": 361,
+          "column": 1
+        },
+        {
+          "title": "US-07.2 student and faculty dashboards show weekly calendars with the sessions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "The enrolled student sees UAT101 (room UAT-R1) in the dashboard \"This week\" card and in the weekly calendar page; the assigned faculty member sees it on their dashboard."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1252,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:30.952Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-2223d3dcd3704bb3fbb9",
+          "file": "uat.spec.js",
+          "line": 377,
+          "column": 1
+        },
+        {
+          "title": "US-07.3 faculty can only see rosters of their own sections",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "\"My sections\" lists exactly the 3 sections assigned to faculty001; the roster of a section taught by someone else returns 403 NOT_ASSIGNED with no student data."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1033,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:32.208Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-dfef9725417b00f90e29",
+          "file": "uat.spec.js",
+          "line": 395,
+          "column": 1
+        },
+        {
+          "title": "US-08.1 the roster lists the enrolled students of the selected section",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "The roll-call opened from the dashboard widget lists 50 enrolled students with their institutional IDs."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 301,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:33.245Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-90b83c797c4fab6c950c",
+          "file": "uat.spec.js",
+          "line": 412,
+          "column": 1
+        },
+        {
+          "title": "US-08.2 faculty can toggle Present / Absent for each student",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Rows 2 and 5 were switched to Absent (highlighted red); the others remain Present."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 177,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:33.551Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-397f3d68213efd50fbb3",
+          "file": "uat.spec.js",
+          "line": 424,
+          "column": 1
+        },
+        {
+          "title": "US-08.3 Save persists the records and shows a confirmation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Toast \"Attendance recorded for N students\"; after a full reload the two Absent marks are still stored."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 314,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:33.733Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-20eff568632224770384",
+          "file": "uat.spec.js",
+          "line": 436,
+          "column": 1
+        },
+        {
+          "title": "US-08.4 re-editing is blocked once the session started more than 48 hours ago",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "A frozen session opens read-only with a banner, the toggles are disabled and there is no Save button; bypassing the UI with a direct API call returns 403 ATTENDANCE_FROZEN."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 375,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:34.053Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-d1acb466bb4f72a99b1e",
+          "file": "uat.spec.js",
+          "line": 448,
+          "column": 1
+        },
+        {
+          "title": "US-09.1 admin can edit attendance after the 48-hour freeze",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "A frozen session (faculty cannot edit) was corrected by the admin: first student Present -> Absent."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 566,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:34.433Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-4a9dd67286664d1c17d7",
+          "file": "uat.spec.js",
+          "line": 472,
+          "column": 1
+        },
+        {
+          "title": "US-09.2 a justification reason is mandatory",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Applying without a reason is refused in the UI (\"a justification of at least 5 characters is required\") and by the API (400); nothing was changed."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 208,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:35.004Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-880d49c7f8a76c93080d",
+          "file": "uat.spec.js",
+          "line": 487,
+          "column": 1
+        },
+        {
+          "title": "US-09.3 every override creates an immutable audit entry (admin, old value, new value, timestamp)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Entry shows admin ADM001, old value \"Present\", new value \"Absent\", the reason and a timestamp. There is no edit or delete endpoint (PUT/PATCH/DELETE -> 404/405) and the ORM rejects updates to audit rows."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 192,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:35.219Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-ff719b223875e76b88a9",
+          "file": "uat.spec.js",
+          "line": 501,
+          "column": 1
+        },
+        {
+          "title": "US-10.1 the student dashboard shows attendance percentage per enrolled course",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "The Attendance card lists 5 enrolled courses; the 4 that have held sessions each show a percentage and a progress bar (the course joined moments ago has no session yet and shows 0 attended / 0 missed / 0 held)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 760,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:35.415Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-5470161f38b8cd2e7f4c",
+          "file": "uat.spec.js",
+          "line": 520,
+          "column": 1
+        },
+        {
+          "title": "US-10.2 the course view breaks down sessions held, attended and missed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "CS102: 12 sessions held = 6 attended + 6 missed, with a per-session table."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 229,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:36.181Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-7c5b6786fe2bd75c82c5",
+          "file": "uat.spec.js",
+          "line": 540,
+          "column": 1
+        },
+        {
+          "title": "US-10.3 courses below 75% attendance are visually flagged",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Only CS102 (below 75%) carries the red \"Below 75%\" badge, plus a page-level warning; the other courses are not flagged."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:36.414Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-d5cb6a5d81e068f69d22",
+          "file": "uat.spec.js",
+          "line": 552,
+          "column": 1
+        },
+        {
+          "title": "US-11.1 the grade sheet renders the rubric components for every enrolled student",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "CS103 sheet: one column per rubric component (Assignments 10%, Capstone Project 40%, Final Exam 50%) for each of the enrolled students."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 285,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:36.725Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-6ebb16248133c1f0f8d0",
+          "file": "uat.spec.js",
+          "line": 565,
+          "column": 1
+        },
+        {
+          "title": "US-11.2 partial or complete scores can be saved in Draft state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "One student saved with a single score, another with all three; after a reload both persist and show state \"Draft\"."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 430,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:37.016Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-be13f2f070d570aae4c4",
+          "file": "uat.spec.js",
+          "line": 577,
+          "column": 1
+        },
+        {
+          "title": "US-11.3 students cannot see marks while the grade is in Draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "student001 has Draft marks in CS103 but sees only \"Pending - marks will appear here once published\"; no numbers are shown."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 931,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:37.452Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-de98f5594ec58935d45e",
+          "file": "uat.spec.js",
+          "line": 595,
+          "column": 1
+        },
+        {
+          "title": "US-12.1 submitting calculates the weighted total and moves to Submitted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "80 / 90 / 70 with weights 10 / 40 / 50 gives a weighted total of 79.00 (8 + 36 + 35); the row moved to \"Submitted\" and its inputs are locked."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1040,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:38.388Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-7ef68b9a71432f898309",
+          "file": "uat.spec.js",
+          "line": 608,
+          "column": 1
+        },
+        {
+          "title": "US-12.2 admin can batch-publish courses in the Submitted state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "The publication queue listed CS103 (and the other submitted course); the batch action published it and it left the queue."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 642,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:39.433Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-31ddcfd58b5d6f912aaf",
+          "file": "uat.spec.js",
+          "line": 630,
+          "column": 1
+        },
+        {
+          "title": "US-12.3 published grades become visible to the student immediately",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Immediately after publication student001 sees CS103 as Published with total 79.00 and letter C."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 870,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:40.080Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-58d78552c8e26179d94f",
+          "file": "uat.spec.js",
+          "line": 643,
+          "column": 1
+        },
+        {
+          "title": "US-13.1 a dispute button appears next to published grades",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "The Dispute button sits in the CS103 row next to the published grade."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 71,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:40.955Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-89b30a228e6a6df4e28e",
+          "file": "uat.spec.js",
+          "line": 656,
+          "column": 1
+        },
+        {
+          "title": "US-13.2 a written explanation is required before filing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Submitting with an empty explanation shows \"Please explain your request in at least 10 characters\" and the grade stays Published."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 398,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:41.031Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-fa9eaa689f2e341408df",
+          "file": "uat.spec.js",
+          "line": 663,
+          "column": 1
+        },
+        {
+          "title": "US-13.3 filing the dispute moves the grade to Under Review",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "With an explanation the request is filed; CS103 shows \"Under Review\" and the Dispute button disappears."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 246,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:41.433Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-cfe1465f46e38b1ea4ac",
+          "file": "uat.spec.js",
+          "line": 674,
+          "column": 1
+        },
+        {
+          "title": "US-13.4 faculty is notified, re-evaluates and re-publishes the grade",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Faculty saw the red notification badge, re-scored the first component (80 -> 95) and re-published. The student sees Published, total 79.00 -> 80.50 (letter B), the faculty note, and the \"Regrade used\" badge: a second dispute is no longer possible."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 851,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:41.684Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-97f6b5913bb2039677dc",
+          "file": "uat.spec.js",
+          "line": 685,
+          "column": 1
+        },
+        {
+          "title": "US-14.1 the student dashboard shows a credit-weighted term GPA",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Displayed GPA 9.14 / 10 equals sum(grade points x credits) / sum(credits) = 9.14 over 7 credits of published grades (A=10, B=8, C=6, D=4, F=0)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 811,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:42.540Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-cb83d52de06eb277fca5",
+          "file": "uat.spec.js",
+          "line": 709,
+          "column": 1
+        },
+        {
+          "title": "US-14.2 faculty see A-F grade distribution charts per section",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Three sections, each with an A / B / C / D / F histogram plus mean, median, graded count and attendance rate."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 186,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:43.357Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-8b7cca2e1eebfe6389cf",
+          "file": "uat.spec.js",
+          "line": 725,
+          "column": 1
+        },
+        {
+          "title": "US-14.3 analytics queries execute in under 800 ms",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Server-side query time reported on screen: student GPA 1.8 ms, faculty analytics 6.2 ms (limit 800 ms); the load test measured p95 = 30 ms at 500 sessions."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 77,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:43.548Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-9c44535594a095dfbb02",
+          "file": "uat.spec.js",
+          "line": 736,
+          "column": 1
+        },
+        {
+          "title": "US-15.1 a single click exports attendance and grade metrics to CSV",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "One click downloaded system-metrics-20261028-172743.csv with 51 course rows plus a TOTAL row, containing attendance rates and grade-state counts."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 299,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:43.630Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-189e31dd6e260da9e8f1",
+          "file": "uat.spec.js",
+          "line": 748,
+          "column": 1
+        },
+        {
+          "title": "US-15.2 TLS 1.3, HTTP-only 48-hour JWT sessions and parameterised queries are enforced",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Handshake with a TLS 1.2-only client is refused (C0ACA61FFC7A0000:error:0A00042E:SSL routines:ssl3_read_bytes:tlsv1 alert protocol version:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:918:SSL alert number 70\n); TLS 1.3 connects (TLSv1.3). Over HTTPS the login cookie is HttpOnly + Secure + SameSite=Lax with a 48 h lifetime, HSTS is sent, and the token is not in the response body. A SQL-injection payload in a search returns 0 rows and the users table is intact (parameterised ORM queries)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 345,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:43.933Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-f75060ddbad260cd2545",
+          "file": "uat.spec.js",
+          "line": 773,
+          "column": 1
+        },
+        {
+          "title": "US-15.3 200 simultaneous submissions complete without a database deadlock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Evidence from the k6 run of 2026-10-28T17:13:41.217Z: 200 simultaneous attendance + grade submissions across 12 server processes -> 200 accepted, 0 failed, 0 HTTP errors (also covered by the PyTest concurrency test)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 10,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:44.282Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-f92831e4da70d7bd5e7d",
+          "file": "uat.spec.js",
+          "line": 795,
+          "column": 1
+        },
+        {
+          "title": "EX-1 attack the grade lifecycle as a student",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Edit marks / publish / submit / self-resolve / list users all returned 403; a second dispute returned 409 ALREADY_DISPUTED; another student's enrollment returned 404; /grades/mine exposes only the caller's data. No weakness found."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 793,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:44.296Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-b9ee99e748017f1575f8",
+          "file": "uat.spec.js",
+          "line": 808,
+          "column": 1
+        },
+        {
+          "title": "EX-2 try to see or change another faculty member's sections",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Grade sheet, save marks, submit and roster of a foreign section all returned 403; the dispute list only contains the faculty member's own courses (CS103, CS101). No weakness found."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 54,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:45.094Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-8b1cf457fd16a7923707",
+          "file": "uat.spec.js",
+          "line": 830,
+          "column": 1
+        },
+        {
+          "title": "EX-3 keyboard-only operation and a 375 px screen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Signed in and reached the content using only the keyboard (skip link works: focus moved into main = true); at 375 px four pages have no horizontal scroll and the drawer opens from the keyboard. A full screen-reader pass is not automated and remains for the human session."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 1182,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:45.157Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-c26feb344ca821b417aa",
+          "file": "uat.spec.js",
+          "line": 845,
+          "column": 1
+        },
+        {
+          "title": "EX-4 hostile input in the text fields",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Seven hostile strings (script tags, an event-handler image, SQL, 5,000 characters, 60 emoji, a template expression, a negative number) were submitted through the account form, the user search and the course form: no JavaScript dialog, no uncaught page error, no HTTP 5xx. The stored name for the <script> payload is \"alert(1)\" (markup stripped)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 4691,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:46.344Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-921840c6aee460bcf0f7",
+          "file": "uat.spec.js",
+          "line": 873,
+          "column": 1
+        },
+        {
+          "title": "EX-5 two sessions edit the same attendance sheet at once",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "comment",
+                  "description": "Two browser sessions saved the same roll-call within the same instant (conflicting values for one student): both saves succeeded, the roster has 50 unique rows, no HTTP 5xx; the last write wins (3 students absent in the final state)."
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 2145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T17:27:51.039Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52f666ad4982994d04a7-b56258668aaaa463da94",
+          "file": "uat.spec.js",
+          "line": 905,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-28T17:27:17.269Z",
+    "duration": 36105.636999999995,
+    "expected": 56,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
