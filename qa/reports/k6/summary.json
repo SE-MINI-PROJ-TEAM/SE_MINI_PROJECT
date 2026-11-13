@@ -1,0 +1,327 @@
+{
+    "metrics": {
+        "checks": {
+            "passes": 14105,
+            "fails": 0,
+            "value": 1
+        },
+        "data_received": {
+            "count": 39504109,
+            "rate": 447332.72479342076
+        },
+        "vus": {
+            "value": 55,
+            "min": 0,
+            "max": 500
+        },
+        "http_req_duration": {
+            "p(95)": 34.78726709999999,
+            "p(99)": 231.04166726000045,
+            "max": 924.835679,
+            "avg": 20.238731610042468,
+            "med": 11.985067,
+            "p(90)": 27.151279600000002
+        },
+        "checks{scenario:sessions}": {
+            "passes": 13905,
+            "fails": 0,
+            "thresholds": {
+                "rate>0.99": false
+            },
+            "value": 1
+        },
+        "iteration_duration": {
+            "p(90)": 2807.032247,
+            "p(95)": 2909.4806218,
+            "p(99)": 2994.7108766,
+            "max": 3050.471605,
+            "avg": 1995.119367434238,
+            "med": 2013.532816
+        },
+        "http_req_failed{scenario:sessions}": {
+            "passes": 0,
+            "fails": 13905,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_reqs": {
+            "rate": 160.117134361364,
+            "count": 14140
+        },
+        "checks{scenario:burst}": {
+            "passes": 200,
+            "fails": 0,
+            "thresholds": {
+                "rate==1": false
+            },
+            "value": 1
+        },
+        "http_reqs{scenario:sessions}": {
+            "count": 13905,
+            "rate": 157.45606458944602,
+            "thresholds": {
+                "count>1000": false
+            }
+        },
+        "vus_max": {
+            "value": 500,
+            "min": 500,
+            "max": 500
+        },
+        "iterations": {
+            "rate": 159.7208048208656,
+            "count": 14105
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 14140,
+            "value": 0
+        },
+        "http_req_tls_handshaking": {
+            "avg": 0,
+            "med": 0,
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0,
+            "max": 0
+        },
+        "http_req_failed{scenario:burst}": {
+            "passes": 0,
+            "fails": 200,
+            "thresholds": {
+                "rate==0": false
+            },
+            "value": 0
+        },
+        "http_req_connecting": {
+            "max": 17.072874,
+            "avg": 0.26376304059405953,
+            "med": 0.32849649999999997,
+            "p(90)": 0.527563,
+            "p(95)": 0.5838579999999999,
+            "p(99)": 1.0577910100000065
+        },
+        "http_req_waiting": {
+            "p(90)": 26.8535792,
+            "p(95)": 34.4013208,
+            "p(99)": 230.88826515000045,
+            "max": 924.740745,
+            "avg": 20.00641241379068,
+            "med": 11.7608575
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(90)": 27.151279600000002,
+            "p(95)": 34.78726709999999,
+            "p(99)": 231.04166726000045,
+            "max": 924.835679,
+            "avg": 20.238731610042468,
+            "med": 11.985067
+        },
+        "http_req_sending": {
+            "avg": 0.036482605657708424,
+            "med": 0.026215500000000003,
+            "p(90)": 0.053843,
+            "p(95)": 0.06337254999999999,
+            "p(99)": 0.1324112100000006,
+            "max": 5.785616
+        },
+        "http_req_blocked": {
+            "avg": 0.3161382065770876,
+            "med": 0.39311549999999995,
+            "p(90)": 0.6375876,
+            "p(95)": 0.6950274499999999,
+            "p(99)": 1.1547569900000112,
+            "max": 17.205408
+        },
+        "http_req_receiving": {
+            "med": 0.114144,
+            "p(90)": 0.3792589,
+            "p(95)": 0.7336983999999991,
+            "p(99)": 1.4032829900000017,
+            "max": 8.0991,
+            "avg": 0.19583659059405906
+        },
+        "http_req_duration{scenario:sessions}": {
+            "med": 11.832446,
+            "p(90)": 25.909918400000006,
+            "p(95)": 31.536915999999998,
+            "p(99)": 45.97233948,
+            "max": 125.918342,
+            "avg": 14.260210287378648,
+            "thresholds": {
+                "p(95)<800": false
+            }
+        },
+        "http_reqs{scenario:burst}": {
+            "count": 200,
+            "rate": 2.2647402314195757,
+            "thresholds": {
+                "count>=200": false
+            }
+        },
+        "data_sent": {
+            "count": 4617729,
+            "rate": 52289.78322046443
+        }
+    },
+    "setup_data": {
+        "roster": [
+            "PES1UG24CS001",
+            "PES1UG24CS002",
+            "PES1UG24CS008",
+            "PES1UG24CS010",
+            "PES1UG24CS022",
+            "PES1UG24CS034",
+            "PES1UG24CS047",
+            "PES1UG24CS070",
+            "PES1UG24CS074",
+            "PES1UG24CS078",
+            "PES1UG24CS081",
+            "PES1UG24CS100",
+            "PES1UG24CS121",
+            "PES1UG24CS133",
+            "PES1UG24CS137",
+            "PES1UG24CS142",
+            "PES1UG24CS145",
+            "PES1UG24CS147",
+            "PES1UG24CS151",
+            "PES1UG24CS152",
+            "PES1UG24CS159",
+            "PES1UG24CS170",
+            "PES1UG24CS172",
+            "PES1UG24CS175",
+            "PES1UG24CS183",
+            "PES1UG24CS207",
+            "PES1UG24CS221",
+            "PES1UG24CS234",
+            "PES1UG24CS242",
+            "PES1UG24CS284",
+            "PES1UG24CS288",
+            "PES1UG24CS293",
+            "PES1UG24CS295",
+            "PES1UG24CS302",
+            "PES1UG24CS303",
+            "PES1UG24CS307",
+            "PES1UG24CS314",
+            "PES1UG24CS343",
+            "PES1UG24CS375",
+            "PES1UG24CS380",
+            "PES1UG24CS421",
+            "PES1UG24CS426",
+            "PES1UG24CS448",
+            "PES1UG24CS449",
+            "PES1UG24CS457",
+            "PES1UG24CS469",
+            "PES1UG24CS472",
+            "PES1UG24CS476",
+            "PES1UG24CS477",
+            "PES1UG24CS499"
+        ],
+        "rubricIds": [
+            8,
+            9,
+            10
+        ],
+        "sessionId": 7,
+        "students": [
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTMzLCJleHAiOjE3OTMzODAzMzN9.SpROuDQFEEYa2_qKVr1rWClXJR3PhHNVVLsYu4_6lGM",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTMzLCJleHAiOjE3OTMzODAzMzN9.1CKWh_IYyz7vlTFo_8PCB1zQPCXjj9BrBJ126uy6mIc",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MyIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTMzLCJleHAiOjE3OTMzODAzMzN9.0tJVR9JLl1nghw7yXNTw47CG6DFervX3A_GQqOt86vU",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTMzLCJleHAiOjE3OTMzODAzMzN9.9jTMc8JgOZfa7HJZLMlyDrrWX951K8j1d7kmmjfKfpc",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM0LCJleHAiOjE3OTMzODAzMzR9.BC4tiiu0tFp7ElNM3y3dcwgiuGE4TltUZk17uDxYLao",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM0LCJleHAiOjE3OTMzODAzMzR9.f7coYPZvX7eoj5L_RkLabqNnvC3DrnlkVyMSx0Ogv4k",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NyIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM0LCJleHAiOjE3OTMzODAzMzR9.W-1nt7XOPe-0UNcGZ4uiNFLP0jIEJt5HZfRaHgb_0xE",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM0LCJleHAiOjE3OTMzODAzMzR9.Yj_IVbjFXuB7oyl_dvV0CXaQTRk4LWSC12h4idQ-dT8",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM0LCJleHAiOjE3OTMzODAzMzR9.tQWo-sv43AbYMGPd9O9IEkhb1WlT1UWMJpOxi0diAPM",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM1LCJleHAiOjE3OTMzODAzMzV9.N8CSXEuv3HR6T-wOVagGgXOSn8FTVaAGAAmREo3SKeY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM1LCJleHAiOjE3OTMzODAzMzV9.XlhBH6hzStF7iPJoNcidsfEo0M5crNN1s9z69XW_V60",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM1LCJleHAiOjE3OTMzODAzMzV9.lfdgJ1qiY_t22wskr6bSvqV4ePbxBxfFB026PfmhAnw",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MyIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM1LCJleHAiOjE3OTMzODAzMzV9.76bsZwN16OUk7KePWyz5Ialkar2aqzzI0uou09fFZKk",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM2LCJleHAiOjE3OTMzODAzMzZ9.cvYi2dZvmUn_nup8MHTraY3TJbvY7ddcwnZnJItvdBE",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM2LCJleHAiOjE3OTMzODAzMzZ9.-DNPRmE-Rhxeseh8GlK5j6qgTVR3a2ncD4s7LsQqjLg",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM2LCJleHAiOjE3OTMzODAzMzZ9.x8xdz3Jc_LMycopN1GCS45sWdyVDvCcRthhhDNxIIDs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NyIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM2LCJleHAiOjE3OTMzODAzMzZ9.DzfKfbTGIWxflSCXFLaFLafcWSmyi2vnjKoIS-_LvYE",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM3LCJleHAiOjE3OTMzODAzMzd9.TaxMNr4iJnWRNdb3vvW9PVTCQ4St29s_AxXMPt2geDk",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3OSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM3LCJleHAiOjE3OTMzODAzMzd9.9TzrL2AI6jEi3o90TZMFa_ST2g5gd3Wtfc5anOyhsPQ",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM3LCJleHAiOjE3OTMzODAzMzd9.gTxvqw_OFoNtYuDp7EaF96-IMQlyLeRp-KaTpVmN3Hs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM3LCJleHAiOjE3OTMzODAzMzd9.i6HJLb6CPG-IoWy7_jh9QtyVKcqkzUYUikdQ0AxAD3s",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM3LCJleHAiOjE3OTMzODAzMzd9.u10RTSodH0Utm--lDOtqdpt_fYfFU4S6KsjD9qxuDHU",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MyIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM4LCJleHAiOjE3OTMzODAzMzh9.P1aN-96fDOXIhujnYBH0eT3uArFy9P_Jj-HAdQ4T2Kg",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM4LCJleHAiOjE3OTMzODAzMzh9.0p1DOAn_0sqc2J37xAWiLkpx-JsVFo2rWcMPMcXIRVM",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM4LCJleHAiOjE3OTMzODAzMzh9.UHEA_yaJ6E6kDQZDpeGwMln8KmKPcHxmDe-V4_W3dcg",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NiIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM4LCJleHAiOjE3OTMzODAzMzh9.YDbrghUtzA-ARXX1sgkk-ZlsPlVVUt9f5ENoymmwGWY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NyIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM5LCJleHAiOjE3OTMzODAzMzl9.4JJkytJitT1M9zvL4RvTHIwPQwb0okXYkK0IdT2OdI0",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4OCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM5LCJleHAiOjE3OTMzODAzMzl9.jHgtPyIqSlEpq0gL8lOkRo1Wn00IZRe9xbzf5mJHej0",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4OSIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM5LCJleHAiOjE3OTMzODAzMzl9.LeMYq2I-ABelpNGX46z91BCPEyPsMn0oRl6m-rCJimo",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MCIsInJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNzkzMjA3NTM5LCJleHAiOjE3OTMzODAzMzl9.7k9T3OMeX7VSYGl4UDFkF0horkU4vYv05sX0Lwrmn0U"
+        ],
+        "admin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzkzMjA3NTQwLCJleHAiOjE3OTMzODAzNDB9.w4KL1zI03jDsfe2A_rHjJIhW0cvTtiPHK2bzR3OIrME",
+        "courseId": 3,
+        "faculty": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsInJvbGUiOiJGYWN1bHR5IiwiaWF0IjoxNzkzMjA3NTM5LCJleHAiOjE3OTMzODAzMzl9.1VfJWLCI7FD7C_t4ph0NAfKp3dcdOOe0wa5-rhzrCMk",
+        "gradeable": [
+            "PES1UG24CS001",
+            "PES1UG24CS002",
+            "PES1UG24CS014",
+            "PES1UG24CS018",
+            "PES1UG24CS027",
+            "PES1UG24CS036",
+            "PES1UG24CS041",
+            "PES1UG24CS055",
+            "PES1UG24CS069",
+            "PES1UG24CS071",
+            "PES1UG24CS097",
+            "PES1UG24CS122",
+            "PES1UG24CS139",
+            "PES1UG24CS150",
+            "PES1UG24CS154",
+            "PES1UG24CS161",
+            "PES1UG24CS162",
+            "PES1UG24CS185",
+            "PES1UG24CS203",
+            "PES1UG24CS209",
+            "PES1UG24CS239",
+            "PES1UG24CS242",
+            "PES1UG24CS255",
+            "PES1UG24CS279",
+            "PES1UG24CS286",
+            "PES1UG24CS297",
+            "PES1UG24CS301",
+            "PES1UG24CS323",
+            "PES1UG24CS339",
+            "PES1UG24CS343",
+            "PES1UG24CS347",
+            "PES1UG24CS352",
+            "PES1UG24CS367",
+            "PES1UG24CS387",
+            "PES1UG24CS408",
+            "PES1UG24CS428",
+            "PES1UG24CS430",
+            "PES1UG24CS462",
+            "PES1UG24CS464"
+        ]
+    },
+    "root_group": {
+        "groups": {},
+        "checks": {
+                "status 200": {
+                    "id": "fad9fa412b86fcb03bee97c80dcd61f1",
+                    "passes": 13905,
+                    "fails": 0,
+                    "name": "status 200",
+                    "path": "::status 200"
+                },
+                "submission accepted (200)": {
+                    "passes": 200,
+                    "fails": 0,
+                    "name": "submission accepted (200)",
+                    "path": "::submission accepted (200)",
+                    "id": "4fb59b20cf3c8a766afac3c9a35b5f19"
+                }
+            },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+}
