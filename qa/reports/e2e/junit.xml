@@ -1,0 +1,58 @@
+<testsuites id="" name="" tests="24" failures="0" skipped="0" errors="0" time="76.45405099999999">
+<testsuite name="01-access-control.spec.js" timestamp="2026-10-28T17:28:07.719Z" hostname="" tests="8" failures="0" skipped="0" time="8.543" errors="0">
+<testcase name="anonymous visitors are sent to the sign-in page and see no stale-session warning" classname="01-access-control.spec.js" time="0.673">
+</testcase>
+<testcase name="wrong credentials show an error and keep the user signed out" classname="01-access-control.spec.js" time="1.019">
+</testcase>
+<testcase name="admin dashboard renders its widgets" classname="01-access-control.spec.js" time="1.189">
+</testcase>
+<testcase name="faculty dashboard renders its widgets" classname="01-access-control.spec.js" time="1.152">
+</testcase>
+<testcase name="student dashboard renders its widgets" classname="01-access-control.spec.js" time="1.174">
+</testcase>
+<testcase name="a student cannot open admin screens through the URL" classname="01-access-control.spec.js" time="1.1">
+</testcase>
+<testcase name="navigation only offers what the role may use" classname="01-access-control.spec.js" time="1.075">
+</testcase>
+<testcase name="signing out ends the session for the protected API too" classname="01-access-control.spec.js" time="1.161">
+</testcase>
+</testsuite>
+<testsuite name="02-usability.spec.js" timestamp="2026-10-28T17:28:07.719Z" hostname="" tests="7" failures="0" skipped="0" time="11.576" errors="0">
+<testcase name="roll-call is completed within 3 clicks of signing in (TC-UX-01)" classname="02-usability.spec.js" time="1.337">
+</testcase>
+<testcase name="the GPA is visible on the student dashboard with zero clicks" classname="02-usability.spec.js" time="1.083">
+</testcase>
+<testcase name="student pages fit the screen without horizontal page scroll at phone 375 px" classname="02-usability.spec.js" time="1.993">
+</testcase>
+<testcase name="student pages fit the screen without horizontal page scroll at tablet 768 px" classname="02-usability.spec.js" time="1.946">
+</testcase>
+<testcase name="student pages fit the screen without horizontal page scroll at desktop 1920 px" classname="02-usability.spec.js" time="2.267">
+</testcase>
+<testcase name="on a phone the navigation collapses into a drawer" classname="02-usability.spec.js" time="1.705">
+</testcase>
+<testcase name="the theme toggle persists across reloads" classname="02-usability.spec.js" time="1.245">
+</testcase>
+</testsuite>
+<testsuite name="03-accessibility.spec.js" timestamp="2026-10-28T17:28:07.719Z" hostname="" tests="5" failures="0" skipped="0" time="35.824" errors="0">
+<testcase name="sign-in page" classname="03-accessibility.spec.js" time="1.058">
+</testcase>
+<testcase name="student screens" classname="03-accessibility.spec.js" time="9.572">
+</testcase>
+<testcase name="faculty screens" classname="03-accessibility.spec.js" time="8.389">
+</testcase>
+<testcase name="admin screens" classname="03-accessibility.spec.js" time="11.958">
+</testcase>
+<testcase name="dialogs are accessible and trap focus" classname="03-accessibility.spec.js" time="4.847">
+</testcase>
+</testsuite>
+<testsuite name="04-end-to-end-workflows.spec.js" timestamp="2026-10-28T17:28:07.719Z" hostname="" tests="4" failures="0" skipped="0" time="16.33" errors="0">
+<testcase name="admin provisions a user; the user must reset the temporary password, then can enrol" classname="04-end-to-end-workflows.spec.js" time="3.848">
+</testcase>
+<testcase name="the 6-course cap is enforced in the UI" classname="04-end-to-end-workflows.spec.js" time="1.337">
+</testcase>
+<testcase name="grade lifecycle: Draft -&gt; Submitted -&gt; Published -&gt; dispute -&gt; resolved -&gt; final" classname="04-end-to-end-workflows.spec.js" time="8.73">
+</testcase>
+<testcase name="deactivating a user signs them out of a live session" classname="04-end-to-end-workflows.spec.js" time="2.415">
+</testcase>
+</testsuite>
+</testsuites>
