@@ -6,12 +6,12 @@ cd "$(dirname "$0")"
 
 export UAT_COMMIT="$(git rev-parse --short HEAD 2>/dev/null || true)"
 COMPOSE="docker compose -f docker-compose.qa.yml"
-mkdir -p qa/reports/k6 qa/reports/zap demo/videos
+mkdir -p qa/reports/k6 qa/reports/zap docs/reports demo/videos
 chmod -R a+rwX qa/reports demo/videos 2>/dev/null || true   # tool containers run as other users
 
 run_stage() {
   case "$1" in
-    consistency|unit|static|integration|e2e|uat|docs|demo|report)
+    consistency|unit|static|integration|e2e|uat|docs|demo|demo-final|report)
       $COMPOSE run --rm --build qa python qa/run.py "$1" ;;
     perf) $COMPOSE run --rm --build k6 ;;
     zap)  $COMPOSE run --rm --build zap ;;

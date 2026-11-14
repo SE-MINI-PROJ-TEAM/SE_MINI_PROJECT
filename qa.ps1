@@ -6,11 +6,11 @@ $ErrorActionPreference = "Continue"
 Set-Location $PSScriptRoot
 $env:UAT_COMMIT = (git rev-parse --short HEAD 2>$null)
 $compose = @("compose", "-f", "docker-compose.qa.yml")
-New-Item -ItemType Directory -Force "qa/reports/k6", "qa/reports/zap", "demo/videos" | Out-Null
+New-Item -ItemType Directory -Force "qa/reports/k6", "qa/reports/zap", "docs/reports", "demo/videos" | Out-Null
 
 function Invoke-Stage([string]$name) {
     switch ($name) {
-        { $_ -in "consistency", "unit", "static", "integration", "e2e", "uat", "docs", "demo", "report" } {
+        { $_ -in "consistency", "unit", "static", "integration", "e2e", "uat", "docs", "demo", "demo-final", "report" } {
             & docker @compose run --rm --build qa python qa/run.py $name; return $LASTEXITCODE
         }
         "perf" { & docker @compose run --rm --build k6; return $LASTEXITCODE }

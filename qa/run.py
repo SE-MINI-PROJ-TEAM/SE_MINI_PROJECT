@@ -8,7 +8,8 @@
                   responsive layout, axe WCAG 2.1 AA                                    (STP: System, TC-UX-01)
     docs          Regenerate openapi.json, the acceptance matrix and the UAT script (UAT-RESULTS.md is never overwritten)
     demo          Re-record the two sprint demo videos (60 s / 120 s MP4)
-    report        Build qa/reports/TEST-EXECUTION-REPORT.md from the result files
+    demo-final    Record the whole-project demo (all 15 stories, about two minutes) as demo/videos/project-demo.mp4
+    report        Build qa/reports/TEST-EXECUTION-REPORT.md and the docs/reports/ set from the result files
 
 k6 (performance) and OWASP ZAP (security scan) are their own containers: see docker-compose.qa.yml.
 The API, nginx and MySQL are sibling containers on the same network; the database is re-seeded before every
@@ -143,18 +144,19 @@ def stage_docs():
     return 1 if failures else 0
 
 
-def stage_demo():
+def record_demo(recordings):
     videos = os.path.join(DEMO, "videos")
     os.makedirs(videos, exist_ok=True)
-    for name, seconds, dwell in (("sprint1", 60, "1450"), ("sprint2", 120, "3200")):
+    for name, seconds, dwell in recordings:
         seed()
-        say(f"Recording {name} ({seconds} s)")
-        result = run(["node", "record.mjs", name], cwd=DEMO, env={"BASE_URL": os.environ["QA_UI_URL"], "CAPTION_DWELL": dwell})
+        say(f"Recording {name}" + (f" ({seconds} s)" if seconds else ""))
+        result = run(["node", "record.mjs", name], cwd=DEMO, env={"BASE_URL": os.environ["QA_UI_URL"], "CAPTION_DWELL": dwell, **({"TARGET_SECONDS": str(seconds)} if seconds else {})})
         if result.returncode:
             print(f"Recording {name} failed; see demo/videos/{name}-failure.png")
             return 1
         # -ss drops the blank first paint; -t trims the held final frame so the length is exact.
-        run(["ffmpeg", "-v", "error", "-y", "-ss", "0.6", "-i", f"{videos}/{name}-raw.webm", "-t", str(seconds), "-r", "30",
+        trim = ["-t", str(seconds)] if seconds else []  # without a length the video ends with the last scripted action
+        run(["ffmpeg", "-v", "error", "-y", "-ss", "0.6", "-i", f"{videos}/{name}-raw.webm", *trim, "-r", "30",
              "-c:v", "libx264", "-crf", "20", "-preset", "slow", "-pix_fmt", "yuv420p", "-movflags", "+faststart", f"{videos}/{name}.mp4"], check=True)
         for leftover in (f"{name}-raw.webm", f"{name}.json"):
             try:
@@ -164,14 +166,24 @@ def stage_demo():
     return 0
 
 
+def stage_demo():
+    return record_demo((("sprint1", None, "700"), ("sprint2", None, "2200")))
+
+
+def stage_demo_final():
+    return record_demo((("project-demo", None, "750"),))
+
+
 def stage_report():
     say("Building the Test Execution & Acceptance Report")
-    return run([sys.executable, os.path.join(QA, "report.py")]).returncode
+    code = run([sys.executable, os.path.join(QA, "report.py")]).returncode
+    say("Writing the final reports to docs/reports/ (unit, system validation, code and branch coverage)")
+    return code or run([sys.executable, os.path.join(QA, "docs_reports.py")]).returncode
 
 
 STAGES = {
     "consistency": stage_consistency, "unit": stage_unit, "static": stage_static, "integration": stage_integration,
-    "e2e": stage_e2e, "uat": stage_uat, "docs": stage_docs, "demo": stage_demo, "report": stage_report,
+    "e2e": stage_e2e, "uat": stage_uat, "docs": stage_docs, "demo": stage_demo, "demo-final": stage_demo_final, "report": stage_report,
 }
 
 

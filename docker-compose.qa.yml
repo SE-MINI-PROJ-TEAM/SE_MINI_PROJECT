@@ -84,6 +84,7 @@ services:
       - ./qa/reports:/repo/qa/reports
       - ./demo/videos:/repo/demo/videos
       - ./docs/uat:/repo/docs/uat        # generated acceptance matrix / UAT script (stage: docs)
+      - ./docs/reports:/repo/docs/reports  # final test reports (stage: report)
       - ./qa/openapi:/repo/qa/openapi    # generated openapi.json (stage: docs)
     depends_on:
       db:
