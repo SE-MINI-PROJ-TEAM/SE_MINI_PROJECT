@@ -1,13 +1,13 @@
 # Test Execution & Acceptance Report
 
-_Generated 2026-10-28 18:26 UTC by `qa/report.py` from the result files in `qa/reports/`. Every figure is read from tool output._
+_Generated 2026-11-14 15:05 UTC by `qa/report.py` from the result files in `qa/reports/`. Every figure is read from tool output._
 
 ## Verdict: automated quality gates **PASS**
 
 | Gate | Result | Detail |
 | --- | --- | --- |
 | All executed test cases pass | PASS | 29/29 executed TCs pass |
-| Backend coverage >= 70% (SYS-NF-005) | PASS | 98.7% lines / 93.3% branches |
+| Backend coverage >= 70% (SYS-NF-005) | PASS | 98.65% lines / 93.26% branches |
 | p95 latency < 800 ms with 500 sessions (SYS-NF-001) | PASS | p95 = 31.5 ms |
 | 200 simultaneous submissions, 0 failures (SYS-NF-002) | PASS | 200 ok / 0 failed |
 | No High/Critical ZAP alerts (PRJ-SR-001..005) | PASS | no alerts above Medium |
@@ -105,7 +105,7 @@ _Generated 2026-10-28 18:26 UTC by `qa/report.py` from the result files in `qa/r
 
 ## Performance (k6)
 
-500 concurrent sessions, 13,905 requests at 157 req/s (4 server processes), then a 200-request simultaneous submission burst.
+500 concurrent sessions, 13,905 requests at 157 req/s (12 API worker processes), then a 200-request simultaneous submission burst.
 
 | Metric | Value |
 | --- | --- |
@@ -122,7 +122,7 @@ _Generated 2026-10-28 18:26 UTC by `qa/report.py` from the result files in `qa/r
 - **npm audit** (production deps): 0 critical, 0 high, 2 moderate, 0 low.
 - **OWASP ZAP api scan**: Informational: 2, Low: 1.
 - **OWASP ZAP baseline scan**: Informational: 1.
-- **OWASP ZAP ui scan**: Informational: 1, Low: 1, Medium: 1.
+- **OWASP ZAP ui scan**: Informational: 1.
 
 ## Acceptance
 

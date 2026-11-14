@@ -35,7 +35,7 @@ Automated quality gates: **PASS**
 | System / E2E and usability | Playwright, Chromium, through nginx | 24 tests | 24 | 0 | 2026-10-28 17:28 UTC |
 | Acceptance (UAT) | One scripted check per acceptance criterion, driven through the UI | 51 criteria + 5 exploratory charters | 51 | 0 | 2026-10-28 17:27 UTC |
 | Performance | k6: 500 concurrent sessions, 200-request burst | see below |  |  | n/a |
-| Security | OWASP ZAP (3 scans), Bandit, pip-audit, npm audit | see below |  |  | n/a |
+| Security | OWASP ZAP (3 scans), Bandit, pip-audit, npm audit | see below |  |  | ZAP: 2026-11-12 15:25 UTC |
 
 ### Integration (Newman) by area
 

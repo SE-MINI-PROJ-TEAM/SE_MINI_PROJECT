@@ -13,8 +13,6 @@ on:
   push:
     branches: [main]
     paths-ignore: ["docs/**", "**/*.md", "demo/**"]
-  schedule:
-    - cron: "30 21 * * *" # nightly: new CVEs appear without any code change
   workflow_dispatch:
 
 concurrency:
