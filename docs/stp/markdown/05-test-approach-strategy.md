@@ -15,7 +15,7 @@ Testing executes across four hierarchical verification levels:
 ## Types
 
 * **Functional Testing:** Core business logic verification against functional requirements `SYS-F-001` through `SYS-F-020`.
-* **Regression Testing:** Automated test execution on every commit to ensure existing functionality remains unbroken.
+* **Regression Testing:** Automated test execution on every pull request, on every push to `main` and nightly (GitHub Actions) to ensure existing functionality remains unbroken.
 * **Performance Testing:** Load testing verifying API response time $\le 800\text{ ms}$ under 500 active sessions and 200 concurrent transactions.
 * **Usability Testing:** Accessibility and workflow efficiency evaluation ($\le 3$ clicks to complete roll-call).
 
@@ -27,7 +27,7 @@ Testing executes across four hierarchical verification levels:
 
 ## Exit Criteria
 
-* 100% of planned automated test cases executed.
+* 100% of planned automated test cases executed, except those that cannot be executed in a course project (`TC-OPS-01`, 99% monthly availability), which are closed by agreement with the course instructor.
 * 100% of functional requirements (`SYS-F-001`..`020`) verified and passed.
 * 0 critical or high-severity open defects.
 * Performance tests confirm $95\%$ API response time $< 800\text{ ms}$ and 200 concurrent transaction capability.
