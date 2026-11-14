@@ -1,6 +1,6 @@
 # Test Execution & Acceptance Report
 
-_Generated 2026-11-14 14:04 UTC by `qa/report.py` from the result files in `qa/reports/`. Every figure is read from tool output._
+_Generated 2026-11-14 15:05 UTC by `qa/report.py` from the result files in `qa/reports/`. Every figure is read from tool output._
 
 ## Verdict: automated quality gates **PASS**
 
@@ -105,7 +105,7 @@ _Generated 2026-11-14 14:04 UTC by `qa/report.py` from the result files in `qa/r
 
 ## Performance (k6)
 
-500 concurrent sessions, 13,905 requests at 157 req/s (4 server processes), then a 200-request simultaneous submission burst.
+500 concurrent sessions, 13,905 requests at 157 req/s (12 API worker processes), then a 200-request simultaneous submission burst.
 
 | Metric | Value |
 | --- | --- |

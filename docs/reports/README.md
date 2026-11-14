@@ -26,5 +26,6 @@ The final testing reports for the project. The numbers in them are computed from
 | Vitest (frontend) | 2026-10-28 17:30 UTC |
 | Playwright E2E | 2026-10-28 17:28 UTC |
 | Coverage | 2026-10-28 17:30 UTC |
+| OWASP ZAP (three scans) | 2026-11-12 15:25 UTC |
 | Newman | 2026-10-28 16:09 UTC |
-| UAT | 2026-10-28 17:27 UTC |
+| UAT (automated Playwright run; the team's manual re-run is dated in `docs/uat/UAT-RESULTS.md`) | 2026-10-28 17:27 UTC |
