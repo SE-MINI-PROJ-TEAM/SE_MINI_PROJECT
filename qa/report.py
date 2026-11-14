@@ -189,6 +189,16 @@ def suite_row(label, cases):
     return f"| {label} | {len(cases)} | {passed} | {failed} | {sum(c['time'] for c in cases):.0f} s |" + (f" ({skipped} skipped)" if skipped else "")
 
 
+def api_workers():
+    """Worker processes of the QA API container, read from docker-compose.qa.yml so the report cannot drift from the setup."""
+    try:
+        text = open(os.path.join(ROOT, "docker-compose.qa.yml"), encoding="utf-8").read()
+    except OSError:
+        return None
+    match = re.search(r'WEB_CONCURRENCY:\s*"?(\d+)"?', text)
+    return int(match.group(1)) if match else None
+
+
 def uat_status():
     path = os.path.join(ROOT, "docs", "uat", "UAT-RESULTS.md")
     if not os.path.exists(path):
@@ -294,7 +304,7 @@ def build():
         d = m["http_req_duration{scenario:sessions}"]
         L += ["", "## Performance (k6)", "",
               f"500 concurrent sessions, {m['http_reqs{scenario:sessions}']['count']:,} requests at {m['http_reqs{scenario:sessions}']['rate']:.0f} req/s "
-              f"(4 server processes), then a 200-request simultaneous submission burst.", "",
+              f"({api_workers() or 'several'} API worker processes), then a 200-request simultaneous submission burst.", "",
               "| Metric | Value |", "| --- | --- |",
               f"| Latency avg / median | {d['avg']:.1f} ms / {d['med']:.1f} ms |", f"| Latency p90 / p95 / p99 | {d['p(90)']:.1f} / {d['p(95)']:.1f} / {d['p(99)']:.1f} ms |",
               f"| Max latency | {d['max']:.0f} ms |",

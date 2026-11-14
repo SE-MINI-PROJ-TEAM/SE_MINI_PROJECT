@@ -38,7 +38,7 @@ The host needs only Docker (Compose v2). The application itself is containerised
 
 | Container | Image | Role |
 | --- | --- | --- |
-| `db` | `mysql:8.0` | Database (`--max-connections=600`: four API workers each hold a pool) |
+| `db` | `mysql:8.0` | Database (`--max-connections=600`: each API worker process holds its own connection pool) |
 | `api` | `backend/Dockerfile` | gunicorn, 12 worker processes x 2 threads (the QA stack uses this production sizing; the laptop dev stack uses 4 x 4) |
 | `web` | `frontend/Dockerfile` | nginx: static React build, `/api` reverse proxy, the security headers |
 | `qa` | `qa/Dockerfile` | PyTest, Vitest, Newman, Playwright + Chromium, Bandit, pip-audit, ffmpeg |
@@ -97,7 +97,7 @@ Regenerate the derived documents with `./qa.ps1 docs` (it never overwrites a fil
 ## 6. Known limits (what these tests do *not* establish)
 
 * **TC-OPS-01 (99 % monthly availability)** can only be measured in production over a month. It is recorded as *waived*: the course instructor agreed that scenarios which only make sense in a real organisation are written into the STP and, where not feasible to test, may be closed without execution. The test report lists it separately from the executed cases. The evidence the project can offer is the health endpoint plus the nightly CI run.
-* **Load tests run the app, database and k6 on one machine**, with four server processes. They show the architecture meets the latency target with ample headroom; they are not a capacity forecast for 10,000 users.
+* **Load tests run the app, database and k6 on one machine**, with the API sized at 12 worker processes (the production sizing in `backend/Dockerfile`). They show the architecture meets the latency target with ample headroom; they are not a capacity forecast for 10,000 users.
 * **ZAP scans the system as a client sees it**: through the nginx container, which owns the security headers (CSP, framing, nosniff, ...). It cannot see TLS: HSTS and TLS 1.3 belong to whatever terminates HTTPS in production and must be configured and scanned there.
 * **axe-core finds roughly a third of accessibility problems.** Keyboard-only and screen-reader checks are part of the manual exploratory charters.
 * **TLS 1.3** is verified by a handshake test against the application's own TLS context; in production TLS terminates at the reverse proxy, which must be configured and scanned separately.
