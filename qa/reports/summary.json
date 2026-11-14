@@ -9,7 +9,7 @@
     {
       "name": "Backend coverage >= 70% (SYS-NF-005)",
       "ok": true,
-      "detail": "98.7% lines / 93.3% branches"
+      "detail": "98.65% lines / 93.26% branches"
     },
     {
       "name": "p95 latency < 800 ms with 500 sessions (SYS-NF-001)",
