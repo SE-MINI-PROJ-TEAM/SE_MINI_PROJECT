@@ -62,6 +62,11 @@ def zap(script, *args, report):
 def main():
     wait_for(f"{API}/api/v1/health")
     wait_for(WEB + "/")
+    # Reports from an earlier run (they are committed to the repository) must never pass for fresh ones: a scan that fails
+    # to boot would otherwise look successful and skip its retries.
+    for name in os.listdir(WRK):
+        if name.startswith("zap-") and name.endswith((".json", ".html")):
+            os.remove(os.path.join(WRK, name))
     shutil.copy("/zap/scripts/rules.conf", os.path.join(WRK, "rules.conf"))
     shutil.copy("/zap/openapi/openapi.json", os.path.join(WRK, "openapi.json"))
 
