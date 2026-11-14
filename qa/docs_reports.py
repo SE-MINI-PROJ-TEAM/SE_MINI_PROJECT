@@ -90,6 +90,23 @@ def junit_run(path):
     return when(suite.get("timestamp")) if suite is not None else "n/a"
 
 
+_MONTHS = {m: i for i, m in enumerate(("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), 1)}
+
+
+def zap_run(results):
+    """Latest '@generated' stamp of the ZAP reports ('Thu, 12 Nov 2026 15:25:33', container time = UTC) -> 'YYYY-MM-DD HH:MM UTC'."""
+    stamps = []
+    for report in results.zap.values():
+        match = re.search(r"(\d{1,2}) ([A-Z][a-z]{2}) (\d{4}) (\d{2}):(\d{2})", (report or {}).get("@generated", ""))
+        if match and match.group(2) in _MONTHS:
+            d, mon, y, h, mi = match.groups()
+            stamps.append((int(y), _MONTHS[mon], int(d), int(h), int(mi)))
+    if not stamps:
+        return "n/a"
+    y, mo, d, h, mi = max(stamps)
+    return f"{y:04d}-{mo:02d}-{d:02d} {h:02d}:{mi:02d} UTC"
+
+
 def package_of(classname):
     """tests.profile.test_profile -> profile."""
     parts = classname.split(".")
@@ -214,7 +231,7 @@ def system_report(results):
                      counts["PASS"], counts["FAIL"] + counts["BLOCKED"], when(uat_json["stats"].get("startTime"))))
     if results.k6 is not None:
         rows.append(("Performance", "k6: 500 concurrent sessions, 200-request burst", "see below", "", "", "n/a"))
-    rows.append(("Security", "OWASP ZAP (3 scans), Bandit, pip-audit, npm audit", "see below", "", "", "n/a"))
+    rows.append(("Security", "OWASP ZAP (3 scans), Bandit, pip-audit, npm audit", "see below", "", "", f"ZAP: {zap_run(results)}"))
     L += table(["Level", "Tool / method", "Volume", "Passed", "Failed", "Run at"], rows)
 
     L += ["", "### Integration (Newman) by area", ""]
@@ -414,10 +431,11 @@ def index(results):
             ("Playwright E2E", junit_run(("e2e", "junit.xml")))]
     cov = coverage_data()
     rows.append(("Coverage", cov["run"] if cov else "n/a"))
+    rows.append(("OWASP ZAP (three scans)", zap_run(results)))
     if results.newman is not None:
         rows.append(("Newman", when(json.load(open(os.path.join(RAW, "integration", "newman.json"), encoding="utf-8"))["run"]["timings"]["started"])))
     uat_json = R.load_json("uat", "results.json")
-    rows.append(("UAT", when(uat_json["stats"].get("startTime")) if uat_json else "n/a"))
+    rows.append(("UAT (automated Playwright run; the team's manual re-run is dated in `docs/uat/UAT-RESULTS.md`)", when(uat_json["stats"].get("startTime")) if uat_json else "n/a"))
     L += table(["Suite", "Run at"], rows)
     write("README.md", L)
 
