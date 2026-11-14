@@ -1,0 +1,151 @@
+name: CI - tests & security
+
+# Runs on every pull request and on every merge to main. All real work happens in Docker through `./qa.sh <stage>`:
+# the same command developers run locally (`.\qa.ps1 <stage>` on Windows), so a green laptop run means a green pipeline.
+# GitHub's runners need nothing installed beyond Docker, which they already have.
+#
+# Recommended branch protection for `main`: require the checks  consistency, unit, integration, static-security, dast,
+# e2e, performance  to pass before merging. The `report` job is informational (it assembles the evidence).
+on:
+  pull_request:
+    branches: [main]
+    paths-ignore: ["docs/**", "**/*.md", "demo/**"]
+  push:
+    branches: [main]
+    paths-ignore: ["docs/**", "**/*.md", "demo/**"]
+  schedule:
+    - cron: "30 21 * * *" # nightly: new CVEs appear without any code change
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  consistency:
+    name: consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: OpenAPI spec is current, every acceptance criterion is covered, frontend builds
+        run: bash qa.sh consistency
+
+  unit:
+    name: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: PyTest (>= 70 % coverage gate) + Vitest
+        run: bash qa.sh unit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-unit
+          path: qa/reports/unit
+          retention-days: 30
+
+  integration:
+    name: integration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Newman against the API container
+        run: bash qa.sh integration
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-integration
+          path: qa/reports/integration
+          retention-days: 30
+
+  static-security:
+    name: static-security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bandit, pip-audit, npm audit
+        run: bash qa.sh static
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-static
+          path: qa/reports/static
+          retention-days: 30
+
+  dast:
+    name: dast
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: OWASP ZAP - authenticated API scan + API and UI baselines
+        run: bash qa.sh zap
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-zap
+          path: qa/reports/zap
+          retention-days: 30
+
+  e2e:
+    name: e2e
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Playwright (flows, 3-click roll-call, responsive, axe WCAG 2.1 AA)
+        run: bash qa.sh e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-e2e
+          path: qa/reports/e2e
+          retention-days: 30
+
+  performance:
+    name: performance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: k6 - 500 concurrent sessions + 200-request burst
+        run: bash qa.sh perf
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-k6
+          path: qa/reports/k6
+          retention-days: 30
+
+  # Evidence: assemble the Test Execution Report from every job's artifacts (pure Python standard library).
+  report:
+    name: report
+    if: always()
+    needs: [consistency, unit, integration, static-security, dast, e2e, performance]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: reports-*
+          path: qa/reports
+      - name: Normalise artifact folders (reports-unit -> unit, ...)
+        run: |
+          cd qa/reports
+          for dir in reports-*; do [ -d "$dir" ] && mv "$dir" "${dir#reports-}"; done
+          ls
+      - name: Build TEST-EXECUTION-REPORT.md (also shown in the job summary)
+        run: python qa/report.py
+      - name: Build the docs/reports set (unit, system validation, code and branch coverage)
+        run: python qa/docs_reports.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-execution-report
+          path: |
+            qa/reports/TEST-EXECUTION-REPORT.md
+            qa/reports/summary.json
+            docs/reports/
+          retention-days: 90
