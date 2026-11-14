@@ -205,17 +205,8 @@ def acceptance_status():
     return r.returncode == 0, (r.stdout.strip() or r.stderr.strip()).splitlines()[0] if (r.stdout or r.stderr) else ""
 
 
-def build():
-    results = Results()
-    tcs = evaluate_tcs(results)
-    requirements = parse_stp_traceability()
-
-    total_tc = len(tcs)
-    executed = [t for t, v in tcs.items() if v["status"] in ("PASS", "FAIL")]
-    passed = [t for t in executed if tcs[t]["status"] == "PASS"]
-    waived = [t for t, v in tcs.items() if v["status"] == "WAIVED"]
-    req_ok = [r for r, v in requirements.items() if all(tcs.get(tc, {}).get("status") in ("PASS", "WAIVED") for tc in v["tcs"])]
-
+def evaluate_gates(results, executed, passed):
+    """The automated quality gates -> ([(name, ok, detail)], acceptance-criteria message). Shared with qa/docs_reports.py."""
     gates = []
 
     def gate(name, ok, detail):
@@ -223,7 +214,7 @@ def build():
 
     gate("All executed test cases pass", len(executed) > 0 and len(passed) == len(executed), f"{len(passed)}/{len(executed)} executed TCs pass")
     gate("Backend coverage >= 70% (SYS-NF-005)", results.coverage is not None and results.coverage["line"] >= 70,
-         f"{results.coverage['line']:.1f}% lines / {results.coverage['branch']:.1f}% branches" if results.coverage else "not run")
+         f"{results.coverage['line']:.2f}% lines / {results.coverage['branch']:.2f}% branches" if results.coverage else "not run")
     if results.k6:
         m = results.k6["metrics"]
         p95 = m["http_req_duration{scenario:sessions}"]["p(95)"]
@@ -240,6 +231,21 @@ def build():
     gate("Static analysis & dependency audit clean", static is not None and static[1] == 0, "Bandit / pip-audit / npm audit" if static else "not run")
     acc_ok, acc_msg = acceptance_status()
     gate("Every acceptance criterion has automated evidence", acc_ok, acc_msg)
+    return gates, acc_msg
+
+
+def build():
+    results = Results()
+    tcs = evaluate_tcs(results)
+    requirements = parse_stp_traceability()
+
+    total_tc = len(tcs)
+    executed = [t for t, v in tcs.items() if v["status"] in ("PASS", "FAIL")]
+    passed = [t for t in executed if tcs[t]["status"] == "PASS"]
+    waived = [t for t, v in tcs.items() if v["status"] == "WAIVED"]
+    req_ok = [r for r, v in requirements.items() if all(tcs.get(tc, {}).get("status") in ("PASS", "WAIVED") for tc in v["tcs"])]
+
+    gates, acc_msg = evaluate_gates(results, executed, passed)
     overall = all(ok for _, ok, _ in gates)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
