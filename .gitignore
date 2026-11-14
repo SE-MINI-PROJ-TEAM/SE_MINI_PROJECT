@@ -28,6 +28,3 @@ demo/videos/*.png
 qa/reports/
 qa/newman/collection.json
 qa/newman/environment.json
-
-# Per-person commit bundles built for submission
-zips/
