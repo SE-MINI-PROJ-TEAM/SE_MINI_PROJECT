@@ -2,10 +2,10 @@
 
 | Field | Value |
 | --- | --- |
-| Application version / commit | 897e172 + uncommitted working tree; Docker images built from this working tree |
+| Application version / commit | 6d65c3b (`main` after the last user-story merge). Later commits add QA tooling, reports, demo videos, documentation and CI only; none changes `backend/` or `frontend/`. |
 | Test environment | Docker (`docker-compose.qa.yml`): MySQL 8 + gunicorn API + nginx (HTTP, TLS 1.3 on 443) + headless Chromium 1280x720, Asia/Kolkata, freshly seeded database |
 | Tester(s) | Tanmay T A, Uttam B S, Vibha Vasisht |
-| Date(s) | 2026-10-28 17:27 UTC |
+| Date(s) | 14-11-2026 |
 
 Result values: `PASS` · `FAIL` · `BLOCKED` (leave empty if not yet executed).
 
@@ -96,6 +96,6 @@ Conditions / remarks:
 | Role | Name | Signature | Date |
 | --- | --- | --- | --- |
 | Customer / Course Instructor | Dr. Adithya Balasubramanyam | | |
-| QA Lead | Vibha Vasisht | Vibha Vasisht | 30-10-2026 |
-| Test Engineer | Uttam B S | Uttam B S | 30-10-2026 |
-| Developer | Tanmay T A | Tanmay T A | 30-10-2026 |
+| QA Lead | Vibha Vasisht | Vibha Vasisht | 14-11-2026 |
+| Test Engineer | Uttam B S | Uttam B S | 14-11-2026 |
+| Developer | Tanmay T A | Tanmay T A | 14-11-2026 |
