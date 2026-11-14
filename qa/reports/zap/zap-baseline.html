@@ -213,12 +213,12 @@ td {
 
 	<h2>
 		
-		Site: http://host.docker.internal:5055
+		Site: http://web
 		
 	</h2>
 
 	<h3>
-		Generated on Tue, 27 Oct 2026 18:38:13
+		Generated on Thu, 12 Nov 2026 15:24:46
 	</h3>
 
 	<h3>
@@ -305,7 +305,7 @@ td {
 					<div></div>
 				</td>
 				<td>
-					<div>ZAP warnings logged - see the zap.log file for details</div>
+					<div>ZAP errors logged - see the zap.log file for details</div>
 				</td>
 				<td align="center">
 					<div>1   </div>
@@ -320,46 +320,10 @@ td {
 					<div>Informational</div>
 				</td>
 				<td>
-					<div>http://host.docker.internal:5055</div>
-				</td>
-				<td>
-					<div>Percentage of responses with status code 2xx</div>
-				</td>
-				<td align="center">
-					<div>25 %</div>
-				</td>
-				</tr>
-			
-				<tr>
-				<td class="risk-0">
-					<div>Info</div>
-				</td>
-				<td>
-					<div>Informational</div>
-				</td>
-				<td>
-					<div>http://host.docker.internal:5055</div>
+					<div>http://web</div>
 				</td>
 				<td>
 					<div>Percentage of responses with status code 4xx</div>
-				</td>
-				<td align="center">
-					<div>75 %</div>
-				</td>
-				</tr>
-			
-				<tr>
-				<td class="risk-0">
-					<div>Info</div>
-				</td>
-				<td>
-					<div>Informational</div>
-				</td>
-				<td>
-					<div>http://host.docker.internal:5055</div>
-				</td>
-				<td>
-					<div>Percentage of endpoints with content type application/json</div>
 				</td>
 				<td align="center">
 					<div>100 %</div>
@@ -374,7 +338,25 @@ td {
 					<div>Informational</div>
 				</td>
 				<td>
-					<div>http://host.docker.internal:5055</div>
+					<div>http://web</div>
+				</td>
+				<td>
+					<div>Percentage of endpoints with content type text/html</div>
+				</td>
+				<td align="center">
+					<div>100 %</div>
+				</td>
+				</tr>
+			
+				<tr>
+				<td class="risk-0">
+					<div>Info</div>
+				</td>
+				<td>
+					<div>Informational</div>
+				</td>
+				<td>
+					<div>http://web</div>
 				</td>
 				<td>
 					<div>Percentage of endpoints with method GET</div>
@@ -392,7 +374,7 @@ td {
 					<div>Informational</div>
 				</td>
 				<td>
-					<div>http://host.docker.internal:5055</div>
+					<div>http://web</div>
 				</td>
 				<td>
 					<div>Count of total endpoints</div>
@@ -465,12 +447,12 @@ td {
 					<tr>
 						<td width="20%"
 							class="indent1">URL</td>
-						<td width="80%"><a href="http://host.docker.internal:5055/">http://host.docker.internal:5055/</a></td>
+						<td width="80%"><a href="http://web/">http://web/</a></td>
 					</tr>
 					<tr>
 						<td width="20%"
 							class="indent2">Node Name</td>
-						<td width="80%">http://host.docker.internal:5055/</td>
+						<td width="80%">http://web/</td>
 					</tr>
 					<tr>
 						<td width="20%"
@@ -490,7 +472,7 @@ td {
 					<tr>
 						<td width="20%"
 							class="indent2">Evidence</td>
-						<td width="80%">no-store</td>
+						<td width="80%">400</td>
 					</tr>
 					<tr>
 						<td width="20%"
@@ -501,12 +483,12 @@ td {
 					<tr>
 						<td width="20%"
 							class="indent1">URL</td>
-						<td width="80%"><a href="http://host.docker.internal:5055/api/v1/health">http://host.docker.internal:5055/api/v1/health</a></td>
+						<td width="80%"><a href="http://web/api/v1">http://web/api/v1</a></td>
 					</tr>
 					<tr>
 						<td width="20%"
 							class="indent2">Node Name</td>
-						<td width="80%">http://host.docker.internal:5055/api/v1/health</td>
+						<td width="80%">http://web/api/v1</td>
 					</tr>
 					<tr>
 						<td width="20%"
@@ -526,7 +508,7 @@ td {
 					<tr>
 						<td width="20%"
 							class="indent2">Evidence</td>
-						<td width="80%">no-store</td>
+						<td width="80%">400</td>
 					</tr>
 					<tr>
 						<td width="20%"
@@ -537,12 +519,12 @@ td {
 					<tr>
 						<td width="20%"
 							class="indent1">URL</td>
-						<td width="80%"><a href="http://host.docker.internal:5055/robots.txt">http://host.docker.internal:5055/robots.txt</a></td>
+						<td width="80%"><a href="http://web/api/v1/health">http://web/api/v1/health</a></td>
 					</tr>
 					<tr>
 						<td width="20%"
 							class="indent2">Node Name</td>
-						<td width="80%">http://host.docker.internal:5055/robots.txt</td>
+						<td width="80%">http://web/api/v1/health</td>
 					</tr>
 					<tr>
 						<td width="20%"
@@ -562,7 +544,43 @@ td {
 					<tr>
 						<td width="20%"
 							class="indent2">Evidence</td>
-						<td width="80%">no-store</td>
+						<td width="80%">400</td>
+					</tr>
+					<tr>
+						<td width="20%"
+							class="indent2">Other Info</td>
+						<td width="80%"></td>
+					</tr>
+				
+					<tr>
+						<td width="20%"
+							class="indent1">URL</td>
+						<td width="80%"><a href="http://web/sitemap.xml">http://web/sitemap.xml</a></td>
+					</tr>
+					<tr>
+						<td width="20%"
+							class="indent2">Node Name</td>
+						<td width="80%">http://web/sitemap.xml</td>
+					</tr>
+					<tr>
+						<td width="20%"
+							class="indent2">Method</td>
+						<td width="80%">GET</td>
+					</tr>
+					<tr>
+						<td width="20%"
+							class="indent2">Parameter</td>
+						<td width="80%"></td>
+					</tr>
+					<tr>
+						<td width="20%"
+							class="indent2">Attack</td>
+						<td width="80%"></td>
+					</tr>
+					<tr>
+						<td width="20%"
+							class="indent2">Evidence</td>
+						<td width="80%">400</td>
 					</tr>
 					<tr>
 						<td width="20%"
