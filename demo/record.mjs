@@ -2,8 +2,10 @@
 //   node record.mjs sprint1       -> videos/sprint1-raw.webm       (US-01 .. US-08, in order)
 //   node record.mjs sprint2       -> videos/sprint2-raw.webm       (US-09 .. US-15, in order)
 //   node record.mjs project-demo  -> videos/project-demo-raw.webm  (all 15 stories, in order)
-// Prerequisites: API on :5000, UI on :5173, freshly seeded database (python manage.py seed --reset).
-// make-videos.ps1 wraps all of this and trims the recordings to exactly 60 s and 120 s MP4s.
+// Prerequisite: the app reachable at BASE_URL (default http://localhost:5173) with a freshly seeded database.
+// Normally run through ./qa.sh demo (sprint videos) and ./qa.sh demo-final (whole project): they seed the Docker QA stack,
+// record, and convert the raw WebM files to MP4 with ffmpeg. A video lasts as long as its script; the optional TARGET_SECONDS
+// holds the last frame until that length.
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import path from 'node:path';
