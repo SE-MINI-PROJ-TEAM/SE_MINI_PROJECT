@@ -1,6 +1,7 @@
 // Records the sprint demo videos by driving the real UI in a headless Chromium.
-//   node record.mjs sprint1   -> videos/sprint1-raw.webm   (feature walkthrough of US-01 .. US-08)
-//   node record.mjs sprint2   -> videos/sprint2-raw.webm   (feature walkthrough of US-09 .. US-15)
+//   node record.mjs sprint1       -> videos/sprint1-raw.webm       (US-01 .. US-08, in order)
+//   node record.mjs sprint2       -> videos/sprint2-raw.webm       (US-09 .. US-15, in order)
+//   node record.mjs project-demo  -> videos/project-demo-raw.webm  (all 15 stories, in order)
 // Prerequisites: API on :5000, UI on :5173, freshly seeded database (python manage.py seed --reset).
 // make-videos.ps1 wraps all of this and trims the recordings to exactly 60 s and 120 s MP4s.
 import { chromium } from 'playwright';
@@ -49,7 +50,7 @@ const created = Date.now();
 page.setDefaultTimeout(15000);
 
 const pause = (ms) => page.waitForTimeout(ms);
-const DWELL = Number(process.env.CAPTION_DWELL ?? (which === 'sprint1' ? 1450 : 2000)); // reading time after each caption
+const DWELL = Number(process.env.CAPTION_DWELL ?? 1200); // reading time after each caption
 const caption = async (text) => {
   await page.evaluate((t) => {
     try { sessionStorage.setItem('__cap', t); } catch { /* ignore */ }
@@ -101,212 +102,259 @@ await page.goto(`${BASE}/login`);
 await page.locator('.login-box').waitFor();
 const contentStart = (Date.now() - created) / 1000; // seconds of blank video before the first paint
 
-// ───────────────────────────────────────────────────────────────── Sprint 1
-async function sprint1() {
-  await caption('Sprint 1 — Accounts, courses, enrolment & attendance');
-  await pause(2400);
+// ───────────────────────────────────────────────────────────────── The stories, in order
+// Every story is one step. `as(role)` signs out and in only when the role changes, so the recordings follow US-01 → US-15
+// exactly and a story is never shown before the data it needs exists.
+const T = Number(process.env.TYPE_DELAY ?? 12); // typing speed (ms per character)
+const demo = { role: null, email: 'meera.kapoor@srs.edu', temp: '', password: 'Welcome#2026x' };
 
-  // US-01 admin provisioning
-  await signInAs('Admin');
-  await caption('US-01 · Admin provisions an account with a temporary password');
+async function signInWith(email, password) {
+  if (!(await page.locator('.login-box').isVisible())) await page.goto(`${BASE}/login`); // signing out already lands here
+  await page.locator('.login-box').waitFor();
+  await typeInto(page.getByLabel('Email or institutional ID'), email, T);
+  await typeInto(page.getByLabel('Password'), password, T);
+  await click(page.getByRole('button', { name: 'Sign in' }));
+  await page.locator('.topbar').waitFor();
+}
+async function as(role) {
+  if (demo.role === role) return;
+  if (demo.role) await signOut();
+  demo.role = role;
+  if (role === 'NewUser') await signInWith(demo.email, demo.password);
+  else await signInWith(DEMO_ACCOUNTS[role], 'Password@123');
+}
+
+async function us01() {
+  await as('Admin');
+  await caption('US-01 · Admin provisions an account — temporary password shown once');
   await nav('Create user');
-  await typeInto(page.getByLabel('Full name'), 'Meera Kapoor');
-  await typeInto(page.getByLabel('Email'), 'meera.kapoor@srs.edu');
-  await typeInto(page.getByLabel('Institutional ID'), 'PES1UG26CS201');
+  await typeInto(page.getByLabel('Full name'), 'Meera Kapoor', T);
+  await typeInto(page.getByLabel('Email'), demo.email, T);
+  await typeInto(page.getByLabel('Institutional ID'), 'PES1UG26CS201', T);
   await click(page.getByRole('button', { name: 'Create account' }));
-  const tempPassword = (await page.getByTestId('temp-password').innerText()).trim();
-  await pause(1800);
+  demo.temp = (await page.getByTestId('temp-password').innerText()).trim();
+  await pause(1500);
+}
 
-  // US-04 account status
-  await caption('US-04 · Admin deactivates an inactive account (audited, sessions revoked)');
-  await nav('Manage users');
-  await typeInto(page.getByLabel('Search users'), 'student003', 20);
-  await pause(900);
-  await click(page.getByRole('switch', { name: /Deactivate/ }));
-  await click(modal().getByRole('button', { name: 'Deactivate' }));
-  await toast(900);
-
-  // US-05 course + rubric normalisation
-  await caption('US-05 · New course — rubric weights auto-normalise to 100%');
-  await nav('Course offerings');
-  await click(page.getByRole('button', { name: 'New course' }));
-  await typeInto(modal().getByLabel('Course code'), 'CS901');
-  await typeInto(modal().getByLabel('Title'), 'Cloud Native Systems', 18);
-  await modal().getByLabel('Primary faculty').selectOption({ index: 49 });
-  for (const n of [1, 2, 3]) await typeInto(modal().getByLabel(`Component ${n} raw weight`), '1', 10);
-  await pause(1300);
-  await click(modal().getByRole('button', { name: 'Create course' }));
-  await toast(800);
-
-  // US-07 schedule
-  await caption('US-07 · Admin publishes a class session to the timetable');
-  await nav('Manage schedule');
-  const option = await page.locator('select option', { hasText: 'CS901' }).first().getAttribute('value');
-  await page.getByLabel('Course section').selectOption(option);
-  await typeInto(page.getByLabel('Room'), 'LH-901', 20);
-  await click(page.getByRole('button', { name: 'Publish session' }));
-  await toast(800);
-  await signOut();
-
-  // US-02 forced reset
+async function us02() {
+  if (demo.role) await signOut();
+  demo.role = 'NewUser';
   await caption('US-02 · First login with the temporary password forces a reset');
-  await typeInto(page.getByLabel('Email or institutional ID'), 'meera.kapoor@srs.edu', 14);
-  await typeInto(page.getByLabel('Password'), tempPassword, 14);
+  await typeInto(page.getByLabel('Email or institutional ID'), demo.email, T);
+  await typeInto(page.getByLabel('Password'), demo.temp, T);
   await click(page.getByRole('button', { name: 'Sign in' }));
   await page.getByText('Set a new password').waitFor();
-  await typeInto(page.getByLabel('Temporary password'), tempPassword, 8);
-  await typeInto(page.getByLabel('New password', { exact: true }), 'Welcome#2026x', 18);
-  await typeInto(page.getByLabel('Confirm new password'), 'Welcome#2026x', 10);
+  await typeInto(page.getByLabel('Temporary password'), demo.temp, 6);
+  await typeInto(page.getByLabel('New password', { exact: true }), demo.password, T);
+  await typeInto(page.getByLabel('Confirm new password'), demo.password, 8);
   await pause(700);
   await click(page.getByRole('button', { name: 'Update password' }));
   await page.locator('.topbar').waitFor();
+}
 
-  // US-03 profile
+async function us03() {
+  await as('NewUser');
   await caption('US-03 · Self-service contact details (admin fields are read-only)');
   await nav('My profile');
-  await typeInto(page.getByLabel('Phone number'), '+91 98765 43210', 20);
+  await typeInto(page.getByLabel('Phone number'), '+91 98765 43210', T);
   await click(page.getByRole('button', { name: 'Save changes' }));
-  await toast(800);
+  await toast(700);
+}
 
-  // US-06 enrolment
+async function us04() {
+  await as('Admin');
+  await caption('US-04 · Admin deactivates an account — audited, sessions revoked');
+  await nav('Manage users');
+  await typeInto(page.getByLabel('Search users'), 'student003', T);
+  await pause(800);
+  await click(page.getByRole('switch', { name: /Deactivate/ }));
+  await click(modal().getByRole('button', { name: 'Deactivate' }));
+  await toast(800);
+}
+
+async function us05() {
+  await as('Admin');
+  await caption('US-05 · New course — rubric weights auto-normalise to 100%');
+  await nav('Course offerings');
+  await click(page.getByRole('button', { name: 'New course' }));
+  await typeInto(modal().getByLabel('Course code'), 'CS901', T);
+  await typeInto(modal().getByLabel('Title'), 'Cloud Native Systems', T);
+  await modal().getByLabel('Primary faculty').selectOption({ index: 49 });
+  for (const n of [1, 2, 3]) await typeInto(modal().getByLabel(`Component ${n} raw weight`), '1', T);
+  await pause(1200);
+  await click(modal().getByRole('button', { name: 'Create course' }));
+  await toast(700);
+}
+
+async function us06() {
+  await as('NewUser');
   await caption('US-06 · Self-enrol in a section — seats update immediately');
   await nav('Course catalog');
-  await typeInto(page.getByLabel('Search catalog'), 'CS901', 25);
+  await typeInto(page.getByLabel('Search catalog'), 'CS901', T);
   const card = page.getByRole('article', { name: /CS901/ });
   await card.waitFor();
   await click(card.getByRole('button', { name: 'Enroll' }));
   await toast(900);
-  await signOut();
+}
 
-  // US-08 roll-call
-  await signInAs('Faculty');
+async function us07() {
+  await as('Admin');
+  await caption('US-07 · Admin publishes a class session to the timetable');
+  await nav('Manage schedule');
+  const option = await page.locator('select option', { hasText: 'CS901' }).first().getAttribute('value');
+  await page.getByLabel('Course section').selectOption(option);
+  await typeInto(page.getByLabel('Room'), 'LH-901', T);
+  await click(page.getByRole('button', { name: 'Publish session' }));
+  await toast(800);
+}
+
+async function us08() {
+  await as('Faculty');
   await caption('US-08 · Roll-call in three clicks — locks automatically after 48 hours');
-  await click(page.locator('.dash-grid').getByRole('link', { name: 'Take attendance' }).first()); // the widget button, one click from login
+  await click(page.locator('.dash-grid').getByRole('link', { name: 'Take attendance' }).first());
   await page.locator('tbody tr').first().waitFor();
   for (const i of [1, 4]) await click(page.locator('tbody tr').nth(i).getByRole('button', { name: 'Absent' }));
   await click(page.getByRole('button', { name: 'Save attendance' }));
-  await toast(1500);
-  await caption('Sprint 1 delivered — US-01 to US-08');
-  await pause(2600);
+  await toast(1200);
 }
 
-// ───────────────────────────────────────────────────────────────── Sprint 2
-async function sprint2() {
-  await caption('Sprint 2 — Grading, disputes, analytics & administration');
-  await pause(2400);
-
-  // US-11 / US-12 faculty
-  await signInAs('Faculty');
-  await caption('Faculty dashboard — open roll-calls, regrade requests, section overview');
-  await scroll(380);
-  await pause(1200);
-  await scroll(-380);
-  await caption('US-11 · Faculty enters rubric marks in Draft — hidden from students');
-  await nav('Grade entry');
-  await click(page.locator('article', { hasText: 'CS103' }).getByRole('link', { name: 'Open grade sheet' }));
-  await page.locator('tbody tr').first().waitFor();
-  const marks = [['78', '85.5', '91'], ['64.5', '70', '58'], ['88', '92.5', '95'], ['72', '66.5', '80']];
-  for (let r = 0; r < marks.length; r++) {
-    const inputs = page.locator('tbody tr').nth(r).locator('input[type=number]');
-    for (let c = 0; c < marks[r].length; c++) await typeInto(inputs.nth(c), marks[r][c], 45);
-  }
-  await pause(1200);
-  await click(page.getByRole('button', { name: 'Save drafts' }));
-  await toast(700);
-  await caption('US-12 · Submit — weighted totals are calculated server-side');
-  await click(page.getByRole('button', { name: /Submit grades/ }));
-  await click(modal().getByRole('button', { name: 'Submit', exact: true }));
-  await toast(900);
-  await signOut();
-
-  // US-12 admin publish, US-09 override, audit, US-15 metrics
-  await signInAs('Admin');
-  await caption('US-12 · Admin batch-publishes submitted grades');
-  await nav('Publish grades');
-  await click(page.getByLabel('Select CS102'));
-  await click(page.getByRole('button', { name: /Publish selected/ }));
-  await click(modal().getByRole('button', { name: 'Publish', exact: true }));
-  await toast(900);
-
+async function us09() {
+  await as('Admin');
   await caption('US-09 · Override a frozen attendance record — justification is mandatory');
   await nav('Attendance override');
   const course = await page.locator('select[aria-label="Course"] option', { hasText: 'CS101-A' }).first().getAttribute('value');
   await page.getByLabel('Course', { exact: true }).selectOption(course);
-  await pause(600);
+  await pause(500);
   const frozen = await page.locator('select[aria-label="Session"] option', { hasText: 'frozen' }).first().getAttribute('value');
   await page.getByLabel('Session', { exact: true }).selectOption(frozen);
   await page.locator('tbody tr').first().waitFor();
   const row = page.locator('tbody tr').first();
   const current = (await row.locator('.badge').innerText()).trim();
   await click(row.getByRole('button', { name: current === 'Present' ? 'Absent' : 'Present' }));
-  await typeInto(page.getByLabel(/Justification/), 'Medical certificate verified by department', 30);
+  await typeInto(page.getByLabel(/Justification/), 'Medical certificate verified by department', 16);
   await click(page.getByRole('button', { name: 'Apply override' }));
-  await toast(700);
-
+  await toast(600);
   await caption('Every override lands in the immutable audit log');
   await nav('Audit log');
   await page.getByLabel('Filter by action').selectOption('ATTENDANCE_OVERRIDE');
-  await pause(3000);
+  await pause(2200);
+}
 
-  await caption('US-15 · Institution metrics with one-click CSV export');
-  await click(page.locator('.sidebar').getByRole('link', { name: 'Dashboard', exact: true }));
-  await page.getByRole('button', { name: 'Export CSV' }).waitFor();
-  await pause(1800);
-  await click(page.getByRole('button', { name: 'Export CSV' }));
-  await toast(1000);
-  await signOut();
-
-  // student: US-14 GPA, US-10 attendance, US-12 visibility, US-13 dispute
-  await signInAs('Student');
-  await caption('US-14 · Credit-weighted GPA on a 10-point scale, loaded in milliseconds');
-  await page.getByText('Term GPA').waitFor();
-  await pause(2600);
+async function us10() {
+  await as('Student');
   await caption('US-10 · Attendance per course — alert below 75%');
-  await scroll(320);
+  await nav('My attendance');
+  await page.locator('li.list__item').first().waitFor();
   await pause(2400);
-  await caption('US-12 · Newly published grades are visible immediately');
-  await scroll(430);
+}
+
+async function us11() {
+  await as('Faculty');
+  await caption('US-11 · Faculty enters rubric marks in Draft — hidden from students');
+  await nav('Grade entry');
+  await click(page.locator('article', { hasText: 'CS103' }).getByRole('link', { name: 'Open grade sheet' }));
+  await page.locator('tbody tr').first().waitFor();
+  const marks = [['78', '85.5', '91'], ['64.5', '70', '58'], ['88', '92.5', '95']];
+  for (let r = 0; r < marks.length; r++) {
+    const inputs = page.locator('tbody tr').nth(r).locator('input[type=number]');
+    for (let c = 0; c < marks[r].length; c++) await typeInto(inputs.nth(c), marks[r][c], 22);
+  }
+  await pause(900);
+  await click(page.getByRole('button', { name: 'Save drafts' }));
+  await toast(700);
+}
+
+async function us12() {
+  await caption('US-12 · Submit — weighted totals are calculated server-side');
+  await click(page.getByRole('button', { name: /Submit grades/ }));
+  await click(modal().getByRole('button', { name: 'Submit', exact: true }));
+  await toast(900);
+  await as('Admin');
+  await caption('US-12 · Admin batch-publishes submitted grades');
+  await nav('Publish grades');
+  await click(page.getByLabel('Select CS102'));
+  await click(page.getByRole('button', { name: /Publish selected/ }));
+  await click(modal().getByRole('button', { name: 'Publish', exact: true }));
+  await toast(900);
+  await as('Student');
+  await caption('US-12 · Published grades are visible to the student immediately');
+  await nav('My grades');
+  await page.locator('li.list__item').first().waitFor();
   await pause(2400);
+}
+
+async function us13() {
+  await as('Student');
   await caption('US-13 · Dispute a published grade — an explanation is required, once per grade');
   await click(page.getByRole('button', { name: 'Dispute grade for CS101' }));
-  await typeInto(modal().getByLabel(/Why should/), 'My end-term answer to question 3 deserves partial credit.', 28);
+  await typeInto(modal().getByLabel(/Why should/), 'My end-term answer to question 3 deserves partial credit.', 18);
   await click(modal().getByRole('button', { name: 'Submit request' }));
-  await toast(700);
-  await pause(900);
-  await signOut();
-
-  // faculty resolves + analytics
-  await signInAs('Faculty');
+  await toast(800);
+  await as('Faculty');
   await caption('US-13 · Faculty is notified, re-evaluates and re-publishes');
   await nav('Regrade requests');
   const first = page.locator('.card').filter({ hasText: 'Re-evaluate' }).first();
   await first.waitFor();
-  await typeInto(first.locator('input[type=number]').first(), '92', 20);
-  await typeInto(first.getByLabel('Resolution note'), 'Question 3 re-marked; partial credit awarded.', 28);
+  await typeInto(first.locator('input[type=number]').first(), '92', 22);
+  await typeInto(first.getByLabel('Resolution note'), 'Question 3 re-marked; partial credit awarded.', 16);
   await click(first.getByRole('button', { name: /Re-evaluate/ }));
   await toast(800);
+  await as('Student');
+  await caption('The re-published grade is final — a grade can be disputed only once');
+  await nav('My grades');
+  await page.getByText('Regrade used').first().waitFor();
+  await pause(2400);
+}
 
+async function us14() {
+  await as('Student');
+  await caption('US-14 · Credit-weighted GPA on a 10-point scale, loaded in milliseconds');
+  await click(page.locator('.sidebar').getByRole('link', { name: 'Dashboard', exact: true }));
+  await page.getByText('Term GPA').waitFor();
+  await pause(2400);
+  await as('Faculty');
   await caption('US-14 · Grade distribution (A–F), mean, median and attendance per section');
   await nav('Class analytics');
   await page.locator('.bars').first().waitFor();
-  await pause(3600);
-  await signOut();
+  await pause(2800);
+}
 
-  // student sees the outcome; the grade is now final
-  await signInAs('Student');
-  await caption('US-13 · Re-published grade is final — a grade can be disputed only once');
-  await page.getByText('Course grades').waitFor();
-  await scroll(430);
-  await page.getByText('Regrade used').first().waitFor();
-  await pause(3200);
-  await caption('Sprint 2 delivered — US-09 to US-15');
-  await pause(2600);
+async function us15() {
+  await as('Admin');
+  await caption('US-15 · Institution metrics with one-click CSV export');
+  await click(page.locator('.sidebar').getByRole('link', { name: 'Dashboard', exact: true }));
+  await page.getByRole('button', { name: 'Export CSV' }).waitFor();
+  await pause(1500);
+  await click(page.getByRole('button', { name: 'Export CSV' }));
+  await toast(1200);
+}
+
+const RECORDINGS = {
+  sprint1: { title: 'Sprint 1 — Accounts, courses, enrolment & attendance', steps: [us01, us02, us03, us04, us05, us06, us07, us08], outro: 'Sprint 1 delivered — US-01 to US-08' },
+  sprint2: { title: 'Sprint 2 — Attendance admin, grading, disputes, analytics & metrics', steps: [us09, us10, us11, us12, us13, us14, us15], outro: 'Sprint 2 delivered — US-09 to US-15' },
+  'project-demo': {
+    title: 'Student Record System — all 15 user stories, in order',
+    steps: [us01, us02, us03, us04, us05, us06, us07, us08, us09, us10, us11, us12, us13, us14, us15],
+    outro: 'All 15 user stories delivered',
+  },
+};
+
+async function record(name) {
+  const { title, steps, outro } = RECORDINGS[name];
+  await caption(title);
+  await pause(2000);
+  for (const step of steps) await step();
+  await caption(outro);
+  await pause(2200);
+  // Hold the last frame until the requested length so the trimmed video never cuts a story short.
+  const target = Number(process.env.TARGET_SECONDS ?? 0);
+  const elapsed = (Date.now() - t0) / 1000;
+  if (target && elapsed < target) await pause((target - elapsed) * 1000);
 }
 
 try {
-  if (which === 'sprint1') await sprint1();
-  else if (which === 'sprint2') await sprint2();
-  else throw new Error('usage: node record.mjs sprint1|sprint2');
+  if (!RECORDINGS[which]) throw new Error('usage: node record.mjs sprint1|sprint2|project-demo');
+  await record(which);
 } catch (error) {
   await page.screenshot({ path: path.join(OUT, `${which}-failure.png`) });
   console.error('Recording failed:', error.message);
