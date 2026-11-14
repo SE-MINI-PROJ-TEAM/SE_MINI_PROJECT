@@ -9,7 +9,24 @@ A role-based web application for academic record management: account provisionin
 | Backend | Python · Flask · SQLAlchemy ORM · PyJWT · bcrypt |
 | Database | MySQL 8 |
 
-Specification documents live in [docs/](docs) (SRS, SAD, STP). The 15 user stories live on the project sprint board; their acceptance criteria are also kept in [qa/traceability/stories.md](qa/traceability/stories.md), which the QA tooling reads to trace every criterion to an automated check.
+## Project documents and evidence
+
+| What | Where |
+| --- | --- |
+| Software Requirements Specification | [docs/srs/SRS.pdf](docs/srs/SRS.pdf) (sources in [docs/srs/markdown](docs/srs/markdown)) |
+| Software Architecture & Design | [docs/sad/SAD.pdf](docs/sad/SAD.pdf) (sources in [docs/sad/markdown](docs/sad/markdown)) |
+| Software Test Plan | [docs/stp/STP.pdf](docs/stp/STP.pdf) (sources in [docs/stp/markdown](docs/stp/markdown)) |
+| Deviations from the initial SRS / SAD / STP | [docs/DEVIATIONS.md](docs/DEVIATIONS.md) |
+| Final test reports: unit, system validation, code coverage, branch coverage | [docs/reports/](docs/reports) |
+| Acceptance testing: plan, script, matrix, results, evidence screenshots | [docs/uat/](docs/uat) |
+| Test strategy and security findings | [docs/qa/TEST-STRATEGY.md](docs/qa/TEST-STRATEGY.md), [docs/qa/SECURITY-TRIAGE.md](docs/qa/SECURITY-TRIAGE.md) |
+| Manual smoke-test walkthrough | [docs/SMOKE_TEST.md](docs/SMOKE_TEST.md) |
+| Sprint 1 outcome video (about 1 minute) | [demo/videos/sprint1.mp4](demo/videos/sprint1.mp4) |
+| Sprint 2 outcome video (about 2 minutes) | [demo/videos/sprint2.mp4](demo/videos/sprint2.mp4) |
+| Whole-project demo, all 15 stories in order | [demo/videos/project-demo.mp4](demo/videos/project-demo.mp4) |
+| Backlog, story points and sprint plan | [Sprint board](https://github.com/orgs/SE-MINI-PROJ-TEAM/projects/1) (issues #11 to #25) |
+| Acceptance criteria used by the QA tooling | [qa/traceability/stories.md](qa/traceability/stories.md) |
+
 
 ---
 
