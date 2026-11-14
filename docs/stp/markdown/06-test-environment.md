@@ -17,7 +17,7 @@
 * **Performance Testing:** Apache k6 load testing framework.
 * **Security Scanning:** OWASP ZAP vulnerability scanner (API scan, API baseline and UI baseline), Bandit (static analysis of the Python source), pip-audit and npm audit (known-vulnerable dependencies).
 * **UI & E2E Testing:** Playwright automation framework, with axe-core for WCAG 2.1 A/AA accessibility checks.
-* **Automation:** every tool runs in Docker through the `qa.sh` stages, and GitHub Actions runs them on every pull request, on every push to `main` and nightly.
+* **Automation:** every tool runs in Docker through the `qa.sh` stages, and GitHub Actions runs them on every pull request and on every push to `main`.
 
 ## Test Data
 

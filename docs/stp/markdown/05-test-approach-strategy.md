@@ -15,7 +15,7 @@ Testing executes across four hierarchical verification levels:
 ## Types
 
 * **Functional Testing:** Core business logic verification against functional requirements `SYS-F-001` through `SYS-F-020`.
-* **Regression Testing:** Automated test execution on every pull request, on every push to `main` and nightly (GitHub Actions) to ensure existing functionality remains unbroken.
+* **Regression Testing:** Automated test execution on every pull request and on every push to `main` (GitHub Actions) to ensure existing functionality remains unbroken.
 * **Performance Testing:** Load testing verifying API response time $\le 800\text{ ms}$ under 500 active sessions and 200 concurrent transactions.
 * **Usability Testing:** Accessibility and workflow efficiency evaluation ($\le 3$ clicks to complete roll-call).
 
