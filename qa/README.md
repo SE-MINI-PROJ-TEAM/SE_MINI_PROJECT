@@ -24,7 +24,7 @@ The host needs only Docker (Compose v2). No Python, Node, k6, ZAP or browser has
 | `uat` | qa + nginx + API + MySQL | Executes `docs/uat/UAT-SCRIPT.md` through the UI (51 criteria + 5 exploratory charters), saves screenshots to `docs/uat/evidence/` and fills `docs/uat/UAT-RESULTS.md` (run `perf` first: US-15.3 reads the k6 summary) |
 | `docs` | qa | Regenerates `openapi.json`, `docs/uat/ACCEPTANCE-MATRIX.md` and `docs/uat/UAT-SCRIPT.md` |
 | `demo` | qa + nginx + API + MySQL | Re-records the two sprint demo videos into `demo/videos/` |
-| `report` | qa | Builds `qa/reports/TEST-EXECUTION-REPORT.md` from the result files |
+| `report` | qa | Builds `qa/reports/TEST-EXECUTION-REPORT.md` and the final reports in `docs/reports/` from the result files |
 
 The QA stack (`docker-compose.qa.yml`, project `srs-qa`) is isolated from the application stack and from any local MySQL: its database lives in memory and is re-seeded before every black-box stage.
 
@@ -40,6 +40,7 @@ The QA stack (`docker-compose.qa.yml`, project `srs-qa`) is isolated from the ap
 | `e2e/` | Playwright tests: access control, usability, accessibility, full workflows |
 | `traceability/` | TC-ID evidence map, acceptance-criteria map, UAT document generators |
 | `report.py` | The report builder |
+| `docs_reports.py` | Writes `docs/reports/` (unit, system validation, code and branch coverage) from the result files |
 | `reports/` | Generated output (git-ignored) |
 
 Regenerate the derived documents with `.\qa.ps1 docs` (the filled-in `docs/uat/UAT-RESULTS.md` is never overwritten).

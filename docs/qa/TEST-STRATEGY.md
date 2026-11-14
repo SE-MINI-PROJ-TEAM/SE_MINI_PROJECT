@@ -29,6 +29,7 @@ The host needs only Docker (Compose v2). The application itself is containerised
 ./qa.ps1 perf          # k6 container
 ./qa.ps1 zap           # OWASP ZAP container, scanning through nginx
 ./qa.ps1 e2e           # Playwright against the nginx-served UI
+./qa.ps1 report        # execution report + docs/reports/ (unit, system validation, code and branch coverage)
 ./qa.ps1 uat           # executable UAT script: fills docs/uat/UAT-RESULTS.md, screenshots in docs/uat/evidence/
 ./qa.ps1 docs          # regenerate openapi.json, acceptance matrix, UAT script
 ./qa.ps1 demo          # re-record the sprint demo videos
